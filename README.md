@@ -12,7 +12,9 @@ Miramar Food Hall is a vibrant culinary destination housed in a restored 1938 Sp
 
 ## Live Website
 
-Visit the live site: [Miramar Food Hall](https://[username].github.io/Miramar/)
+Visit the live site: [Miramar Food Hall](https://k13-projects.github.io/Miramar/)
+
+[![Deploy to GitHub Pages](https://github.com/k13-projects/Miramar/actions/workflows/deploy.yml/badge.svg)](https://github.com/k13-projects/Miramar/actions/workflows/deploy.yml)
 
 ## Features
 
@@ -74,6 +76,9 @@ Miramar Food Hall features 13 unique food vendors:
 
 ```
 Miramar/
+├── .github/
+│   └── workflows/
+│       └── deploy.yml      # GitHub Actions CI/CD
 ├── website/
 │   ├── index.html          # Main HTML file
 │   ├── css/
@@ -84,7 +89,7 @@ Miramar/
 │       ├── logo/           # Brand logo assets
 │       ├── story/          # Historical images
 │       └── vendors/        # Vendor photos
-├── Miramar Assets/         # Source design assets
+├── Miramar Assets/         # Source design assets (not tracked)
 ├── README.md               # This file
 ├── LICENSE                 # MIT License
 └── .gitignore              # Git ignore rules
@@ -94,7 +99,7 @@ Miramar/
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/[username]/Miramar.git
+   git clone https://github.com/k13-projects/Miramar.git
    ```
 
 2. Navigate to the website directory:
@@ -113,16 +118,31 @@ Miramar/
 
 4. Visit `http://localhost:8000`
 
-## GitHub Pages Deployment
+## Deployment
 
-This site is configured for GitHub Pages deployment from the `website` folder.
+This site uses **GitHub Actions** for automatic deployment to GitHub Pages.
 
-### Setup Instructions:
+### Automatic Deployment (CI/CD)
+
+Every push to the `main` branch automatically triggers a deployment:
+
+1. GitHub Actions workflow runs (`.github/workflows/deploy.yml`)
+2. Website files from `/website` folder are built and uploaded
+3. Site is deployed to GitHub Pages
+4. Live at: https://k13-projects.github.io/Miramar/
+
+### Manual Setup (First Time Only)
 
 1. Go to repository **Settings** > **Pages**
-2. Under "Source", select the branch (e.g., `mira_jan20_v1`)
-3. Set folder to `/website`
-4. Save and wait for deployment
+2. Under "Build and deployment", select **Source: GitHub Actions**
+3. The workflow will handle the rest automatically
+
+### Workflow Features
+
+- Triggers on every push to `main`
+- Can be manually triggered from Actions tab
+- Concurrent deployment protection
+- Automatic artifact upload and deployment
 
 ## Browser Support
 
