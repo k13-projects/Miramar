@@ -147,6 +147,24 @@ document.addEventListener('DOMContentLoaded', function() {
         const clone = content.innerHTML;
         content.innerHTML += clone;
     });
+
+    // Snake text animation for Instagram section
+    const snakeTextPath = document.querySelector('.snake-text textPath');
+    if (snakeTextPath) {
+        let offset = 0;
+        const speed = 0.5; // pixels per frame
+
+        function animateSnake() {
+            offset -= speed;
+            if (offset <= -2000) {
+                offset = 0;
+            }
+            snakeTextPath.setAttribute('startOffset', offset);
+            requestAnimationFrame(animateSnake);
+        }
+
+        animateSnake();
+    }
 });
 
 // Add CSS for animations
