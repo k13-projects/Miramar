@@ -155,8 +155,10 @@ h3 {
 }
 
 .logo img {
-    height: 50px;
+    height: 188px;
     width: auto;
+    /* Invert white logo to dark and shift to teal brand color */
+    filter: brightness(0) saturate(100%) invert(27%) sepia(51%) saturate(1000%) hue-rotate(150deg) brightness(95%) contrast(101%);
 }
 
 .nav-menu {
