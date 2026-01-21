@@ -6,6 +6,9 @@
     <meta name="description" content="Miramar Food Hall - The new culinary destination at San Clemente, California. Global bites, local vibes.">
     <meta name="keywords" content="food hall, San Clemente, California, restaurants, dining, coastal, culinary">
     <title>Miramar Food Hall | San Clemente, CA</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600;700&display=swap" rel="stylesheet">
@@ -16,7 +19,7 @@
     <nav class="navbar">
         <div class="nav-container">
             <a href="#" class="logo">
-                <img src="images/logo/logo.png" alt="Miramar Food Hall">
+                <img src="images/logo/miramar-logo.png" alt="Miramar Food Hall">
             </a>
             <button class="nav-toggle" aria-label="Toggle navigation">
                 <span></span>
@@ -245,6 +248,11 @@
 
     <!-- Location Section -->
     <section class="location" id="location">
+        <div class="wave-top">
+            <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+                <path d="M0,60 C360,0 720,120 1080,60 C1260,30 1380,30 1440,60 L1440,0 L0,0 Z" fill="#ffffff"/>
+            </svg>
+        </div>
         <div class="marquee">
             <div class="marquee-content">
                 <span>GENERAL INFORMATION</span>
@@ -257,7 +265,8 @@
             <div class="location-grid">
                 <div class="location-info" id="hours">
                     <h2>LOCATION</h2>
-                    <address>1720 North El Camino Real<br>San Clemente, CA 92672</address>
+                    <address>1720 North El Camino Real, San Clemente, CA 92672</address>
+                    <a href="https://maps.google.com/?q=1720+North+El+Camino+Real,+San+Clemente,+CA+92672" target="_blank" class="btn btn-primary">Get Directions</a>
                     <h3>OPERATING HOURS</h3>
                     <div class="hours-list">
                         <div class="hours-item">
@@ -273,7 +282,6 @@
                             <span class="hours-time">11:00 AM - 10:00 PM</span>
                         </div>
                     </div>
-                    <a href="https://maps.google.com/?q=1720+North+El+Camino+Real,+San+Clemente,+CA+92672" target="_blank" class="btn btn-primary">Get Directions</a>
                 </div>
                 <div class="location-map">
                     <iframe
@@ -292,25 +300,45 @@
 
     <!-- Instagram Section -->
     <section class="instagram" id="instagram">
-        <div class="instagram-marquee">
-            <svg class="snake-text" viewBox="0 0 1600 120" preserveAspectRatio="xMidYMid slice">
-                <defs>
-                    <path id="wave-path" d="M-400,60 C-300,20 -200,100 -100,60 C0,20 100,100 200,60 C300,20 400,100 500,60 C600,20 700,100 800,60 C900,20 1000,100 1100,60 C1200,20 1300,100 1400,60 C1500,20 1600,100 1700,60 C1800,20 1900,100 2000,60" />
-                </defs>
-                <text>
-                    <textPath href="#wave-path" startOffset="0">
-                        INSTAGRAM · INSTAGRAM · INSTAGRAM · INSTAGRAM · INSTAGRAM · INSTAGRAM · INSTAGRAM · INSTAGRAM ·
-                    </textPath>
-                </text>
-            </svg>
+        <div class="marquee instagram-marquee">
+            <div class="marquee-content">
+                <span>INSTAGRAM</span>
+                <span>INSTAGRAM</span>
+                <span>INSTAGRAM</span>
+                <span>INSTAGRAM</span>
+            </div>
+        </div>
+        <div class="instagram-carousel-wrapper">
+            <button class="carousel-btn carousel-prev" aria-label="Previous">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M15 18l-6-6 6-6"/>
+                </svg>
+            </button>
+            <div class="instagram-carousel">
+                <div class="instagram-grid">
+                    <div class="instagram-placeholder"></div>
+                    <div class="instagram-placeholder"></div>
+                    <div class="instagram-placeholder"></div>
+                    <div class="instagram-placeholder"></div>
+                </div>
+                <div class="instagram-grid">
+                    <div class="instagram-placeholder"></div>
+                    <div class="instagram-placeholder"></div>
+                    <div class="instagram-placeholder"></div>
+                    <div class="instagram-placeholder"></div>
+                </div>
+            </div>
+            <button class="carousel-btn carousel-next" aria-label="Next">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 18l6-6-6-6"/>
+                </svg>
+            </button>
+        </div>
+        <div class="carousel-dots">
+            <button class="carousel-dot active" aria-label="Page 1"></button>
+            <button class="carousel-dot" aria-label="Page 2"></button>
         </div>
         <div class="container">
-            <div class="instagram-grid">
-                <div class="instagram-placeholder"></div>
-                <div class="instagram-placeholder"></div>
-                <div class="instagram-placeholder"></div>
-                <div class="instagram-placeholder"></div>
-            </div>
             <a href="https://instagram.com/miramarfoodhall" target="_blank" class="btn btn-primary">Follow Us</a>
         </div>
     </section>

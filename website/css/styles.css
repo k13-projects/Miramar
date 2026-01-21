@@ -501,14 +501,45 @@ h3 {
 
 /* Location Section */
 .location {
-    background-color: var(--color-cream);
+    position: relative;
+    background-color: var(--color-dark-teal);
     padding: 0 0 100px;
+}
+
+.location .wave-top {
+    margin-bottom: -1px;
+}
+
+.location .wave-top svg {
+    display: block;
+    width: 100%;
+    height: 120px;
+}
+
+.location .marquee-content span {
+    color: var(--color-white);
+}
+
+.location-info {
+    background-color: var(--color-cream);
+    border-radius: 8px;
+    padding: 40px;
+    text-align: center;
+}
+
+.location-info .hours-list {
+    display: inline-block;
+    text-align: left;
 }
 
 .marquee {
     overflow: hidden;
     padding: 30px 0;
     background-color: var(--color-cream);
+}
+
+.location .marquee {
+    background-color: transparent;
 }
 
 .marquee-content {
@@ -521,7 +552,7 @@ h3 {
     font-family: var(--font-title);
     font-size: 2rem;
     font-weight: 700;
-    color: var(--color-light-gray);
+    color: #169080;
     padding: 0 50px;
     text-transform: uppercase;
     letter-spacing: 0.1em;
@@ -540,7 +571,7 @@ h3 {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 60px;
-    align-items: start;
+    align-items: stretch;
 }
 
 .location-info h2 {
@@ -550,8 +581,13 @@ h3 {
 .location-info address {
     font-style: normal;
     font-size: 1.125rem;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     color: var(--color-gray);
+    text-align: center;
+}
+
+.location-info .btn {
+    margin-bottom: 40px;
 }
 
 .location-info h3 {
@@ -579,13 +615,20 @@ h3 {
 }
 
 .location-map {
+    background-color: var(--color-cream);
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
 }
 
 .location-map iframe {
     display: block;
+    flex: 1;
+    min-height: 300px;
+    border-radius: 4px;
 }
 
 /* Instagram Section */
@@ -596,62 +639,40 @@ h3 {
 }
 
 .instagram-marquee {
-    margin-bottom: 80px;
-    padding: 60px 0;
-    overflow: hidden;
-}
-
-.instagram-marquee .marquee-content {
-    animation: none;
+    margin-bottom: 60px;
 }
 
 .instagram-marquee .marquee-content span {
-    font-family: var(--font-title);
     font-size: 2.8rem;
-    font-weight: 700;
     letter-spacing: 0.3em;
     color: var(--color-teal);
-    opacity: 0.35;
-    display: inline-block;
 }
 
-/* Use SVG path for snake text */
-.instagram-marquee .snake-text {
+.instagram-carousel-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 1500px;
+    margin: 0 auto 30px;
+    padding: 0 60px;
+}
+
+.instagram-carousel {
+    overflow: hidden;
     width: 100%;
-    height: 120px;
-    overflow: visible;
 }
 
-.instagram-marquee .snake-text text {
-    font-family: 'Josefin Sans', sans-serif;
-    font-size: 42px;
-    font-weight: 700;
-    letter-spacing: 0.2em;
-    fill: #169080;
-}
-
-.instagram-marquee .snake-text textPath {
-    animation: snake-slide 25s linear infinite;
-}
-
-@keyframes snake-slide {
-    0% {
-        startOffset: 0%;
-    }
-    100% {
-        startOffset: -100%;
-    }
-}
-
-.instagram-grid {
+.instagram-carousel .instagram-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 40px;
-    margin-bottom: 60px;
-    max-width: 1000px;
-    margin-left: auto;
-    margin-right: auto;
     padding: 0 20px;
+    transition: transform 0.5s ease;
+}
+
+.instagram-carousel .instagram-grid:not(:first-child) {
+    display: none;
 }
 
 .instagram-placeholder {
@@ -659,7 +680,68 @@ h3 {
     background-color: rgba(255, 255, 255, 0.7);
     border-radius: 16px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-    min-height: 200px;
+    min-height: 280px;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--color-white);
+    border: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-dark-teal);
+    transition: var(--transition);
+    z-index: 10;
+}
+
+.carousel-btn:hover {
+    background-color: var(--color-teal);
+    color: var(--color-white);
+}
+
+.carousel-prev {
+    left: 0;
+}
+
+.carousel-next {
+    right: 0;
+}
+
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 40px;
+}
+
+.carousel-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: none;
+    background-color: var(--color-teal);
+    opacity: 0.4;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.carousel-dot.active {
+    width: 32px;
+    border-radius: 6px;
+    opacity: 1;
+}
+
+.carousel-dot:hover {
+    opacity: 0.8;
 }
 
 /* Events Section */
@@ -946,10 +1028,18 @@ h3 {
         min-height: 500px;
     }
 
-    .instagram-grid {
+    .instagram-carousel .instagram-grid {
         grid-template-columns: repeat(2, 1fr);
-        max-width: 500px;
-        gap: 25px;
+        gap: 20px;
+    }
+
+    .instagram-carousel-wrapper {
+        padding: 0 50px;
+    }
+
+    .carousel-btn {
+        width: 40px;
+        height: 40px;
     }
 
     .instagram-marquee .marquee-content span {

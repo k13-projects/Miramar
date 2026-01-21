@@ -148,22 +148,38 @@ document.addEventListener('DOMContentLoaded', function() {
         content.innerHTML += clone;
     });
 
-    // Snake text animation for Instagram section
-    const snakeTextPath = document.querySelector('.snake-text textPath');
-    if (snakeTextPath) {
-        let offset = 0;
-        const speed = 0.5; // pixels per frame
+    // Instagram Carousel
+    const carousel = document.querySelector('.instagram-carousel');
+    const slides = carousel ? carousel.querySelectorAll('.instagram-grid') : [];
+    const prevBtn = document.querySelector('.carousel-prev');
+    const nextBtn = document.querySelector('.carousel-next');
+    const dots = document.querySelectorAll('.carousel-dot');
+    let currentSlide = 0;
 
-        function animateSnake() {
-            offset -= speed;
-            if (offset <= -2000) {
-                offset = 0;
-            }
-            snakeTextPath.setAttribute('startOffset', offset);
-            requestAnimationFrame(animateSnake);
-        }
+    function showSlide(index) {
+        slides.forEach((slide, i) => {
+            slide.style.display = i === index ? 'grid' : 'none';
+        });
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === index);
+        });
+        currentSlide = index;
+    }
 
-        animateSnake();
+    if (prevBtn && nextBtn && slides.length > 0) {
+        prevBtn.addEventListener('click', () => {
+            const newIndex = currentSlide === 0 ? slides.length - 1 : currentSlide - 1;
+            showSlide(newIndex);
+        });
+
+        nextBtn.addEventListener('click', () => {
+            const newIndex = currentSlide === slides.length - 1 ? 0 : currentSlide + 1;
+            showSlide(newIndex);
+        });
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => showSlide(index));
+        });
     }
 });
 
