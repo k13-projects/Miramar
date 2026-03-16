@@ -489,7 +489,7 @@ a:focus-visible {
 }
 
 .vendor-image {
-    height: 200px;
+    height: 250px;
     overflow: hidden;
 }
 
@@ -1215,6 +1215,38 @@ a:focus-visible {
 }
 
 /* Responsive Design */
+@media (max-width: 1400px) {
+    .nav-menu {
+        gap: 40px;
+    }
+
+    .logo img {
+        height: 140px;
+    }
+
+    .nav-container {
+        padding: 0 30px;
+    }
+
+    .logo {
+        left: 30px;
+    }
+}
+
+@media (max-width: 1100px) {
+    .nav-menu {
+        gap: 25px;
+    }
+
+    .logo img {
+        height: 110px;
+    }
+
+    .nav-menu a {
+        font-size: 0.95rem;
+    }
+}
+
 @media (max-width: 992px) {
     .story-grid {
         grid-template-columns: 1fr;
