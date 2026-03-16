@@ -660,11 +660,10 @@ a:focus-visible {
     text-align: center;
 }
 
-.instagram-embed-placeholder {
-    margin-bottom: 40px;
-    padding: 60px 20px;
-    color: var(--color-gray);
-    font-size: 1.1rem;
+.instagram-feed {
+    max-width: 1560px; /* ~30% wider than the 1200px container */
+    margin: 0 auto 40px;
+    padding: 0 20px;
 }
 
 /* Events Section */

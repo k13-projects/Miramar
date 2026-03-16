@@ -330,11 +330,12 @@
     <section class="instagram" id="instagram">
         <div class="container">
             <h2 class="section-title"><span>FOLLOW US</span></h2>
-            <!-- UPDATED: Instagram embed placeholder - replace with Elfsight/Behold widget (T11) -->
-            <!-- TODO: Set up Elfsight free tier embed for @miramarfoodhall and paste widget code here -->
-            <div class="instagram-embed-placeholder">
-                <p>Follow us on Instagram for the latest updates</p>
-            </div>
+        </div>
+        <!-- UPDATED: Live Instagram feed via Behold.so (T11) — wider than container -->
+        <div class="instagram-feed">
+            <div data-behold-id="x51BN3Vsq8FiymTrv0KF"></div>
+        </div>
+        <div class="container">
             <a href="https://instagram.com/miramarfoodhall" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Follow @miramarfoodhall</a>
         </div>
     </section>
@@ -550,6 +551,8 @@
 
     <!-- TODO: Consider integrating a free accessibility widget (UserWay free tier) -->
     <!-- Notify James before any paid subscription integration -->
+    <!-- Behold.so Instagram Feed Widget -->
+    <script>(function(){const d=document,s=d.createElement("script");s.type="module";s.src="https://w.behold.so/widget.js";d.head.append(s);})();</script>
     <script src="js/main.js"></script>
 </body>
 </html>
