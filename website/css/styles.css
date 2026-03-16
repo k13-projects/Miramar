@@ -7,6 +7,23 @@
    - Cream: #f6f4ed
    =================================== */
 
+/* UPDATED: ADA Accessibility (T17) */
+.skip-to-content {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--color-dark-teal);
+    color: var(--color-white);
+    padding: 8px 16px;
+    z-index: 9999;
+    font-size: 0.875rem;
+    transition: top 0.3s ease;
+}
+
+.skip-to-content:focus {
+    top: 0;
+}
+
 /* Reset & Base Styles */
 *, *::before, *::after {
     margin: 0;
@@ -121,6 +138,17 @@ h3 {
     color: var(--color-white);
 }
 
+/* UPDATED: Visible focus styles for ADA compliance (T17) */
+.btn:focus-visible {
+    outline: 3px solid var(--color-teal);
+    outline-offset: 2px;
+}
+
+a:focus-visible {
+    outline: 2px solid var(--color-teal);
+    outline-offset: 2px;
+}
+
 /* Navigation */
 .navbar {
     position: fixed;
@@ -157,8 +185,7 @@ h3 {
 .logo img {
     height: 188px;
     width: auto;
-    /* Invert white logo to dark and shift to teal brand color */
-    filter: brightness(0) saturate(100%) invert(27%) sepia(51%) saturate(1000%) hue-rotate(150deg) brightness(95%) contrast(101%);
+    /* UPDATED: Logo replaced with color version - no filter needed */
 }
 
 .nav-menu {
@@ -396,7 +423,7 @@ h3 {
     font-family: var(--font-title);
     font-size: 3.5rem;
     font-weight: 700;
-    color: var(--color-teal);
+    color: #F5ECD7; /* UPDATED: Changed from teal to warm beige for better contrast on dark teal bg */
     margin-bottom: 25px;
 }
 
@@ -449,6 +476,7 @@ h3 {
 }
 
 .vendor-card {
+    position: relative; /* UPDATED: For absolute-positioned Instagram icon */
     background-color: var(--color-cream);
     border-radius: 8px;
     overflow: hidden;
@@ -469,6 +497,7 @@ h3 {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center; /* UPDATED: Fix Hen House image alignment (T6) */
     transition: var(--transition);
 }
 
@@ -491,14 +520,30 @@ h3 {
     margin-bottom: 15px;
 }
 
-.vendor-social {
-    font-size: 0.8rem;
-    color: var(--color-teal);
-    font-weight: 600;
+/* UPDATED: Instagram icon positioned at bottom-left of vendor card (T5) */
+.vendor-instagram {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background-color: var(--color-teal);
+    color: var(--color-white);
+    border-radius: 50%;
+    transition: var(--transition);
 }
 
-.vendor-social:hover {
-    color: var(--color-dark-teal);
+.vendor-instagram:hover {
+    background-color: var(--color-dark-teal);
+    transform: translateY(-2px);
+}
+
+.vendor-instagram:focus {
+    outline: 2px solid var(--color-teal);
+    outline-offset: 2px;
 }
 
 /* Location Section */
@@ -506,6 +551,17 @@ h3 {
     position: relative;
     background-color: var(--color-dark-teal);
     padding: 0 0 100px;
+}
+
+/* UPDATED: Static title with bottom padding (T7, T8) */
+.location-title {
+    padding-top: 30px;
+    margin-bottom: 40px;
+}
+
+.location-title span {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: var(--color-white);
 }
 
 .location .wave-top {
@@ -516,10 +572,6 @@ h3 {
     display: block;
     width: 100%;
     height: 120px;
-}
-
-.location .marquee-content span {
-    color: var(--color-white);
 }
 
 .location-info {
@@ -534,40 +586,7 @@ h3 {
     text-align: left;
 }
 
-.marquee {
-    overflow: hidden;
-    padding: 30px 0;
-    background-color: var(--color-cream);
-}
-
-.location .marquee {
-    background-color: transparent;
-}
-
-.marquee-content {
-    display: flex;
-    animation: marquee 20s linear infinite;
-    white-space: nowrap;
-}
-
-.marquee-content span {
-    font-family: var(--font-title);
-    font-size: 2rem;
-    font-weight: 700;
-    color: #169080;
-    padding: 0 50px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-}
-
-@keyframes marquee {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-50%);
-    }
-}
+/* UPDATED: Marquee animations removed (T7, T10) - replaced with static titles */
 
 .location-grid {
     display: grid;
@@ -604,7 +623,7 @@ h3 {
 .hours-item {
     display: flex;
     justify-content: space-between;
-    padding: 10px 0;
+    padding: 14px 0; /* UPDATED: Increased spacing between divider and hours text (T9) */
     border-bottom: 1px solid var(--color-light-gray);
 }
 
@@ -633,117 +652,19 @@ h3 {
     border-radius: 4px;
 }
 
-/* Instagram Section */
+/* Instagram / Follow Us Section */
+/* UPDATED: Replaced carousel with embed placeholder (T10, T11) */
 .instagram {
     padding: 80px 0 100px;
     background-color: var(--color-cream);
     text-align: center;
 }
 
-.instagram-marquee {
-    margin-bottom: 60px;
-}
-
-.instagram-marquee .marquee-content span {
-    font-size: 2.8rem;
-    letter-spacing: 0.3em;
-    color: var(--color-teal);
-}
-
-.instagram-carousel-wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    max-width: 1500px;
-    margin: 0 auto 30px;
-    padding: 0 60px;
-}
-
-.instagram-carousel {
-    overflow: hidden;
-    width: 100%;
-}
-
-.instagram-carousel .instagram-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 40px;
-    padding: 0 20px;
-    transition: transform 0.5s ease;
-}
-
-.instagram-carousel .instagram-grid:not(:first-child) {
-    display: none;
-}
-
-.instagram-placeholder {
-    aspect-ratio: 1;
-    background-color: rgba(255, 255, 255, 0.7);
-    border-radius: 16px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-    min-height: 280px;
-}
-
-.carousel-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: var(--color-white);
-    border: none;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--color-dark-teal);
-    transition: var(--transition);
-    z-index: 10;
-}
-
-.carousel-btn:hover {
-    background-color: var(--color-teal);
-    color: var(--color-white);
-}
-
-.carousel-prev {
-    left: 0;
-}
-
-.carousel-next {
-    right: 0;
-}
-
-.carousel-dots {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
+.instagram-embed-placeholder {
     margin-bottom: 40px;
-}
-
-.carousel-dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    border: none;
-    background-color: var(--color-teal);
-    opacity: 0.4;
-    cursor: pointer;
-    transition: var(--transition);
-}
-
-.carousel-dot.active {
-    width: 32px;
-    border-radius: 6px;
-    opacity: 1;
-}
-
-.carousel-dot:hover {
-    opacity: 0.8;
+    padding: 60px 20px;
+    color: var(--color-gray);
+    font-size: 1.1rem;
 }
 
 /* Events Section */
@@ -1192,6 +1113,88 @@ h3 {
     cursor: not-allowed;
 }
 
+/* UPDATED: Celebrations Modal (T14) */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+.modal-content {
+    background-color: var(--color-white);
+    border-radius: 12px;
+    padding: 40px;
+    max-width: 600px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--color-gray);
+    line-height: 1;
+    transition: var(--transition);
+}
+
+.modal-close:hover {
+    color: var(--color-dark);
+}
+
+.modal-close:focus {
+    outline: 2px solid var(--color-teal);
+    outline-offset: 2px;
+}
+
+.modal-content h2 {
+    margin-bottom: 10px;
+    padding-right: 30px;
+}
+
+.modal-subtitle {
+    color: var(--color-gray);
+    margin-bottom: 30px;
+    font-size: 1.05rem;
+}
+
+.modal-contact-info {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--color-light-gray);
+    text-align: center;
+    font-size: 0.875rem;
+    color: var(--color-gray);
+}
+
+.modal-contact-info a {
+    color: var(--color-teal);
+}
+
+.modal-contact-info a:hover {
+    color: var(--color-dark-teal);
+}
+
 /* Footer */
 .footer {
     background-color: var(--color-dark);
@@ -1203,7 +1206,7 @@ h3 {
 .footer-logo {
     height: 40px;
     margin: 0 auto 20px;
-    filter: brightness(0) invert(1);
+    /* UPDATED: Logo replaced with white version - no filter needed */
 }
 
 .footer p {
@@ -1292,28 +1295,6 @@ h3 {
 
     .hero {
         min-height: 500px;
-    }
-
-    .instagram-carousel .instagram-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-    }
-
-    .instagram-carousel-wrapper {
-        padding: 0 50px;
-    }
-
-    .carousel-btn {
-        width: 40px;
-        height: 40px;
-    }
-
-    .instagram-marquee .marquee-content span {
-        font-size: 2rem;
-    }
-
-    .instagram-placeholder {
-        min-height: 150px;
     }
 
     .form-row {

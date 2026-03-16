@@ -15,6 +15,9 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    <!-- UPDATED: Skip to content link for ADA accessibility (T17) -->
+    <a href="#intro" class="skip-to-content">Skip to main content</a>
+
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
@@ -37,6 +40,7 @@
         </div>
     </nav>
 
+    <main>
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-overlay"></div>
@@ -79,25 +83,27 @@
                 <div class="story-grid">
                     <div class="story-text">
                         <h2>OUR STORY</h2>
-                        <div class="story-year">1938</div>
+                        <div class="story-year" data-year="1938">1938</div>
                         <p>Miramar Food Hall was born from a vision to bring new life to one of San Clemente's most treasured landmarks. Once home to the Miramar Theatre and the San Clemente Bowling Center, this 1938 Spanish Colonial Revival gem had been closed for over three decades.</p>
                     </div>
                     <div class="story-image">
-                        <img src="images/story/historic-1.png" alt="Historic Miramar Theatre 1938">
+                        <!-- UPDATED: Replaced with new historical photo -->
+                        <img src="images/story/historic-1.jpg" alt="Historic San Clemente building, circa 1938">
                     </div>
                 </div>
                 <div class="story-grid reverse">
                     <div class="story-text">
-                        <div class="story-year">2020</div>
+                        <div class="story-year" data-year="2020">2020</div>
                         <p>In 2020, we took on the challenge of restoring the space, honoring its rich history while transforming it into a vibrant culinary destination. Today, Miramar Food Hall stands as a celebration of community, global bites, local vibes and the enduring spirit of Southern California, marking the long-awaited revival of an iconic coastal landmark.</p>
                     </div>
                     <div class="story-image">
-                        <img src="images/story/historic-2.png" alt="Historic Miramar">
+                        <!-- UPDATED: Replaced with new historical photo -->
+                        <img src="images/story/historic-2.jpg" alt="San Clemente Movie House, circa 2020">
                     </div>
                 </div>
                 <div class="story-grid">
                     <div class="story-text">
-                        <div class="story-year">2026</div>
+                        <div class="story-year" data-year="2026">2026</div>
                         <p>Rooted in the relaxed spirit of coastal California, Miramar Food Hall brings together the artistry of local chefs and global flavors under one roof. Designed as a family-friendly gathering place, we offer an elevated yet approachable dining experience that reflects a balance of tradition and innovation, celebrating the region's diverse culinary scene while honoring the charm and character of this historic setting.</p>
                     </div>
                     <div class="story-image">
@@ -113,6 +119,7 @@
         <div class="container">
             <h2 class="section-title"><span>MEET OUR VENDORS</span></h2>
             <div class="vendors-grid">
+                <!-- UPDATED: Instagram icons moved to bottom-left of cards (T5) -->
                 <div class="vendor-card">
                     <div class="vendor-image">
                         <img src="images/vendors/cosmos.jpg" alt="Cosmos Burger">
@@ -120,8 +127,10 @@
                     <div class="vendor-info">
                         <h3>Cosmos Burger</h3>
                         <p>Burgers made with fresh, premium ingredients with locations in Oceanside and Carlsbad, CA. Best known for the signature Spicy Jam Burger and Monkey Fries.</p>
-                        <a href="https://instagram.com/burger.cosmos" target="_blank" class="vendor-social">@burger.cosmos</a>
                     </div>
+                    <a href="https://instagram.com/burger.cosmos" target="_blank" rel="noopener noreferrer" class="vendor-instagram" aria-label="Cosmos Burger on Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"/></svg>
+                    </a>
                 </div>
                 <div class="vendor-card">
                     <div class="vendor-image">
@@ -130,8 +139,10 @@
                     <div class="vendor-info">
                         <h3>El Puerto Street Tacos</h3>
                         <p>Authentic Mexican street tacos, burritos, and quesadillas made with fresh ingredients since 2005, with two Carlsbad, California locations.</p>
-                        <a href="https://instagram.com/elpuertocarlsbad" target="_blank" class="vendor-social">@elpuertocarlsbad</a>
                     </div>
+                    <a href="https://instagram.com/elpuertocarlsbad" target="_blank" rel="noopener noreferrer" class="vendor-instagram" aria-label="El Puerto Street Tacos on Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"/></svg>
+                    </a>
                 </div>
                 <div class="vendor-card">
                     <div class="vendor-image">
@@ -140,8 +151,10 @@
                     <div class="vendor-info">
                         <h3>Graciously Thai</h3>
                         <p>Late night destination for authentic, home-style Thai food with a location in Temecula, CA.</p>
-                        <a href="https://instagram.com/graciouslythaifood" target="_blank" class="vendor-social">@graciouslythaifood</a>
                     </div>
+                    <a href="https://instagram.com/graciouslythaifood" target="_blank" rel="noopener noreferrer" class="vendor-instagram" aria-label="Graciously Thai on Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"/></svg>
+                    </a>
                 </div>
                 <div class="vendor-card">
                     <div class="vendor-image">
@@ -159,8 +172,10 @@
                     <div class="vendor-info">
                         <h3>Immersion Coffee Co.</h3>
                         <p>Community-focused coffee shop, formerly Manivela Coffee Truck, with locations in San Diego's Little Italy and La Jolla neighborhoods.</p>
-                        <a href="https://instagram.com/immersionsd" target="_blank" class="vendor-social">@immersionsd</a>
                     </div>
+                    <a href="https://instagram.com/immersionsd" target="_blank" rel="noopener noreferrer" class="vendor-instagram" aria-label="Immersion Coffee Co. on Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"/></svg>
+                    </a>
                 </div>
                 <div class="vendor-card">
                     <div class="vendor-image">
@@ -169,8 +184,10 @@
                     <div class="vendor-info">
                         <h3>It's Allll Rice</h3>
                         <p>Fried Rice with no Rules. First brick-and-mortar location for the globally-inspired fried rice-focused concept.</p>
-                        <a href="https://instagram.com/its.allll.rice" target="_blank" class="vendor-social">@its.allll.rice</a>
                     </div>
+                    <a href="https://instagram.com/its.allll.rice" target="_blank" rel="noopener noreferrer" class="vendor-instagram" aria-label="It's Allll Rice on Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"/></svg>
+                    </a>
                 </div>
                 <div class="vendor-card">
                     <div class="vendor-image">
@@ -179,8 +196,10 @@
                     <div class="vendor-info">
                         <h3>La Vida</h3>
                         <p>Healthy eats including salads, sandwiches and wraps, toasts, and smoothies with a location in Carlsbad, CA.</p>
-                        <a href="https://instagram.com/lavida.sandiego" target="_blank" class="vendor-social">@lavida.sandiego</a>
                     </div>
+                    <a href="https://instagram.com/lavida.sandiego" target="_blank" rel="noopener noreferrer" class="vendor-instagram" aria-label="La Vida on Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"/></svg>
+                    </a>
                 </div>
                 <div class="vendor-card">
                     <div class="vendor-image">
@@ -189,8 +208,10 @@
                     <div class="vendor-info">
                         <h3>Lobster Lab</h3>
                         <p>Seafood concept with a location in Carlsbad, CA serving up various lobster roll iterations, including the popular Lobster Grilled Cheese. Number 1 Ranked Lobster Roll in San Diego 2024 on Yelp.</p>
-                        <a href="https://instagram.com/lobsterlab.us" target="_blank" class="vendor-social">@lobsterlab.us</a>
                     </div>
+                    <a href="https://instagram.com/lobsterlab.us" target="_blank" rel="noopener noreferrer" class="vendor-instagram" aria-label="Lobster Lab on Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"/></svg>
+                    </a>
                 </div>
                 <div class="vendor-card">
                     <div class="vendor-image">
@@ -199,8 +220,10 @@
                     <div class="vendor-info">
                         <h3>MOTO Pizza</h3>
                         <p>The first out-of-state outpost for the acclaimed Seattle-based pizza chain known for its "odd pizza," combining Detroit, New York, and Roman styles with Filipino influences.</p>
-                        <a href="https://instagram.com/motopizzashop" target="_blank" class="vendor-social">@motopizzashop</a>
                     </div>
+                    <a href="https://instagram.com/motopizzashop" target="_blank" rel="noopener noreferrer" class="vendor-instagram" aria-label="MOTO Pizza on Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"/></svg>
+                    </a>
                 </div>
                 <div class="vendor-card">
                     <div class="vendor-image">
@@ -209,8 +232,10 @@
                     <div class="vendor-info">
                         <h3>Norigiri</h3>
                         <p>Fresh, modern take on Japanese onigiri - handmade rice balls with bold fillings - served fast and packed with flavor, with a location in Irvine.</p>
-                        <a href="https://instagram.com/norigiri.official" target="_blank" class="vendor-social">@norigiri.official</a>
                     </div>
+                    <a href="https://instagram.com/norigiri.official" target="_blank" rel="noopener noreferrer" class="vendor-instagram" aria-label="Norigiri on Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"/></svg>
+                    </a>
                 </div>
                 <div class="vendor-card">
                     <div class="vendor-image">
@@ -219,8 +244,10 @@
                     <div class="vendor-info">
                         <h3>RolledUp SC</h3>
                         <p>Sushi rolls and customizable burritos and bowls, with a location in Carlsbad, CA.</p>
-                        <a href="https://instagram.com/rolledupsd" target="_blank" class="vendor-social">@rolledupsd</a>
                     </div>
+                    <a href="https://instagram.com/rolledupsd" target="_blank" rel="noopener noreferrer" class="vendor-instagram" aria-label="RolledUp SC on Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"/></svg>
+                    </a>
                 </div>
                 <div class="vendor-card">
                     <div class="vendor-image">
@@ -229,8 +256,10 @@
                     <div class="vendor-info">
                         <h3>Sidelines Sandwiches</h3>
                         <p>The concept started as a pop-up at Del Mar, CA's Surf Sports Park (formerly the San Diego Polo Fields), serving sandwiches on the "sidelines" of youth soccer tournaments.</p>
-                        <a href="https://instagram.com/sidelinessocal" target="_blank" class="vendor-social">@sidelinessocal</a>
                     </div>
+                    <a href="https://instagram.com/sidelinessocal" target="_blank" rel="noopener noreferrer" class="vendor-instagram" aria-label="Sidelines Sandwiches on Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"/></svg>
+                    </a>
                 </div>
                 <div class="vendor-card">
                     <div class="vendor-image">
@@ -239,8 +268,10 @@
                     <div class="vendor-info">
                         <h3>The Pita</h3>
                         <p>A Middle Eastern concept, serving shawarma, gyros, pita, hummus, and more, from the husband and wife owners of San Clemente's Rocket Fizz soda pop & candy shop.</p>
-                        <a href="https://instagram.com/the_pita_san_clemente" target="_blank" class="vendor-social">@the_pita_san_clemente</a>
                     </div>
+                    <a href="https://instagram.com/the_pita_san_clemente" target="_blank" rel="noopener noreferrer" class="vendor-instagram" aria-label="The Pita on Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"/></svg>
+                    </a>
                 </div>
             </div>
         </div>
@@ -253,14 +284,8 @@
                 <path d="M0,60 C360,0 720,120 1080,60 C1260,30 1380,30 1440,60 L1440,0 L0,0 Z" fill="#ffffff"/>
             </svg>
         </div>
-        <div class="marquee">
-            <div class="marquee-content">
-                <span>GENERAL INFORMATION</span>
-                <span>GENERAL INFORMATION</span>
-                <span>GENERAL INFORMATION</span>
-                <span>GENERAL INFORMATION</span>
-            </div>
-        </div>
+        <!-- UPDATED: Replaced marquee with static title (T7) -->
+        <h2 class="section-title location-title"><span>GENERAL INFORMATION</span></h2>
         <div class="container">
             <div class="location-grid">
                 <div class="location-info" id="hours">
@@ -284,6 +309,7 @@
                     </div>
                 </div>
                 <div class="location-map">
+                    <!-- UPDATED: Added title for ADA accessibility (T17) -->
                     <iframe
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3329.5!2d-117.6!3d33.45!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2s1720+N+El+Camino+Real%2C+San+Clemente%2C+CA+92672!5e0!3m2!1sen!2sus!4v1"
                         width="100%"
@@ -291,63 +317,36 @@
                         style="border:0;"
                         allowfullscreen=""
                         loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade">
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="Google Maps showing Miramar Food Hall location at 1720 N El Camino Real, San Clemente, CA">
                     </iframe>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Instagram Section -->
+    <!-- Follow Us / Instagram Section -->
+    <!-- UPDATED: Removed marquee, replaced with static title (T10) -->
     <section class="instagram" id="instagram">
-        <div class="marquee instagram-marquee">
-            <div class="marquee-content">
-                <span>INSTAGRAM</span>
-                <span>INSTAGRAM</span>
-                <span>INSTAGRAM</span>
-                <span>INSTAGRAM</span>
-            </div>
-        </div>
-        <div class="instagram-carousel-wrapper">
-            <button class="carousel-btn carousel-prev" aria-label="Previous">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M15 18l-6-6 6-6"/>
-                </svg>
-            </button>
-            <div class="instagram-carousel">
-                <div class="instagram-grid">
-                    <div class="instagram-placeholder"></div>
-                    <div class="instagram-placeholder"></div>
-                    <div class="instagram-placeholder"></div>
-                    <div class="instagram-placeholder"></div>
-                </div>
-                <div class="instagram-grid">
-                    <div class="instagram-placeholder"></div>
-                    <div class="instagram-placeholder"></div>
-                    <div class="instagram-placeholder"></div>
-                    <div class="instagram-placeholder"></div>
-                </div>
-            </div>
-            <button class="carousel-btn carousel-next" aria-label="Next">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M9 18l6-6-6-6"/>
-                </svg>
-            </button>
-        </div>
-        <div class="carousel-dots">
-            <button class="carousel-dot active" aria-label="Page 1"></button>
-            <button class="carousel-dot" aria-label="Page 2"></button>
-        </div>
         <div class="container">
-            <a href="https://instagram.com/miramarfoodhall" target="_blank" class="btn btn-primary">Follow Us</a>
+            <h2 class="section-title"><span>FOLLOW US</span></h2>
+            <!-- UPDATED: Instagram embed placeholder - replace with Elfsight/Behold widget (T11) -->
+            <!-- TODO: Set up Elfsight free tier embed for @miramarfoodhall and paste widget code here -->
+            <div class="instagram-embed-placeholder">
+                <p>Follow us on Instagram for the latest updates</p>
+            </div>
+            <a href="https://instagram.com/miramarfoodhall" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Follow @miramarfoodhall</a>
         </div>
     </section>
 
     <!-- Events Section -->
+    <!-- UPDATED: Events now dynamically loaded from Google Sheets (T12) -->
     <section class="events" id="events">
         <div class="container">
             <h2 class="section-title"><span>UPCOMING EVENTS</span></h2>
-            <div class="events-grid">
+            <div class="events-grid" id="eventsGrid">
+                <!-- Events loaded dynamically from Google Sheets -->
+                <!-- Fallback events shown if fetch fails -->
                 <div class="event-card">
                     <div class="event-date">
                         <span class="month">JAN</span>
@@ -383,7 +382,8 @@
             <div class="bookings-content">
                 <h2>Celebrate with Miramar Food Hall</h2>
                 <p class="bookings-tagline">We love a special occasion.<br>Book your next event.</p>
-                <a href="#contact-form" class="btn btn-secondary">Get in Touch</a>
+                <!-- UPDATED: Links to celebrations modal (T13, T14) -->
+                <a href="#" class="btn btn-secondary" id="celebrationsCta">Get in Touch</a>
             </div>
         </div>
     </section>
@@ -484,6 +484,60 @@
         </div>
     </section>
 
+    </main>
+
+    <!-- UPDATED: Celebrations Form Modal (T14) -->
+    <div class="modal-overlay" id="celebrationsModal" aria-hidden="true" role="dialog" aria-labelledby="celebrationsTitle">
+        <div class="modal-content">
+            <button class="modal-close" id="celebrationsClose" aria-label="Close celebrations form">&times;</button>
+            <h2 id="celebrationsTitle">Party of 15 or more... Contact us</h2>
+            <p class="modal-subtitle">We love a special occasion. Book your next event.</p>
+            <form id="celebrationsForm" action="#" method="POST" novalidate>
+                <div aria-live="polite" aria-atomic="true" class="form-message" id="celebrationsFormMessage" role="status"></div>
+                <div class="form-group">
+                    <label for="eventHostName">Event Host Name <span class="required">*</span></label>
+                    <input type="text" id="eventHostName" name="eventHostName" required aria-required="true" autocomplete="name">
+                    <span class="field-error" id="eventHostNameError" aria-live="polite"></span>
+                </div>
+                <div class="form-group">
+                    <label for="celebrationEmail">Email <span class="required">*</span></label>
+                    <input type="email" id="celebrationEmail" name="celebrationEmail" required aria-required="true" autocomplete="email">
+                    <span class="field-error" id="celebrationEmailError" aria-live="polite"></span>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="celebrationPhone">Phone</label>
+                        <input type="tel" id="celebrationPhone" name="celebrationPhone" autocomplete="tel">
+                    </div>
+                    <div class="form-group">
+                        <label for="guestCount">Number of Guests</label>
+                        <input type="number" id="guestCount" name="guestCount" min="15" placeholder="15+">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="eventDate">Date</label>
+                        <input type="date" id="eventDate" name="eventDate">
+                    </div>
+                    <div class="form-group">
+                        <label for="eventTime">Time</label>
+                        <input type="time" id="eventTime" name="eventTime">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="celebrationMessage">Message <span class="required">*</span></label>
+                    <textarea id="celebrationMessage" name="celebrationMessage" rows="4" required aria-required="true" placeholder="Tell us about your event..."></textarea>
+                    <span class="field-error" id="celebrationMessageError" aria-live="polite"></span>
+                </div>
+                <button type="submit" class="btn btn-primary btn-submit">Send Request</button>
+            </form>
+            <div class="modal-contact-info">
+                <p>1720 N El Camino Real, San Clemente, CA 92672</p>
+                <p><a href="mailto:info@miramarfoodhall.com">info@miramarfoodhall.com</a> &bull; <a href="tel:+19495550123">(949) 555-0123</a></p>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -494,6 +548,8 @@
         </div>
     </footer>
 
+    <!-- TODO: Consider integrating a free accessibility widget (UserWay free tier) -->
+    <!-- Notify James before any paid subscription integration -->
     <script src="js/main.js"></script>
 </body>
 </html>

@@ -81,6 +81,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Let's Connect Form Handling
     initConnectForm();
 
+    // UPDATED: Celebrations modal (T13, T14)
+    initCelebrationsModal();
+
     // Parallax effect for hero section
     const hero = document.querySelector('.hero');
     if (hero) {
@@ -94,46 +97,47 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Duplicate marquee content for seamless loop
-    const marqueeContents = document.querySelectorAll('.marquee-content');
-    marqueeContents.forEach(content => {
-        const clone = content.innerHTML;
-        content.innerHTML += clone;
-    });
+    // UPDATED: Scroll-triggered count-up animation for story year numbers
+    const yearElements = document.querySelectorAll('.story-year[data-year]');
+    const yearObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const el = entry.target;
+                const targetYear = parseInt(el.dataset.year);
+                const startYear = targetYear - 38; // count up from ~38 years before
+                const duration = 1500; // 1.5 seconds
+                const startTime = performance.now();
 
-    // Instagram Carousel
-    const carousel = document.querySelector('.instagram-carousel');
-    const slides = carousel ? carousel.querySelectorAll('.instagram-grid') : [];
-    const prevBtn = document.querySelector('.carousel-prev');
-    const nextBtn = document.querySelector('.carousel-next');
-    const dots = document.querySelectorAll('.carousel-dot');
-    let currentSlide = 0;
+                function animateCount(currentTime) {
+                    const elapsed = currentTime - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    // Ease-out curve
+                    const eased = 1 - Math.pow(1 - progress, 3);
+                    const currentValue = Math.round(startYear + (targetYear - startYear) * eased);
+                    el.textContent = currentValue;
 
-    function showSlide(index) {
-        slides.forEach((slide, i) => {
-            slide.style.display = i === index ? 'grid' : 'none';
-        });
-        dots.forEach((dot, i) => {
-            dot.classList.toggle('active', i === index);
-        });
-        currentSlide = index;
-    }
+                    if (progress < 1) {
+                        requestAnimationFrame(animateCount);
+                    } else {
+                        el.textContent = targetYear;
+                    }
+                }
 
-    if (prevBtn && nextBtn && slides.length > 0) {
-        prevBtn.addEventListener('click', () => {
-            const newIndex = currentSlide === 0 ? slides.length - 1 : currentSlide - 1;
-            showSlide(newIndex);
+                requestAnimationFrame(animateCount);
+                yearObserver.unobserve(el);
+            }
         });
+    }, { threshold: 0.5 });
 
-        nextBtn.addEventListener('click', () => {
-            const newIndex = currentSlide === slides.length - 1 ? 0 : currentSlide + 1;
-            showSlide(newIndex);
-        });
+    yearElements.forEach(el => yearObserver.observe(el));
 
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => showSlide(index));
-        });
-    }
+    // UPDATED: Marquee and carousel removed (T7, T10) - replaced with static titles
+
+    // UPDATED: Load events from Google Sheets (T12)
+    // TODO: Replace SHEET_ID with the actual published Google Sheet ID
+    // Sheet should have columns: Month, Day, Title, Description
+    // To set up: Create a Google Sheet, publish it to web (File > Share > Publish to web > CSV)
+    loadEventsFromSheet();
 });
 
 // Let's Connect Form Functionality
@@ -388,6 +392,169 @@ function initConnectForm() {
             if (errorEl) errorEl.textContent = '';
         });
     });
+}
+
+// UPDATED: Celebrations Modal (T13, T14)
+function initCelebrationsModal() {
+    const cta = document.getElementById('celebrationsCta');
+    const modal = document.getElementById('celebrationsModal');
+    const closeBtn = document.getElementById('celebrationsClose');
+    const form = document.getElementById('celebrationsForm');
+    const formMessage = document.getElementById('celebrationsFormMessage');
+
+    if (!cta || !modal) return;
+
+    // Open modal
+    cta.addEventListener('click', function(e) {
+        e.preventDefault();
+        modal.classList.add('active');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        closeBtn.focus();
+    });
+
+    // Close modal
+    function closeModal() {
+        modal.classList.remove('active');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+    }
+
+    closeBtn.addEventListener('click', closeModal);
+
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) closeModal();
+    });
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
+    });
+
+    // Form validation and submission
+    if (!form) return;
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        formMessage.className = 'form-message';
+        formMessage.textContent = '';
+
+        // Clear errors
+        form.querySelectorAll('.error').forEach(el => el.classList.remove('error'));
+        form.querySelectorAll('.field-error').forEach(el => el.textContent = '');
+
+        let isValid = true;
+        const data = new FormData(this);
+
+        // Validate Host Name
+        if (!data.get('eventHostName').trim()) {
+            document.getElementById('eventHostName').classList.add('error');
+            document.getElementById('eventHostNameError').textContent = 'Event host name is required.';
+            isValid = false;
+        }
+
+        // Validate Email
+        const email = data.get('celebrationEmail').trim();
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!email) {
+            document.getElementById('celebrationEmail').classList.add('error');
+            document.getElementById('celebrationEmailError').textContent = 'Email is required.';
+            isValid = false;
+        } else if (!emailRegex.test(email)) {
+            document.getElementById('celebrationEmail').classList.add('error');
+            document.getElementById('celebrationEmailError').textContent = 'Please enter a valid email.';
+            isValid = false;
+        }
+
+        // Validate Message
+        if (!data.get('celebrationMessage').trim()) {
+            document.getElementById('celebrationMessage').classList.add('error');
+            document.getElementById('celebrationMessageError').textContent = 'Message is required.';
+            isValid = false;
+        }
+
+        if (!isValid) {
+            formMessage.className = 'form-message error';
+            formMessage.textContent = 'Please fix the errors above.';
+            return;
+        }
+
+        // Simulate submission
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = 'Sending...';
+        submitBtn.disabled = true;
+
+        setTimeout(() => {
+            formMessage.className = 'form-message success';
+            formMessage.textContent = 'Thank you! We\'ll be in touch about your event.';
+            form.reset();
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+
+            setTimeout(() => {
+                formMessage.className = 'form-message';
+                formMessage.textContent = '';
+                closeModal();
+            }, 3000);
+        }, 1500);
+    });
+
+    // Clear field errors on input
+    form.querySelectorAll('input, textarea').forEach(input => {
+        input.addEventListener('input', function() {
+            this.classList.remove('error');
+            const errorEl = document.getElementById(this.id + 'Error');
+            if (errorEl) errorEl.textContent = '';
+        });
+    });
+}
+
+// UPDATED: Google Sheets Events Integration (T12)
+// Instructions for client: Create a Google Sheet with columns: Month, Day, Title, Description
+// Publish to web as CSV, then replace the SHEET_CSV_URL below
+function loadEventsFromSheet() {
+    // TODO: Replace with actual published Google Sheet CSV URL
+    // Format: https://docs.google.com/spreadsheets/d/e/SHEET_ID/pub?output=csv
+    const SHEET_CSV_URL = '';
+
+    if (!SHEET_CSV_URL) return; // Skip if no sheet URL configured
+
+    const eventsGrid = document.getElementById('eventsGrid');
+    if (!eventsGrid) return;
+
+    fetch(SHEET_CSV_URL)
+        .then(response => response.text())
+        .then(csv => {
+            const rows = csv.split('\n').slice(1); // Skip header row
+            const events = rows
+                .map(row => {
+                    const cols = row.split(',').map(c => c.trim().replace(/^"|"$/g, ''));
+                    if (cols.length >= 4 && cols[0] && cols[1] && cols[2]) {
+                        return { month: cols[0], day: cols[1], title: cols[2], description: cols[3] || '' };
+                    }
+                    return null;
+                })
+                .filter(Boolean);
+
+            if (events.length > 0) {
+                eventsGrid.innerHTML = events.map(event => `
+                    <div class="event-card">
+                        <div class="event-date">
+                            <span class="month">${event.month}</span>
+                            <span class="day">${event.day}</span>
+                        </div>
+                        <div class="event-info">
+                            <h3>${event.title}</h3>
+                            <p>${event.description}</p>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        })
+        .catch(() => {
+            // Fallback: keep the hardcoded events in the HTML
+        });
 }
 
 // Add CSS for animations
