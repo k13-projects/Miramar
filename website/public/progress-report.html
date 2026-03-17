@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Miramar Food Hall | Development Progress Report — March 2026</title>
-    <meta name="description" content="Development progress report for the Miramar Food Hall website — March 2026">
+    <meta name="description" content="Development progress report for the Miramar Food Hall website — March 2026. Prepared by K13 Software Studio.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600;700&display=swap" rel="stylesheet">
@@ -71,7 +71,7 @@
         .section-subtitle {
             color: var(--color-gray);
             text-align: center;
-            max-width: 600px;
+            max-width: 640px;
             margin: 0 auto 3rem;
             font-size: 1.05rem;
             line-height: 1.8;
@@ -164,15 +164,15 @@
             z-index: 2;
         }
         .hero-logo {
-            width: 180px;
-            margin: 0 auto 2rem;
+            width: 200px;
+            margin: 0 auto 1.5rem;
             filter: brightness(0) invert(1);
         }
         .hero h1 {
             font-size: clamp(2rem, 5vw, 3.5rem);
             color: var(--color-white);
             letter-spacing: 0.08em;
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.5rem;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
         }
         .hero-subtitle {
@@ -180,7 +180,16 @@
             color: rgba(255,255,255,0.9);
             font-weight: 400;
             letter-spacing: 0.05em;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        .hero-prepared {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.6);
+            letter-spacing: 0.08em;
+            margin-bottom: 1.5rem;
+        }
+        .hero-prepared strong {
+            color: rgba(255,255,255,0.85);
         }
         .date-badge {
             display: inline-block;
@@ -225,14 +234,14 @@
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
-            gap: 30px;
-            max-width: 1000px;
+            gap: 24px;
+            max-width: 1100px;
             margin: 0 auto;
         }
         .stat-card {
             background: var(--color-white);
             border-radius: var(--radius-card);
-            padding: 30px 20px;
+            padding: 28px 16px;
             text-align: center;
             box-shadow: var(--shadow-card);
             transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -268,7 +277,7 @@
             margin-bottom: 8px;
         }
         .stat-label {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--color-gray);
             font-weight: 600;
             letter-spacing: 0.05em;
@@ -369,9 +378,7 @@
         }
         .card-icon-badge.teal { background: rgba(22, 144, 128, 0.1); }
         .card-icon-badge.orange { background: rgba(169, 77, 0, 0.1); }
-        .card-title-group {
-            flex: 1;
-        }
+        .card-title-group { flex: 1; }
         .card-title-group h3 {
             color: var(--color-dark);
             margin-bottom: 2px;
@@ -394,8 +401,8 @@
             background: rgba(169, 77, 0, 0.1);
             color: var(--color-orange);
         }
-        .tag-fixed {
-            background: rgba(4, 96, 84, 0.1);
+        .tag-performance {
+            background: rgba(4, 96, 84, 0.12);
             color: var(--color-dark-teal);
         }
         .mini-browser {
@@ -431,6 +438,18 @@
         .mini-browser-content.cream-mock { background: var(--color-cream); }
         .mini-browser-content.white-mock { background: var(--color-white); }
         .mini-browser-content.dark-mock { background: var(--color-dark-teal); }
+        .mini-browser-content.blueprint-mock {
+            background: #071f1b;
+            position: relative;
+            overflow: hidden;
+        }
+        .mini-browser-content.blueprint-mock::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px);
+            background-size: 12px 12px;
+        }
         .card-changes {
             padding: 0 20px 20px;
         }
@@ -569,7 +588,6 @@
             background: var(--color-light-gray);
             border-radius: 5px;
             overflow: hidden;
-            position: relative;
         }
         .progress-fill {
             height: 100%;
@@ -578,8 +596,8 @@
             width: 0%;
             transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .progress-fill.animated {
-            /* width set via JS */
+        .progress-fill.orange {
+            background: linear-gradient(135deg, var(--color-orange) 0%, #d4a373 100%);
         }
         .checklist {
             list-style: none;
@@ -613,6 +631,42 @@
             stroke-width: 3;
             stroke-linecap: round;
             stroke-linejoin: round;
+        }
+
+        /* ========== Image Optimization Callout ========== */
+        .optim-callout {
+            margin-top: 40px;
+            background: var(--color-cream);
+            border-radius: var(--radius-card);
+            padding: 28px;
+            border-left: 4px solid var(--color-teal);
+        }
+        .optim-callout h4 {
+            color: var(--color-dark-teal);
+            font-size: 1rem;
+            margin-bottom: 12px;
+        }
+        .optim-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-top: 12px;
+        }
+        .optim-stat {
+            text-align: center;
+        }
+        .optim-stat .big {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--color-dark-teal);
+            line-height: 1;
+        }
+        .optim-stat .label {
+            font-size: 0.75rem;
+            color: var(--color-gray);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 4px;
         }
 
         /* ========== 7. TIMELINE ========== */
@@ -659,20 +713,35 @@
             border-radius: 50%;
             z-index: 2;
         }
+        .timeline-dot.major {
+            width: 20px;
+            height: 20px;
+            background: var(--color-dark-teal);
+            border-width: 4px;
+        }
         .timeline-item:nth-child(odd) .timeline-dot {
             right: -8px;
         }
         .timeline-item:nth-child(even) .timeline-dot {
             left: -8px;
         }
-        .timeline-date {
+        .timeline-item:nth-child(odd) .timeline-dot.major {
+            right: -10px;
+        }
+        .timeline-item:nth-child(even) .timeline-dot.major {
+            left: -10px;
+        }
+        .timeline-phase {
             display: inline-block;
-            font-size: 0.75rem;
+            font-size: 0.65rem;
             font-weight: 700;
-            color: var(--color-teal);
-            letter-spacing: 0.1em;
+            color: var(--color-white);
+            background: var(--color-dark-teal);
+            padding: 2px 10px;
+            border-radius: 50px;
+            letter-spacing: 0.08em;
             text-transform: uppercase;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
         }
         .timeline-card {
             background: var(--color-white);
@@ -713,6 +782,19 @@
         .timeline-tag.js { background: rgba(4,96,84,0.1); color: var(--color-dark-teal); }
         .timeline-tag.a11y { background: rgba(169,77,0,0.12); color: #8B6914; }
         .timeline-tag.integration { background: rgba(22,144,128,0.15); color: var(--color-dark-teal); }
+        .timeline-tag.perf { background: rgba(4,96,84,0.08); color: var(--color-dark-teal); }
+        .timeline-tag.images { background: rgba(169,77,0,0.08); color: var(--color-orange); }
+        .timeline-tag.animation { background: rgba(22,144,128,0.12); color: var(--color-teal); }
+        .timeline-stat {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 4px 12px;
+            background: var(--color-cream);
+            border-radius: 4px;
+            font-size: 0.75rem;
+            color: var(--color-dark-teal);
+            font-weight: 600;
+        }
 
         /* ========== 8. WHAT'S NEXT ========== */
         .next-section {
@@ -780,7 +862,14 @@
             color: rgba(255,255,255,0.85);
             font-weight: 600;
             font-size: 1rem;
-            margin-bottom: 8px;
+            margin-bottom: 4px;
+        }
+        .report-footer .footer-studio {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 0;
         }
         .footer-divider {
             width: 40px;
@@ -802,13 +891,15 @@
                 grid-template-columns: 1fr;
                 gap: 40px;
             }
+            .optim-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
             .arch-flow {
                 flex-wrap: wrap;
                 gap: 8px;
             }
             .arch-arrow { display: none; }
             .arch-node { min-width: 80px; padding: 12px 8px; }
-            /* Timeline: all left-aligned */
             .timeline::before {
                 left: 20px;
                 transform: none;
@@ -824,10 +915,14 @@
                 left: 12px !important;
                 right: auto !important;
             }
+            .timeline-item .timeline-dot.major {
+                left: 10px !important;
+                right: auto !important;
+            }
             .timeline-item:nth-child(odd) .timeline-tags {
                 justify-content: flex-start;
             }
-            .hero-logo { width: 130px; }
+            .hero-logo { width: 140px; }
         }
 
         /* ========== RESPONSIVE: 480px ========== */
@@ -838,10 +933,13 @@
             .breakdown-grid, .features-grid, .next-grid {
                 grid-template-columns: 1fr;
             }
+            .optim-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 8px;
+            }
             .stat-card { padding: 20px 12px; }
             .stat-number { font-size: 2rem; }
             .hero-logo { width: 100px; }
-            section { padding: 60px 16px; }
             .stats-section, .architecture-section, .breakdown-section,
             .features-section, .performance-section, .timeline-section,
             .next-section { padding: 60px 16px; }
@@ -857,6 +955,7 @@
             <img src="../images/logo/miramar-logo.png" alt="Miramar Food Hall" class="hero-logo">
             <h1>MIRAMAR FOOD HALL</h1>
             <p class="hero-subtitle">Development Progress Report</p>
+            <p class="hero-prepared">Prepared by <strong>K13 Software Studio</strong> for Eren &amp; Lorena</p>
             <span class="date-badge">March 2026</span>
         </div>
         <div class="scroll-indicator">
@@ -874,15 +973,15 @@
         <div class="container">
             <div class="section-header fade-in">
                 <span class="section-label">By the Numbers</span>
-                <h2>What We Shipped</h2>
-                <p class="section-subtitle">A snapshot of the March 2026 development sprint — from initial build through integrations and accessibility.</p>
+                <h2>What We Shipped in March</h2>
+                <p class="section-subtitle">A full month of building, optimizing, and polishing the Miramar Food Hall website from the ground up.</p>
             </div>
             <div class="stats-grid">
                 <div class="stat-card fade-in">
                     <div class="stat-icon">
                         <svg viewBox="0 0 24 24"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg>
                     </div>
-                    <div class="stat-number" data-target="7">0</div>
+                    <div class="stat-number" data-target="11">0</div>
                     <div class="stat-label">Commits Shipped</div>
                 </div>
                 <div class="stat-card fade-in">
@@ -903,21 +1002,21 @@
                     <div class="stat-icon">
                         <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
                     </div>
-                    <div class="stat-number" data-target="600" data-suffix="+">0</div>
+                    <div class="stat-number" data-target="3400" data-suffix="+">0</div>
                     <div class="stat-label">Lines of Code</div>
                 </div>
                 <div class="stat-card fade-in">
                     <div class="stat-icon">
-                        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
                     </div>
-                    <div class="stat-number" data-target="3">0</div>
-                    <div class="stat-label">Live Integrations</div>
+                    <div class="stat-number" data-target="41">0</div>
+                    <div class="stat-label">Files Touched</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Wave: cream → white -->
+    <!-- Wave: cream to white -->
     <div class="wave-top">
         <svg viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
             <path d="M0,60 C360,0 720,120 1080,60 C1260,30 1380,30 1440,60 L1440,0 L0,0 Z" fill="#f6f4ed"/>
@@ -947,7 +1046,7 @@
                 <span class="arch-arrow">&#8594;</span>
                 <div class="arch-node">
                     <span class="arch-node-icon">&#128214;</span>
-                    <span class="arch-node-name">Story</span>
+                    <span class="arch-node-name">Our Story</span>
                     <span class="arch-node-anchor">#about</span>
                 </div>
                 <span class="arch-arrow">&#8594;</span>
@@ -990,7 +1089,7 @@
         </div>
     </section>
 
-    <!-- Wave: white → cream -->
+    <!-- Wave: white to cream -->
     <div class="wave-divider">
         <svg viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
             <path d="M0,60 C360,120 720,0 1080,60 C1260,90 1380,90 1440,60 L1440,120 L0,120 Z" fill="#f6f4ed"/>
@@ -1003,7 +1102,7 @@
             <div class="section-header fade-in">
                 <span class="section-label">Section-by-Section</span>
                 <h2>What We Built</h2>
-                <p class="section-subtitle">Every section of the site, with the specific changes and enhancements delivered.</p>
+                <p class="section-subtitle">Every section of the site and the specific work that went into each one.</p>
             </div>
             <div class="breakdown-grid">
 
@@ -1026,10 +1125,11 @@
                     </div>
                     <div class="card-changes">
                         <ul>
-                            <li>Full-viewport hero with gradient overlay</li>
-                            <li>Parallax scrolling effect on scroll</li>
-                            <li>Animated wave SVG divider transition</li>
+                            <li>Full-viewport hero with teal gradient overlay</li>
+                            <li>Parallax scrolling effect with opacity fade</li>
+                            <li>Animated wave SVG divider transition to content</li>
                             <li>"Global Bites, Local Vibes" tagline typography</li>
+                            <li>Updated logo assets (brand-aligned PNGs)</li>
                         </ul>
                     </div>
                 </div>
@@ -1053,21 +1153,21 @@
                     </div>
                     <div class="card-changes">
                         <ul>
-                            <li>Welcoming venue description copy</li>
+                            <li>Welcoming venue description and brand narrative</li>
                             <li>Highlights bar: 15 vendors, 2 bars, ocean views</li>
                             <li>Responsive layout for all screen sizes</li>
-                            <li>Cream background with smooth transitions</li>
+                            <li>Cream background with smooth section transitions</li>
                         </ul>
                     </div>
                 </div>
 
-                <!-- About/Story -->
+                <!-- Our Story -->
                 <div class="breakdown-card fade-in">
                     <div class="card-header">
-                        <div class="card-icon-badge teal">&#128214;</div>
+                        <div class="card-icon-badge orange">&#128214;</div>
                         <div class="card-title-group">
-                            <h3>About / Story</h3>
-                            <span class="tag tag-improved">Improved</span>
+                            <h3>Our Story</h3>
+                            <span class="tag tag-new">New</span>
                         </div>
                     </div>
                     <div class="mini-browser">
@@ -1076,14 +1176,30 @@
                             <span class="mini-dot yellow"></span>
                             <span class="mini-dot green"></span>
                         </div>
-                        <div class="mini-browser-content dark-mock" style="color: #F5ECD7; font-size: 1.4rem; font-weight: 700;">1938 &#8226; 2020 &#8226; 2026</div>
+                        <div class="mini-browser-content dark-mock" style="color: #F5ECD7; font-size: 1rem; font-weight: 700; gap: 6px;">
+                            <span>1920</span>
+                            <span style="opacity:0.4;">&#8226;</span>
+                            <span>1938</span>
+                            <span style="opacity:0.4;">&#8226;</span>
+                            <span>1965</span>
+                            <span style="opacity:0.4;">&#8226;</span>
+                            <span>2020</span>
+                            <span style="opacity:0.4;">&#8226;</span>
+                            <span>2026</span>
+                        </div>
                     </div>
                     <div class="card-changes">
                         <ul>
-                            <li>Three-era timeline: 1938, 2020, 2026</li>
-                            <li>Animated year count-up on scroll</li>
-                            <li>Historic images with alternating grid layout</li>
-                            <li>Wave SVG dividers top and bottom</li>
+                            <li>5-chapter animated scroll timeline (1920s through 2026)</li>
+                            <li>Slot-machine 3D flip counter for year display</li>
+                            <li>Sticky year header with scroll progress bar</li>
+                            <li>14 sourced historic San Clemente photographs</li>
+                            <li>Chapter navigation dots with keyboard support</li>
+                            <li>Cinematic wipe-reveal and scale-settle photo animations</li>
+                            <li>Blueprint-style "Coming Soon" frames for 2026 chapter</li>
+                            <li>Logo reveal with glow pulse animation</li>
+                            <li>1,200+ lines of dedicated CSS and JavaScript</li>
+                            <li>Full reduced-motion accessibility support</li>
                         </ul>
                     </div>
                 </div>
@@ -1115,9 +1231,11 @@
                     <div class="card-changes">
                         <ul>
                             <li>13 vendor cards with photos and descriptions</li>
-                            <li>Instagram profile links on each card</li>
-                            <li>Image optimization (Hen Haus compressed)</li>
-                            <li>Responsive grid layout with hover effects</li>
+                            <li>Instagram handles displayed inline with icon</li>
+                            <li>Hover border effect via CSS pseudo-element</li>
+                            <li>GPU-accelerated transitions with will-change</li>
+                            <li>All 13 images compressed (50 MB total reduced to 1.8 MB)</li>
+                            <li>PNG-to-JPG conversion for Hen Haus and MOTO Pizza</li>
                         </ul>
                     </div>
                 </div>
@@ -1144,10 +1262,10 @@
                     </div>
                     <div class="card-changes">
                         <ul>
-                            <li>Embedded Google Maps with accessible title</li>
+                            <li>Embedded Google Maps with accessible iframe title</li>
                             <li>Full address and operating hours display</li>
                             <li>Get Directions button with map link</li>
-                            <li>Static section title (marquee removed)</li>
+                            <li>Static section title (replaced marquee animation)</li>
                         </ul>
                     </div>
                 </div>
@@ -1177,7 +1295,7 @@
                     <div class="card-changes">
                         <ul>
                             <li>Live feed via Behold.so widget integration</li>
-                            <li>Edge-to-edge layout wider than container</li>
+                            <li>Edge-to-edge layout wider than content container</li>
                             <li>Responsive sizing across all devices</li>
                             <li>Auto-updating with latest @miramarfoodhall posts</li>
                         </ul>
@@ -1206,10 +1324,10 @@
                     <div class="card-changes">
                         <ul>
                             <li>Dynamic loading from Google Sheets CSV</li>
-                            <li>Real-time content updates without code changes</li>
+                            <li>Real-time content updates without code deploys</li>
                             <li>Optional URL column for event links</li>
                             <li>Fallback events when feed is unavailable</li>
-                            <li>Robust CSV parser with quote handling</li>
+                            <li>Robust CSV parser with quote handling and XSS protection</li>
                         </ul>
                     </div>
                 </div>
@@ -1234,7 +1352,7 @@
                     <div class="card-changes">
                         <ul>
                             <li>Celebrations modal for parties of 15+</li>
-                            <li>Full booking form with date and guest count</li>
+                            <li>Full booking form with date, guest count, and details</li>
                             <li>Wave divider transition from events section</li>
                             <li>Compelling call-to-action design</li>
                         </ul>
@@ -1266,8 +1384,10 @@
                         <ul>
                             <li>Two-column layout: contact info + inquiry form</li>
                             <li>Inquiry type dropdown (General, Vendor, Careers)</li>
-                            <li>File upload for career applications (drag-drop, 5MB)</li>
+                            <li>File upload for career applications (drag-drop, 5 MB limit)</li>
                             <li>ADA-compliant validation with ARIA live regions</li>
+                            <li>Compacted form layout for better visual balance</li>
+                            <li>Scroll-to-top reset after form submission</li>
                         </ul>
                     </div>
                 </div>
@@ -1276,7 +1396,7 @@
         </div>
     </section>
 
-    <!-- Wave: cream → dark teal -->
+    <!-- Wave: cream to dark teal -->
     <div class="wave-top">
         <svg viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
             <path d="M0,60 C360,0 720,120 1080,60 C1260,30 1380,30 1440,60 L1440,0 L0,0 Z" fill="#f6f4ed"/>
@@ -1294,29 +1414,39 @@
             <div class="features-grid">
 
                 <div class="feature-card fade-in">
-                    <div class="feature-icon">&#9776;</div>
-                    <h3>Responsive Navigation</h3>
-                    <p>Fully responsive navbar with hamburger menu toggle, smooth-scroll anchor links, and scroll-triggered styling that adapts as users browse.</p>
+                    <div class="feature-icon">&#128214;</div>
+                    <h3>Animated Story Timeline</h3>
+                    <p>A cinematic scroll-driven experience spanning five eras of San Clemente history. Slot-machine flip counter, wipe-reveal photo transitions, blueprint-style coming soon frames, and sticky progress tracking.</p>
                     <div class="feature-stats">
-                        <div class="feature-stat"><strong>9</strong>Nav links</div>
-                        <div class="feature-stat"><strong>3</strong>Breakpoints</div>
+                        <div class="feature-stat"><strong>5</strong>Chapters</div>
+                        <div class="feature-stat"><strong>14</strong>Historic photos</div>
                     </div>
                 </div>
 
                 <div class="feature-card fade-in">
                     <div class="feature-icon">&#9855;</div>
                     <h3>ADA / WCAG AA Compliance</h3>
-                    <p>Comprehensive accessibility pass including skip-to-content link, ARIA labels on all interactive elements, focus-visible states, and contrast ratio fixes.</p>
+                    <p>Comprehensive accessibility pass including skip-to-content link, ARIA labels on all interactive elements, focus-visible states, keyboard navigation, and contrast ratio fixes throughout.</p>
                     <div class="feature-stats">
-                        <div class="feature-stat"><strong>#555</strong>Contrast fix</div>
                         <div class="feature-stat"><strong>AA</strong>WCAG level</div>
+                        <div class="feature-stat"><strong>100%</strong>Keyboard nav</div>
+                    </div>
+                </div>
+
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">&#9889;</div>
+                    <h3>Performance Optimization</h3>
+                    <p>All 13 vendor images compressed from 50 MB down to 1.8 MB (96% reduction). PNG-to-JPG conversions, lazy loading, GPU-accelerated animations, and RAF-throttled scroll handlers.</p>
+                    <div class="feature-stats">
+                        <div class="feature-stat"><strong>96%</strong>Image savings</div>
+                        <div class="feature-stat"><strong>0</strong>JS libraries</div>
                     </div>
                 </div>
 
                 <div class="feature-card fade-in">
                     <div class="feature-icon">&#128247;</div>
                     <h3>Live Instagram Feed</h3>
-                    <p>Behold.so widget integration pulls live posts from @miramarfoodhall with an edge-to-edge layout that breaks out of the content container.</p>
+                    <p>Behold.so widget integration pulls live posts from @miramarfoodhall. Edge-to-edge layout breaks out of the content container for visual impact.</p>
                     <div class="feature-stats">
                         <div class="feature-stat"><strong>Live</strong>Real-time</div>
                         <div class="feature-stat"><strong>Auto</strong>Updates</div>
@@ -1326,30 +1456,20 @@
                 <div class="feature-card fade-in">
                     <div class="feature-icon">&#128197;</div>
                     <h3>Dynamic Events System</h3>
-                    <p>Google Sheets serves as a lightweight CMS — events update in real time without code changes. Includes CSV parsing with quote handling and optional URL columns.</p>
+                    <p>Google Sheets serves as a lightweight CMS. Events update in real time without code changes. Includes CSV parsing with quote handling, XSS protection, and optional URL columns.</p>
                     <div class="feature-stats">
                         <div class="feature-stat"><strong>CSV</strong>Parser</div>
-                        <div class="feature-stat"><strong>0</strong>Deploy needed</div>
+                        <div class="feature-stat"><strong>0</strong>Deploys needed</div>
                     </div>
                 </div>
 
                 <div class="feature-card fade-in">
                     <div class="feature-icon">&#128221;</div>
                     <h3>Smart Form System</h3>
-                    <p>Contact form and celebrations modal with dynamic field validation, drag-and-drop file upload for career applications (PDF/DOC, 5MB limit), and accessible error states.</p>
+                    <p>Contact form and celebrations modal with dynamic field validation, drag-and-drop file upload for career applications (PDF/DOC, 5 MB limit), and accessible error states with ARIA live regions.</p>
                     <div class="feature-stats">
                         <div class="feature-stat"><strong>2</strong>Forms</div>
-                        <div class="feature-stat"><strong>5MB</strong>Upload limit</div>
-                    </div>
-                </div>
-
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">&#9889;</div>
-                    <h3>Performance Optimized</h3>
-                    <p>Lazy-loaded iframes, IntersectionObserver-driven animations, CSS transitions over JavaScript animations, and image compression for fast load times.</p>
-                    <div class="feature-stats">
-                        <div class="feature-stat"><strong>0</strong>JS libraries</div>
-                        <div class="feature-stat"><strong>CSS</strong>Animations</div>
+                        <div class="feature-stat"><strong>5 MB</strong>Upload limit</div>
                     </div>
                 </div>
 
@@ -1357,7 +1477,7 @@
         </div>
     </section>
 
-    <!-- Wave: dark teal → white -->
+    <!-- Wave: dark teal to white -->
     <div class="wave-divider" style="background: var(--color-dark-teal);">
         <svg viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
             <path d="M0,60 C360,120 720,0 1080,60 C1260,90 1380,90 1440,60 L1440,120 L0,120 Z" fill="#ffffff"/>
@@ -1370,7 +1490,7 @@
             <div class="section-header fade-in">
                 <span class="section-label">Performance &amp; SEO</span>
                 <h2>Quality Benchmarks</h2>
-                <p class="section-subtitle">Measurable improvements in accessibility, responsiveness, and best-practice compliance.</p>
+                <p class="section-subtitle">Measurable improvements across accessibility, responsiveness, performance, and best-practice compliance.</p>
             </div>
             <div class="perf-grid">
                 <div class="perf-column slide-left">
@@ -1399,20 +1519,30 @@
                     <div class="progress-item">
                         <div class="progress-header">
                             <span class="progress-label">Content Completeness</span>
-                            <span class="progress-values"><span class="before">40%</span><span class="after">90%</span></span>
+                            <span class="progress-values"><span class="before">40%</span><span class="after">95%</span></span>
                         </div>
                         <div class="progress-track">
-                            <div class="progress-fill" data-width="90"></div>
+                            <div class="progress-fill" data-width="95"></div>
+                        </div>
+                    </div>
+
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <span class="progress-label">Image Optimization</span>
+                            <span class="progress-values"><span class="before">50 MB</span><span class="after">1.8 MB</span></span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="progress-fill orange" data-width="96"></div>
                         </div>
                     </div>
 
                     <div class="progress-item">
                         <div class="progress-header">
                             <span class="progress-label">Integration Status</span>
-                            <span class="progress-values"><span class="before">0%</span><span class="after">85%</span></span>
+                            <span class="progress-values"><span class="before">0%</span><span class="after">100%</span></span>
                         </div>
                         <div class="progress-track">
-                            <div class="progress-fill" data-width="85"></div>
+                            <div class="progress-fill" data-width="100"></div>
                         </div>
                     </div>
                 </div>
@@ -1446,19 +1576,46 @@
                         </li>
                         <li>
                             <span class="check-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
-                            Lazy-loaded iframes
+                            Lazy loading on all images &amp; iframes
                         </li>
                         <li>
                             <span class="check-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
                             Skip navigation link
                         </li>
+                        <li>
+                            <span class="check-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+                            GPU-accelerated animations (will-change)
+                        </li>
+                        <li>
+                            <span class="check-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+                            RAF-throttled scroll handlers
+                        </li>
                     </ul>
+
+                    <div class="optim-callout">
+                        <h4>Vendor Image Compression</h4>
+                        <p style="font-size: 0.85rem; color: var(--color-gray); margin-bottom: 12px;">Every vendor photo was optimized from camera-resolution originals. Two PNGs were converted to JPG with no visual quality loss.</p>
+                        <div class="optim-grid">
+                            <div class="optim-stat">
+                                <div class="big" data-target="50" data-suffix=" MB">0</div>
+                                <div class="label">Before</div>
+                            </div>
+                            <div class="optim-stat">
+                                <div class="big" style="color: var(--color-teal);">1.8 MB</div>
+                                <div class="label">After</div>
+                            </div>
+                            <div class="optim-stat">
+                                <div class="big" style="color: var(--color-orange);">96%</div>
+                                <div class="label">Reduction</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Wave: white → cream -->
+    <!-- Wave: white to cream -->
     <div class="wave-divider">
         <svg viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
             <path d="M0,60 C360,120 720,0 1080,60 C1260,90 1380,90 1440,60 L1440,120 L0,120 Z" fill="#f6f4ed"/>
@@ -1471,30 +1628,31 @@
             <div class="section-header fade-in">
                 <span class="section-label">Timeline</span>
                 <h2>Development Milestones</h2>
-                <p class="section-subtitle">A chronological view of the March 2026 development sprint.</p>
+                <p class="section-subtitle">The chronological journey of building the Miramar Food Hall website throughout March 2026.</p>
             </div>
             <div class="timeline">
 
+                <!-- Phase 1 -->
                 <div class="timeline-item fade-in">
-                    <div class="timeline-dot"></div>
-                    <span class="timeline-date">March 16, 2026</span>
+                    <div class="timeline-dot major"></div>
+                    <span class="timeline-phase">Phase 1 &mdash; Foundation</span>
                     <div class="timeline-card">
                         <h3>Complete Site Overhaul</h3>
-                        <p>Full redesign implementing Tasks 1 through 14 and 17 — restructured HTML, overhauled CSS with brand design system, and expanded JavaScript functionality. 483 lines added, 279 removed.</p>
+                        <p>Full redesign implementing the brand design system across all HTML, CSS, and JavaScript. Restructured the entire page layout, built out all 9 sections, and established the teal-and-cream visual identity.</p>
                         <div class="timeline-tags">
                             <span class="timeline-tag html">HTML</span>
                             <span class="timeline-tag css">CSS</span>
                             <span class="timeline-tag js">JS</span>
                         </div>
+                        <span class="timeline-stat">483 lines added, 279 removed</span>
                     </div>
                 </div>
 
                 <div class="timeline-item fade-in">
                     <div class="timeline-dot"></div>
-                    <span class="timeline-date">March 16, 2026</span>
                     <div class="timeline-card">
                         <h3>Responsive Fix &amp; Image Optimization</h3>
-                        <p>Resolved navbar overlap on medium-width screens and optimized the Hen Haus vendor card image for faster loading.</p>
+                        <p>Resolved navbar overlap on medium-width screens with new breakpoint rules. Optimized the Hen Haus vendor card image for faster loading.</p>
                         <div class="timeline-tags">
                             <span class="timeline-tag css">CSS</span>
                             <span class="timeline-tag html">Fix</span>
@@ -1502,12 +1660,13 @@
                     </div>
                 </div>
 
+                <!-- Phase 2 -->
                 <div class="timeline-item fade-in">
-                    <div class="timeline-dot"></div>
-                    <span class="timeline-date">March 16, 2026</span>
+                    <div class="timeline-dot major"></div>
+                    <span class="timeline-phase">Phase 2 &mdash; Integrations</span>
                     <div class="timeline-card">
-                        <h3>Instagram Feed Integration</h3>
-                        <p>Connected live Instagram feed via Behold.so, enabling auto-updating social content from @miramarfoodhall with a responsive, edge-to-edge layout.</p>
+                        <h3>Live Instagram Feed</h3>
+                        <p>Connected the Behold.so widget for a live Instagram feed that auto-updates with posts from @miramarfoodhall. Styled with an edge-to-edge responsive layout.</p>
                         <div class="timeline-tags">
                             <span class="timeline-tag integration">Integration</span>
                             <span class="timeline-tag css">CSS</span>
@@ -1517,24 +1676,23 @@
 
                 <div class="timeline-item fade-in">
                     <div class="timeline-dot"></div>
-                    <span class="timeline-date">March 16, 2026</span>
                     <div class="timeline-card">
                         <h3>Accessibility &amp; Visual QA</h3>
-                        <p>Deep ADA/WCAG AA compliance pass — added skip-to-content link, ARIA labels, focus-visible states, improved contrast ratios, and keyboard support throughout.</p>
+                        <p>Deep ADA/WCAG AA compliance pass. Added skip-to-content link, ARIA labels, focus-visible states, improved contrast ratios, and keyboard support throughout the entire site.</p>
                         <div class="timeline-tags">
                             <span class="timeline-tag a11y">A11Y</span>
                             <span class="timeline-tag js">JS</span>
                             <span class="timeline-tag css">CSS</span>
                         </div>
+                        <span class="timeline-stat">82 insertions across 3 files</span>
                     </div>
                 </div>
 
                 <div class="timeline-item fade-in">
                     <div class="timeline-dot"></div>
-                    <span class="timeline-date">March 16, 2026</span>
                     <div class="timeline-card">
-                        <h3>Events Data Source Connected</h3>
-                        <p>Linked the events section to a Google Sheets CSV feed, enabling the team to manage events content without touching any code.</p>
+                        <h3>Events Integration &amp; Enhancement</h3>
+                        <p>Linked the events section to a Google Sheets CSV feed so the team can manage events without touching code. Added optional URL column for linking each event to external pages or tickets.</p>
                         <div class="timeline-tags">
                             <span class="timeline-tag integration">Integration</span>
                             <span class="timeline-tag js">JS</span>
@@ -1542,16 +1700,62 @@
                     </div>
                 </div>
 
+                <!-- Phase 3 -->
                 <div class="timeline-item fade-in">
-                    <div class="timeline-dot"></div>
-                    <span class="timeline-date">March 17, 2026</span>
+                    <div class="timeline-dot major"></div>
+                    <span class="timeline-phase">Phase 3 &mdash; Performance</span>
                     <div class="timeline-card">
-                        <h3>Events Enhancement</h3>
-                        <p>Added optional URL column support to the Google Sheets events integration, allowing each event to link out to an external page or ticket URL.</p>
+                        <h3>Site Performance &amp; Vendor Card UI</h3>
+                        <p>Compressed all 13 vendor images from 50 MB to 1.8 MB (96% reduction). Converted PNGs to JPGs. Added GPU-accelerated transitions, RAF-throttled scroll handlers, and redesigned vendor Instagram links for better UX.</p>
                         <div class="timeline-tags">
+                            <span class="timeline-tag perf">Performance</span>
+                            <span class="timeline-tag images">Images</span>
+                            <span class="timeline-tag css">CSS</span>
+                        </div>
+                        <span class="timeline-stat">23 files changed, 50 MB saved</span>
+                    </div>
+                </div>
+
+                <!-- Phase 4 -->
+                <div class="timeline-item fade-in">
+                    <div class="timeline-dot major"></div>
+                    <span class="timeline-phase">Phase 4 &mdash; Storytelling</span>
+                    <div class="timeline-card">
+                        <h3>Animated Story Timeline</h3>
+                        <p>Built an entirely new scroll-driven timeline spanning five chapters of San Clemente history (1920s&ndash;2026). Features a slot-machine 3D flip counter, cinematic photo reveal animations, navigation dots, and a sticky progress header.</p>
+                        <div class="timeline-tags">
+                            <span class="timeline-tag animation">Animation</span>
                             <span class="timeline-tag js">JS</span>
                             <span class="timeline-tag css">CSS</span>
                         </div>
+                        <span class="timeline-stat">1,033 lines added across 23 files</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item fade-in">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <h3>Blueprint &ldquo;Coming Soon&rdquo; Frames</h3>
+                        <p>Designed the 2026 &ldquo;Today&rdquo; chapter with animated blueprint-style frames: skeleton loading bars, shimmer text effects, marching-ants borders, dot-grid backgrounds, and a rotating loading ring.</p>
+                        <div class="timeline-tags">
+                            <span class="timeline-tag css">CSS</span>
+                            <span class="timeline-tag animation">Animation</span>
+                        </div>
+                        <span class="timeline-stat">296 insertions, 39 removals</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item fade-in">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <h3>Story Polish &amp; Contact Form Refinements</h3>
+                        <p>Added a logo reveal with glow-pulse animation in the story section. Compacted the contact form layout and implemented scroll-to-top reset after form submission.</p>
+                        <div class="timeline-tags">
+                            <span class="timeline-tag css">CSS</span>
+                            <span class="timeline-tag js">JS</span>
+                            <span class="timeline-tag html">HTML</span>
+                        </div>
+                        <span class="timeline-stat">219 insertions across 5 files</span>
                     </div>
                 </div>
 
@@ -1559,7 +1763,7 @@
         </div>
     </section>
 
-    <!-- Wave: cream → white -->
+    <!-- Wave: cream to white -->
     <div class="wave-top">
         <svg viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
             <path d="M0,60 C360,0 720,120 1080,60 C1260,30 1380,30 1440,60 L1440,0 L0,0 Z" fill="#f6f4ed"/>
@@ -1603,7 +1807,7 @@
                 <div class="next-card fade-in">
                     <span class="priority-badge priority-awaiting">Awaiting Input</span>
                     <h3>Accessibility Widget</h3>
-                    <p>UserWay integration for an on-page accessibility toolbar — pending final vendor selection.</p>
+                    <p>UserWay integration for an on-page accessibility toolbar &mdash; pending final vendor selection.</p>
                 </div>
 
             </div>
@@ -1613,10 +1817,12 @@
     <!-- ============================== 9. FOOTER ============================== -->
     <footer class="report-footer">
         <img src="../images/logo/logo.png" alt="Miramar Food Hall" class="footer-logo">
-        <p class="footer-thanks">Prepared for the Miramar Food Hall team.</p>
+        <p class="footer-thanks">Thank you, Eren &amp; Lorena.</p>
+        <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem;">It has been a pleasure bringing the Miramar Food Hall to life online.</p>
         <div class="footer-divider"></div>
         <p>Development Progress Report &mdash; March 2026</p>
-        <p style="margin-top: 12px; font-size: 0.8rem; opacity: 0.5;">&copy; 2026 Miramar Food Hall. All rights reserved.</p>
+        <p class="footer-studio">K13 Software Studio</p>
+        <p style="margin-top: 16px; font-size: 0.75rem; opacity: 0.4;">&copy; 2026 Miramar Food Hall. All rights reserved.</p>
     </footer>
 
     <!-- ============================== JAVASCRIPT ============================== -->
@@ -1672,7 +1878,7 @@
             draw();
         })();
 
-        // ==================== Scroll Reveal (Fade-in, Slide, Scale) ====================
+        // ==================== Scroll Reveal ====================
         (function initScrollReveal() {
             var elements = document.querySelectorAll('.fade-in, .slide-left, .slide-right, .scale-in');
             if (!elements.length) return;
@@ -1680,7 +1886,6 @@
             var observer = new IntersectionObserver(function(entries) {
                 entries.forEach(function(entry) {
                     if (entry.isIntersecting) {
-                        // Stagger children if it's a grid parent
                         var parent = entry.target.closest('.stats-grid, .breakdown-grid, .features-grid, .next-grid, .timeline');
                         if (parent) {
                             var siblings = parent.querySelectorAll('.fade-in, .slide-left, .slide-right, .scale-in');
@@ -1698,15 +1903,16 @@
 
         // ==================== Animated Counters ====================
         (function initCounters() {
-            var counters = document.querySelectorAll('.stat-number[data-target]');
+            var counters = document.querySelectorAll('[data-target]');
             if (!counters.length) return;
-            var animated = false;
+            var observedSections = new Set();
 
             var observer = new IntersectionObserver(function(entries) {
                 entries.forEach(function(entry) {
-                    if (entry.isIntersecting && !animated) {
-                        animated = true;
-                        counters.forEach(function(counter) {
+                    if (entry.isIntersecting && !observedSections.has(entry.target)) {
+                        observedSections.add(entry.target);
+                        var targets = entry.target.querySelectorAll('[data-target]');
+                        targets.forEach(function(counter) {
                             var target = parseInt(counter.getAttribute('data-target'), 10);
                             var suffix = counter.getAttribute('data-suffix') || '';
                             var duration = 1500;
@@ -1720,22 +1926,22 @@
                                 var elapsed = now - start;
                                 var progress = Math.min(elapsed / duration, 1);
                                 var value = Math.round(easeOutCubic(progress) * target);
-                                counter.textContent = value + suffix;
+                                counter.textContent = value.toLocaleString() + suffix;
                                 if (progress < 1) {
                                     requestAnimationFrame(update);
                                 } else {
-                                    counter.textContent = target + suffix;
+                                    counter.textContent = target.toLocaleString() + suffix;
                                 }
                             }
                             requestAnimationFrame(update);
                         });
-                        observer.disconnect();
                     }
                 });
             }, { threshold: 0.3 });
 
-            var statsSection = document.querySelector('.stats-section');
-            if (statsSection) observer.observe(statsSection);
+            // Observe both stats section and performance callout
+            var sections = document.querySelectorAll('.stats-section, .optim-callout');
+            sections.forEach(function(s) { observer.observe(s); });
         })();
 
         // ==================== Progress Bar Animation ====================
