@@ -13,6 +13,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/story-section.css">
 </head>
 <body>
     <!-- UPDATED: Skip to content link for ADA accessibility (T17) -->
@@ -71,47 +72,213 @@
         </div>
     </section>
 
-    <!-- About/Story Section -->
-    <section class="about" id="about">
+    <!-- Story Section — Animated scroll timeline -->
+    <section class="story-section" id="about">
         <div class="wave-top">
             <svg viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
                 <path d="M0,60 C360,0 720,120 1080,60 C1260,30 1380,30 1440,60 L1440,0 L0,0 Z" fill="#f6f4ed"/>
             </svg>
         </div>
-        <div class="about-content">
-            <div class="container">
-                <div class="story-grid">
-                    <div class="story-text">
-                        <h2>OUR STORY</h2>
-                        <div class="story-year" data-year="1938">1938</div>
-                        <p>Miramar Food Hall was born from a vision to bring new life to one of San Clemente's most treasured landmarks. Once home to the Miramar Theatre and the San Clemente Bowling Center, this 1938 Spanish Colonial Revival gem had been closed for over three decades.</p>
-                    </div>
-                    <div class="story-image">
-                        <!-- UPDATED: Replaced with new historical photo -->
-                        <img src="images/story/historic-1.jpg" alt="Historic San Clemente building, circa 1938" loading="lazy">
-                    </div>
+
+        <!-- Sticky year header strip -->
+        <div class="story-sticky-strip" aria-hidden="true">
+            <div class="story-flip-counter">
+                <div class="flip-digit" data-index="0">
+                    <div class="flip-digit-top"><span>0</span></div>
+                    <div class="flip-digit-bottom"><span>0</span></div>
+                    <div class="flip-card"><span>0</span></div>
                 </div>
-                <div class="story-grid reverse">
-                    <div class="story-text">
-                        <div class="story-year" data-year="2020">2020</div>
-                        <p>In 2020, we took on the challenge of restoring the space, honoring its rich history while transforming it into a vibrant culinary destination. Today, Miramar Food Hall stands as a celebration of community, global bites, local vibes and the enduring spirit of Southern California, marking the long-awaited revival of an iconic coastal landmark.</p>
-                    </div>
-                    <div class="story-image">
-                        <!-- UPDATED: Replaced with new historical photo -->
-                        <img src="images/story/historic-2.jpg" alt="San Clemente Movie House, circa 2020" loading="lazy">
-                    </div>
+                <div class="flip-digit" data-index="1">
+                    <div class="flip-digit-top"><span>0</span></div>
+                    <div class="flip-digit-bottom"><span>0</span></div>
+                    <div class="flip-card"><span>0</span></div>
                 </div>
-                <div class="story-grid">
-                    <div class="story-text">
-                        <div class="story-year" data-year="2026">2026</div>
-                        <p>Rooted in the relaxed spirit of coastal California, Miramar Food Hall brings together the artistry of local chefs and global flavors under one roof. Designed as a family-friendly gathering place, we offer an elevated yet approachable dining experience that reflects a balance of tradition and innovation, celebrating the region's diverse culinary scene while honoring the charm and character of this historic setting.</p>
+                <div class="flip-digit" data-index="2">
+                    <div class="flip-digit-top"><span>0</span></div>
+                    <div class="flip-digit-bottom"><span>0</span></div>
+                    <div class="flip-card"><span>0</span></div>
+                </div>
+                <div class="flip-digit" data-index="3">
+                    <div class="flip-digit-top"><span>0</span></div>
+                    <div class="flip-digit-bottom"><span>0</span></div>
+                    <div class="flip-card"><span>0</span></div>
+                </div>
+            </div>
+            <div class="story-progress-bar">
+                <div class="story-progress-fill"></div>
+            </div>
+        </div>
+
+        <!-- Story content -->
+        <div class="story-content">
+
+            <!-- Chapter 1: 1920s — Layout A (text+wide left, tall right) -->
+            <div class="story-chapter chapter-spread" data-year="1920">
+                <div class="container">
+                    <div class="chapter-header">
+                        <div class="chapter-label">1920s &mdash; San Clemente Origins</div>
+                        <h3 class="chapter-headline chapter-headline--full">
+                            <span class="line-wrap"><span class="line-inner">The Spanish Village by the Sea</span></span>
+                        </h3>
                     </div>
-                    <div class="story-image">
-                        <img src="images/story/today.png" alt="Miramar Food Hall Today" loading="lazy">
+                    <hr class="chapter-rule" aria-hidden="true">
+                    <div class="spread-layout">
+                        <div class="spread-col-text">
+                            <div class="spread-text">
+                                <p>In 1925, former Seattle mayor Ole Hanson purchased two thousand acres of coastal ranchland and set out to build his dream: a "Spanish Village by the Sea." Inspired by the whitewashed towns of the Mediterranean, he laid out tree-lined avenues, red-tile roofs, and a grand pier stretching into the Pacific. San Clemente was born — a seaside haven where the rhythm of the waves set the pace of daily life.</p>
+                            </div>
+                            <div class="spread-photo-wide scale-settle">
+                                <img src="images/story/1920s-cars-victoria-ave.jpg" alt="1920s automobiles parked on Avenida Victoria near the San Clemente pier" loading="lazy">
+                            </div>
+                        </div>
+                        <div class="spread-photo-tall wipe-reveal">
+                            <img src="images/story/filler-ole-hanson.jpg" alt="Ole Hanson's office with men on horseback" loading="lazy">
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+
+            <!-- Transition -->
+            <div class="story-transition" aria-hidden="true">
+                <div class="container">
+                    <span class="transition-text">A Town Takes Shape</span>
+                </div>
+            </div>
+
+            <!-- Chapter 2: 1938 — Layout B (tall left, text+wide right) -->
+            <div class="story-chapter chapter-spread chapter-spread--flip" data-year="1938">
+                <div class="container">
+                    <div class="chapter-header">
+                        <div class="chapter-label">1938 &mdash; The Miramar Theatre</div>
+                        <h3 class="chapter-headline chapter-headline--full">
+                            <span class="line-wrap"><span class="line-inner">A Landmark is Born</span></span>
+                        </h3>
+                    </div>
+                    <hr class="chapter-rule" aria-hidden="true">
+                    <div class="spread-layout">
+                        <div class="spread-col-text">
+                            <div class="spread-text">
+                                <p>Miramar Food Hall was born from a vision to bring new life to one of San Clemente's most treasured landmarks. Once home to the Miramar Theatre and the San Clemente Bowling Center, this 1938 Spanish Colonial Revival gem had been closed for over three decades — its art deco marquee dark, its seats empty, but its place in the town's memory unshaken.</p>
+                            </div>
+                            <div class="spread-photo-wide scale-settle">
+                                <img src="images/story/1938-theatre.jpg" alt="The Miramar Theatre building, circa 1938" loading="lazy">
+                            </div>
+                        </div>
+                        <div class="spread-photo-tall wipe-reveal">
+                            <img src="images/story/filler-theatre-program.jpg" alt="San Clemente Theatre grand opening program" loading="lazy">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Transition -->
+            <div class="story-transition" aria-hidden="true">
+                <div class="container">
+                    <span class="transition-text">Decades of Memories</span>
+                </div>
+            </div>
+
+            <!-- Chapter 3: 1965 — Layout A (text+wide left, tall right) -->
+            <div class="story-chapter chapter-spread" data-year="1965">
+                <div class="container">
+                    <div class="chapter-header">
+                        <div class="chapter-label">1965 &mdash; The Surf Capital</div>
+                        <h3 class="chapter-headline chapter-headline--full">
+                            <span class="line-wrap"><span class="line-inner">Riding the Wave of Culture</span></span>
+                        </h3>
+                    </div>
+                    <hr class="chapter-rule" aria-hidden="true">
+                    <div class="spread-layout">
+                        <div class="spread-col-text">
+                            <div class="spread-text">
+                                <p>By the 1960s, San Clemente had become the heartbeat of Southern California surf culture. Local hero Joyce Hoffman, a San Clemente High standout, captured back-to-back women's world surfing championships in 1965 and 1966 — putting the town on the global map. Trestles became a pilgrimage site, and the laid-back coastal identity that defines San Clemente today was forged in the salt and spray of that golden era.</p>
+                            </div>
+                            <div class="spread-photo-wide scale-settle">
+                                <img src="images/story/1965-joyce-hoffman.jpg" alt="Joyce Hoffman, San Clemente High surfing champion, 1965" loading="lazy">
+                            </div>
+                        </div>
+                        <div class="spread-photo-tall wipe-reveal">
+                            <img src="images/story/filler-anchor-inn.jpg" alt="The Anchor Inn House of Sea Food, a beloved San Clemente restaurant" loading="lazy">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Transition -->
+            <div class="story-transition" aria-hidden="true">
+                <div class="container">
+                    <span class="transition-text">A New Chapter Begins</span>
+                </div>
+            </div>
+
+            <!-- Chapter 4: 2020 — Layout B (tall left, text+wide right) -->
+            <div class="story-chapter chapter-spread chapter-spread--flip" data-year="2020">
+                <div class="container">
+                    <div class="chapter-header">
+                        <div class="chapter-label">2020 &mdash; The Revival</div>
+                        <h3 class="chapter-headline chapter-headline--full">
+                            <span class="line-wrap"><span class="line-inner">Honoring the Past, Building the Future</span></span>
+                        </h3>
+                    </div>
+                    <hr class="chapter-rule" aria-hidden="true">
+                    <div class="spread-layout">
+                        <div class="spread-col-text">
+                            <div class="spread-text">
+                                <p>In 2020, we took on the challenge of restoring the space, honoring its rich history while transforming it into a vibrant culinary destination. Today, Miramar Food Hall stands as a celebration of community, global bites, local vibes and the enduring spirit of Southern California, marking the long-awaited revival of an iconic coastal landmark.</p>
+                            </div>
+                            <div class="spread-photo-wide scale-settle">
+                                <img src="images/story/2020-movie-house.jpg" alt="The San Clemente Movie House before renovation, 2020" loading="lazy">
+                            </div>
+                        </div>
+                        <div class="spread-photo-tall wipe-reveal">
+                            <img src="images/story/filler-horseback.jpg" alt="Horseback rider on El Camino Real in front of the Riding Academy" loading="lazy">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Transition -->
+            <div class="story-transition" aria-hidden="true">
+                <div class="container">
+                    <span class="transition-text">The Destination Arrives</span>
+                </div>
+            </div>
+
+            <!-- Chapter 5: 2026 — Today / Coming Soon -->
+            <div class="story-chapter chapter-spread" data-year="2026">
+                <div class="container">
+                    <div class="chapter-header">
+                        <div class="chapter-label">2026 &mdash; Today</div>
+                        <h3 class="chapter-headline chapter-headline--full">
+                            <span class="line-wrap"><span class="line-inner">Global Bites, Local Vibes</span></span>
+                        </h3>
+                    </div>
+                    <hr class="chapter-rule" aria-hidden="true">
+                    <div class="spread-layout">
+                        <div class="spread-col-text">
+                            <div class="spread-text">
+                                <p>Rooted in the relaxed spirit of coastal California, Miramar Food Hall brings together the artistry of local chefs and global flavors under one roof. Designed as a family-friendly gathering place, we offer an elevated yet approachable dining experience that reflects a balance of tradition and innovation, celebrating the region's diverse culinary scene while honoring the charm and character of this historic setting.</p>
+                            </div>
+                        </div>
+                        <div class="coming-soon-card">
+                            <div class="coming-soon-vignette"></div>
+                            <span class="coming-soon-title">Coming<br>Soon</span>
+                            <span class="coming-soon-subtitle">Something extraordinary is being built</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /.story-content -->
+
+        <!-- Fixed nav dots -->
+        <nav class="story-nav-dots" aria-label="Story timeline navigation">
+            <button data-target="0" aria-label="1920s: San Clemente Origins" class="dot active"></button>
+            <button data-target="1" aria-label="1938: The Miramar Theatre" class="dot"></button>
+            <button data-target="2" aria-label="1965: The Surf Capital" class="dot"></button>
+            <button data-target="3" aria-label="2020: The Revival" class="dot"></button>
+            <button data-target="4" aria-label="2026: Today" class="dot"></button>
+        </nav>
     </section>
 
     <!-- Vendors Section -->
@@ -565,5 +732,6 @@
     <!-- Behold.so Instagram Feed Widget -->
     <script>(function(){const d=document,s=d.createElement("script");s.type="module";s.src="https://w.behold.so/widget.js";d.head.append(s);})();</script>
     <script src="js/main.js"></script>
+    <script src="js/story-section.js"></script>
 </body>
 </html>

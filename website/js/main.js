@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }, observerOptions);
 
     // Observe elements for animation
-    const animateElements = document.querySelectorAll('.vendor-card, .event-card, .story-grid');
+    const animateElements = document.querySelectorAll('.vendor-card, .event-card');
     animateElements.forEach(el => {
         el.classList.add('fade-in');
         observer.observe(el);
@@ -104,39 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // UPDATED: Scroll-triggered count-up animation for story year numbers
-    const yearElements = document.querySelectorAll('.story-year[data-year]');
-    const yearObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const el = entry.target;
-                const targetYear = parseInt(el.dataset.year);
-                const startYear = targetYear - 38; // count up from ~38 years before
-                const duration = 1500; // 1.5 seconds
-                const startTime = performance.now();
-
-                function animateCount(currentTime) {
-                    const elapsed = currentTime - startTime;
-                    const progress = Math.min(elapsed / duration, 1);
-                    // Ease-out curve
-                    const eased = 1 - Math.pow(1 - progress, 3);
-                    const currentValue = Math.round(startYear + (targetYear - startYear) * eased);
-                    el.textContent = currentValue;
-
-                    if (progress < 1) {
-                        requestAnimationFrame(animateCount);
-                    } else {
-                        el.textContent = targetYear;
-                    }
-                }
-
-                requestAnimationFrame(animateCount);
-                yearObserver.unobserve(el);
-            }
-        });
-    }, { threshold: 0.5 });
-
-    yearElements.forEach(el => yearObserver.observe(el));
+    // Story year animations now handled by story-section.js
 
     // UPDATED: Marquee and carousel removed (T7, T10) - replaced with static titles
 

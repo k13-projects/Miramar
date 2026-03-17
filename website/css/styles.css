@@ -379,72 +379,12 @@ a:focus-visible {
     font-style: italic;
 }
 
-/* About Section */
-.about {
-    position: relative;
-    background-color: var(--color-dark-teal);
-    color: var(--color-white);
-    padding: 0 0 100px;
-}
+/* About Section — styles moved to story-section.css */
 
 .wave-top svg {
     display: block;
     width: 100%;
     height: 120px;
-}
-
-.about-content {
-    padding-top: 40px;
-}
-
-.about h2 {
-    color: var(--color-white);
-    text-align: center;
-    margin-bottom: 60px;
-}
-
-.story-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center;
-    margin-bottom: 80px;
-}
-
-.story-grid.reverse .story-image {
-    order: -1;
-}
-
-.story-text {
-    padding: 20px 0;
-}
-
-.story-year {
-    font-family: var(--font-title);
-    font-size: 3.5rem;
-    font-weight: 700;
-    color: #F5ECD7; /* UPDATED: Changed from teal to warm beige for better contrast on dark teal bg */
-    margin-bottom: 25px;
-}
-
-.story-text p {
-    font-size: 1.25rem;
-    line-height: 1.9;
-    /* UPDATED: Removed opacity for better contrast (T17) */
-}
-
-.story-image {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.story-image img {
-    border-radius: 12px;
-    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.35);
-    max-height: 400px;
-    width: auto;
-    object-fit: cover;
 }
 
 /* Section Titles */
@@ -1289,15 +1229,6 @@ a:focus-visible {
 }
 
 @media (max-width: 992px) {
-    .story-grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
-    }
-
-    .story-grid.reverse {
-        direction: ltr;
-    }
-
     .location-grid {
         grid-template-columns: 1fr;
     }
