@@ -84,15 +84,22 @@ document.addEventListener('DOMContentLoaded', function() {
     // UPDATED: Celebrations modal (T13, T14)
     initCelebrationsModal();
 
-    // Parallax effect for hero section
+    // Parallax effect for hero section (throttled with rAF)
     const hero = document.querySelector('.hero');
     if (hero) {
+        let ticking = false;
         window.addEventListener('scroll', function() {
-            const scrolled = window.pageYOffset;
-            const heroContent = hero.querySelector('.hero-content');
-            if (heroContent && scrolled < window.innerHeight) {
-                heroContent.style.transform = `translateY(${scrolled * 0.3}px)`;
-                heroContent.style.opacity = 1 - (scrolled / window.innerHeight);
+            if (!ticking) {
+                requestAnimationFrame(function() {
+                    const scrolled = window.pageYOffset;
+                    const heroContent = hero.querySelector('.hero-content');
+                    if (heroContent && scrolled < window.innerHeight) {
+                        heroContent.style.transform = `translateY(${scrolled * 0.3}px)`;
+                        heroContent.style.opacity = 1 - (scrolled / window.innerHeight);
+                    }
+                    ticking = false;
+                });
+                ticking = true;
             }
         });
     }

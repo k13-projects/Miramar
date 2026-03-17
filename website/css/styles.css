@@ -476,11 +476,21 @@ a:focus-visible {
 }
 
 .vendor-card {
-    position: relative; /* UPDATED: For absolute-positioned Instagram icon */
+    position: relative;
     background-color: var(--color-cream);
     border-radius: 8px;
-    overflow: hidden;
-    transition: var(--transition);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    will-change: transform;
+}
+
+.vendor-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    pointer-events: none;
+    transition: border-color 0.3s ease;
 }
 
 .vendor-card:hover {
@@ -488,9 +498,14 @@ a:focus-visible {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
+.vendor-card:hover::after {
+    border-color: var(--color-dark-teal);
+}
+
 .vendor-image {
     height: 250px;
     overflow: hidden;
+    border-radius: 8px 8px 0 0;
 }
 
 .vendor-image img {
@@ -498,7 +513,8 @@ a:focus-visible {
     height: 100%;
     object-fit: cover;
     object-position: center; /* UPDATED: Fix Hen House image alignment (T6) */
-    transition: var(--transition);
+    transition: transform 0.3s ease;
+    will-change: transform;
 }
 
 .vendor-card:hover .vendor-image img {
@@ -507,6 +523,8 @@ a:focus-visible {
 
 .vendor-info {
     padding: 20px;
+    padding-bottom: 16px;
+    text-align: center;
 }
 
 .vendor-info h3 {
@@ -517,33 +535,39 @@ a:focus-visible {
 .vendor-info p {
     font-size: 0.875rem;
     color: var(--color-gray);
-    margin-bottom: 15px;
+    margin-bottom: 0;
 }
 
-/* UPDATED: Instagram icon positioned at bottom-left of vendor card (T5) */
+/* UPDATED: Instagram link centered below vendor description */
 .vendor-instagram {
-    position: absolute;
-    bottom: 12px;
-    left: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
-    background-color: var(--color-teal);
-    color: var(--color-white);
-    border-radius: 50%;
-    transition: var(--transition);
+    gap: 6px;
+    padding: 12px 20px 0;
+    color: var(--color-teal);
+    text-decoration: none;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    transition: color 0.3s ease;
 }
 
 .vendor-instagram:hover {
-    background-color: var(--color-dark-teal);
-    transform: translateY(-2px);
+    color: var(--color-dark-teal);
+}
+
+.vendor-instagram svg {
+    flex-shrink: 0;
+}
+
+.vendor-instagram span {
+    line-height: 1;
 }
 
 .vendor-instagram:focus {
     outline: 2px solid var(--color-teal);
     outline-offset: 2px;
+    border-radius: 4px;
 }
 
 /* Location Section */
