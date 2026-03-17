@@ -239,7 +239,7 @@
 
 /* ---- F. Transition Dividers ---- */
 .story-transition {
-    padding: 100px 0;
+    padding: 30px 0;
     text-align: center;
 }
 
@@ -247,53 +247,198 @@
     font-family: var(--font-title);
     font-size: clamp(2.5rem, 6vw, 5rem);
     font-weight: 700;
-    color: transparent;
+    color: rgba(245, 236, 215, 0.18);
     -webkit-text-stroke: 1.5px rgba(245, 236, 215, 0.55);
     letter-spacing: 0.05em;
     display: inline-block;
 }
 
-/* ---- G. Coming Soon Card ---- */
-.coming-soon-card {
+/* ---- G. Coming Soon Frames (Blueprint Style) ---- */
+
+/* Shared frame base */
+.cs-frame {
     position: relative;
-    width: 100%;
-    aspect-ratio: 4 / 3;
-    background: #0a2e28;
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    background: #071f1b;
+    border-radius: 4px;
     overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-.coming-soon-vignette {
+/* Dot grid background */
+.cs-grid {
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse at center, transparent 30%, rgba(0, 0, 0, 0.5) 100%);
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+    background-size: 24px 24px;
     pointer-events: none;
 }
 
-.coming-soon-title {
-    position: relative;
-    font-family: var(--font-title);
-    font-size: clamp(3rem, 8vw, 5.5rem);
-    font-weight: 700;
-    color: transparent;
-    -webkit-text-stroke: 2px rgba(245, 236, 215, 0.5);
-    text-align: center;
-    line-height: 1.1;
-    letter-spacing: 0.05em;
+/* Horizontal scanning beam */
+.cs-scan-line {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--color-orange), transparent);
+    opacity: 0.4;
+    pointer-events: none;
+    top: 0;
 }
 
-.coming-soon-subtitle {
+/* ---- Tall frame ---- */
+.cs-frame--tall {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 420px;
+}
+
+.cs-border-trace {
+    position: absolute;
+    inset: 6px;
+    border-radius: 2px;
+    pointer-events: none;
+}
+
+/* Marching ants border via repeating-linear-gradient */
+.cs-border-trace::before,
+.cs-border-trace::after {
+    content: '';
+    position: absolute;
+    border-radius: 2px;
+}
+
+/* Horizontal lines (top & bottom) */
+.cs-border-trace::before {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        repeating-linear-gradient(90deg, rgba(255,255,255,0.15) 0, rgba(255,255,255,0.15) 8px, transparent 8px, transparent 16px) top left / 100% 1px no-repeat,
+        repeating-linear-gradient(90deg, rgba(255,255,255,0.15) 0, rgba(255,255,255,0.15) 8px, transparent 8px, transparent 16px) bottom left / 100% 1px no-repeat,
+        repeating-linear-gradient(0deg, rgba(255,255,255,0.15) 0, rgba(255,255,255,0.15) 8px, transparent 8px, transparent 16px) top left / 1px 100% no-repeat,
+        repeating-linear-gradient(0deg, rgba(255,255,255,0.15) 0, rgba(255,255,255,0.15) 8px, transparent 8px, transparent 16px) top right / 1px 100% no-repeat;
+}
+
+.cs-frame-content {
     position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.cs-big-text {
     font-family: var(--font-title);
-    font-size: 0.85rem;
+    font-size: clamp(2.8rem, 7vw, 5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: 0.05em;
+    color: transparent;
+    -webkit-text-stroke: 1.5px rgba(245, 236, 215, 0.35);
+    background: linear-gradient(
+        110deg,
+        rgba(245, 236, 215, 0.12) 0%,
+        rgba(245, 236, 215, 0.12) 35%,
+        rgba(245, 236, 215, 0.45) 50%,
+        rgba(245, 236, 215, 0.12) 65%,
+        rgba(245, 236, 215, 0.12) 100%
+    );
+    background-size: 250% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+/* Loading ring SVG */
+.cs-loading-ring {
+    width: 40px;
+    height: 40px;
+}
+
+.cs-loading-ring svg {
+    width: 100%;
+    height: 100%;
+}
+
+.cs-loading-ring circle {
+    fill: none;
+    stroke: var(--color-orange);
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-dasharray: 80 45;
+    opacity: 0.5;
+}
+
+.cs-frame-subtitle {
+    font-family: var(--font-title);
+    font-size: 0.8rem;
     text-transform: uppercase;
     letter-spacing: 0.25em;
-    color: rgba(245, 236, 215, 0.45);
-    margin-top: 20px;
+    color: rgba(245, 236, 215, 0.35);
+}
+
+/* ---- Wide frame ---- */
+.cs-frame--wide {
+    flex: 1;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 32px 28px;
+    gap: 16px;
+}
+
+.cs-skeleton {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.cs-skel-bar {
+    height: 10px;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.04);
+    overflow: hidden;
+    position: relative;
+}
+
+/* Shimmer sweep on skeleton bars */
+.cs-skel-bar::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.06) 40%,
+        rgba(255, 255, 255, 0.1) 50%,
+        rgba(255, 255, 255, 0.06) 60%,
+        transparent 100%
+    );
+    background-size: 200% 100%;
+}
+
+.cs-frame-label {
+    position: relative;
+    z-index: 2;
+    font-family: var(--font-title);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: rgba(245, 236, 215, 0.3);
+    margin-top: 4px;
+}
+
+/* Animated dots (...) */
+.cs-dots span {
+    display: inline-block;
+    opacity: 0;
 }
 
 /* ---- H. Nav Dots ---- */
@@ -417,11 +562,11 @@
         transform: translateY(0);
     }
 
-    /* Transition text fade+rise */
+    /* Transition text fade+rise (appears first, before next chapter) */
     .transition-text {
         opacity: 0;
         transform: translateY(40px);
-        transition: opacity 0.8s ease, transform 0.8s ease;
+        transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.33, 1, 0.68, 1);
     }
 
     .story-transition.in-view .transition-text {
@@ -429,14 +574,77 @@
         transform: translateY(0);
     }
 
-    /* Coming soon shimmer */
-    .coming-soon-title {
-        animation: shimmer 3s ease-in-out infinite;
+    /* ---- Coming Soon Blueprint Animations ---- */
+
+    /* Scan line sweeps vertically */
+    .cs-scan-line {
+        animation: scanSweep 4s ease-in-out infinite;
     }
 
-    @keyframes shimmer {
-        0%, 100% { opacity: 0.6; }
-        50% { opacity: 1; }
+    .cs-frame--wide .cs-scan-line {
+        animation-delay: -2s;
+    }
+
+    @keyframes scanSweep {
+        0%   { top: -2%; opacity: 0; }
+        10%  { opacity: 0.4; }
+        90%  { opacity: 0.4; }
+        100% { top: 102%; opacity: 0; }
+    }
+
+    /* Shimmer sweep on "Coming Soon" text */
+    .cs-big-text {
+        animation: textShimmer 3.5s ease-in-out infinite;
+    }
+
+    @keyframes textShimmer {
+        0%   { background-position: 150% center; }
+        100% { background-position: -50% center; }
+    }
+
+    /* Loading ring rotation */
+    .cs-loading-ring svg {
+        animation: ringRotate 2s linear infinite;
+    }
+
+    @keyframes ringRotate {
+        to { transform: rotate(360deg); }
+    }
+
+    /* Skeleton bar shimmer (staggered) */
+    .cs-skel-bar::after {
+        animation: skelShimmer 2.2s ease-in-out infinite;
+    }
+
+    .cs-skel-bar:nth-child(2)::after { animation-delay: 0.15s; }
+    .cs-skel-bar:nth-child(3)::after { animation-delay: 0.3s; }
+    .cs-skel-bar:nth-child(4)::after { animation-delay: 0.45s; }
+
+    @keyframes skelShimmer {
+        0%   { background-position: 150% center; }
+        100% { background-position: -50% center; }
+    }
+
+    /* Marching ants on border — shift background-position */
+    .cs-border-trace::before {
+        animation: marchAnts 2s linear infinite;
+    }
+
+    @keyframes marchAnts {
+        to { background-position: 16px 0, 16px 100%, 0 16px, 100% 16px; }
+    }
+
+    /* Animated loading dots */
+    .cs-dots span {
+        animation: dotPulse 1.5s ease-in-out infinite;
+    }
+
+    .cs-dots span:nth-child(2) { animation-delay: 0.3s; }
+    .cs-dots span:nth-child(3) { animation-delay: 0.6s; }
+
+    @keyframes dotPulse {
+        0%, 60%, 100% { opacity: 0; }
+        30% { opacity: 1; }
     }
 }
 
@@ -451,6 +659,14 @@
     .transition-text { opacity: 1; transform: none; }
     .flip-card,
     .flip-card.flip-fast { transition: none; }
+    .cs-scan-line,
+    .cs-big-text,
+    .cs-loading-ring svg,
+    .cs-skel-bar::after,
+    .cs-border-trace::before,
+    .cs-dots span { animation: none; }
+    .cs-dots span { opacity: 1; }
+    .cs-big-text { background-position: center; }
 }
 
 /* ---- J. Responsive ---- */
@@ -476,6 +692,10 @@
 
     .story-nav-dots {
         display: none;
+    }
+
+    .cs-frame--tall {
+        min-height: 320px;
     }
 }
 
@@ -548,7 +768,7 @@
         padding-bottom: 60px;
     }
 
-    .coming-soon-card {
-        aspect-ratio: 3 / 2;
+    .cs-frame--tall {
+        min-height: 300px;
     }
 }

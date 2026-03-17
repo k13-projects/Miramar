@@ -30,10 +30,25 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('resize', updateStickyOffset);
 
     // ---- B. Chapter Observer (triggers animations) ----
+    // Chapters that follow a transition get a delayed reveal,
+    // so the transition text appears first.
     const chapterObserver = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
             if (entry.isIntersecting) {
-                entry.target.classList.add('in-view');
+                var ch = entry.target;
+                var prev = ch.previousElementSibling;
+                var hasTransitionBefore = prev && prev.classList.contains('story-transition');
+
+                if (hasTransitionBefore && !ch.classList.contains('in-view')) {
+                    // Ensure transition text is visible first
+                    prev.classList.add('in-view');
+                    // Delay chapter reveal so transition text lands first
+                    setTimeout(function () {
+                        ch.classList.add('in-view');
+                    }, 450);
+                } else {
+                    ch.classList.add('in-view');
+                }
             }
         });
     }, { threshold: 0.2 });
@@ -48,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 transitionObserver.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.3 });
+    }, { threshold: 0.15 });
 
     transitions.forEach(function (t) { transitionObserver.observe(t); });
 
