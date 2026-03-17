@@ -548,6 +548,8 @@ a:focus-visible {
 .location-info .hours-list {
     display: inline-block;
     text-align: left;
+    max-width: 380px;
+    width: 100%;
 }
 
 /* UPDATED: Marquee animations removed (T7, T10) - replaced with static titles */
@@ -590,16 +592,23 @@ a:focus-visible {
 .hours-item {
     display: flex;
     justify-content: space-between;
-    padding: 14px 0; /* UPDATED: Increased spacing between divider and hours text (T9) */
+    align-items: center;
+    gap: 24px;
+    padding: 14px 0;
     border-bottom: 1px solid var(--color-light-gray);
 }
 
 .hours-label {
     font-weight: 600;
+    white-space: nowrap;
 }
 
 .hours-time {
     color: var(--color-gray);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+    min-width: 145px;
+    text-align: left;
 }
 
 .location-map {
