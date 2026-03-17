@@ -1,0 +1,1767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miramar Food Hall | Development Progress Report — March 2026</title>
+    <meta name="description" content="Development progress report for the Miramar Food Hall website — March 2026">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ========== Custom Properties ========== */
+        :root {
+            --color-dark-teal: #046054;
+            --color-teal: #169080;
+            --color-orange: #A94d00;
+            --color-cream: #f6f4ed;
+            --color-white: #ffffff;
+            --color-dark: #1a1a1a;
+            --color-gray: #555555;
+            --color-light-gray: #e5e5e5;
+            --font-main: 'Josefin Sans', sans-serif;
+            --shadow-card: 0 10px 30px rgba(0,0,0,0.1);
+            --shadow-hover: 0 20px 40px rgba(0,0,0,0.15);
+            --gradient-teal: linear-gradient(135deg, #046054 0%, #169080 100%);
+            --radius-card: 8px;
+        }
+
+        /* ========== Reset & Base ========== */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-main);
+            color: var(--color-dark);
+            line-height: 1.6;
+            font-size: 16px;
+            overflow-x: hidden;
+            background: var(--color-white);
+        }
+        img { max-width: 100%; height: auto; display: block; }
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            line-height: 1.2;
+        }
+        h2 {
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            color: var(--color-dark-teal);
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+        h3 { font-size: 1.25rem; }
+        p { color: var(--color-gray); }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .section-label {
+            display: inline-block;
+            background: var(--color-dark-teal);
+            color: var(--color-white);
+            padding: 6px 20px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+        .section-subtitle {
+            color: var(--color-gray);
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        /* ========== Wave Dividers ========== */
+        .wave-divider, .wave-top {
+            width: 100%;
+            line-height: 0;
+            overflow: hidden;
+        }
+        .wave-divider svg, .wave-top svg {
+            width: 100%;
+            height: 80px;
+            display: block;
+        }
+
+        /* ========== Scroll Animations ========== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .slide-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .slide-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .slide-right {
+            opacity: 0;
+            transform: translateX(40px);
+            transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .slide-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .scale-in.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* ========== 1. HERO ========== */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: var(--gradient-teal);
+            text-align: center;
+            overflow: hidden;
+            padding: 60px 20px;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1" fill="white" opacity="0.05"/><circle cx="80" cy="40" r="1.5" fill="white" opacity="0.04"/><circle cx="50" cy="70" r="1" fill="white" opacity="0.06"/><circle cx="10" cy="90" r="0.8" fill="white" opacity="0.03"/><circle cx="90" cy="10" r="1.2" fill="white" opacity="0.05"/></svg>') repeat;
+            background-size: 200px 200px;
+            pointer-events: none;
+        }
+        #particle-canvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        .hero-logo {
+            width: 180px;
+            margin: 0 auto 2rem;
+            filter: brightness(0) invert(1);
+        }
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            color: var(--color-white);
+            letter-spacing: 0.08em;
+            margin-bottom: 0.75rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        .hero-subtitle {
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            color: rgba(255,255,255,0.9);
+            font-weight: 400;
+            letter-spacing: 0.05em;
+            margin-bottom: 2rem;
+        }
+        .date-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.25);
+            color: var(--color-white);
+            padding: 10px 30px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            animation: bounce 2s ease-in-out infinite;
+        }
+        .scroll-indicator svg {
+            width: 30px;
+            height: 30px;
+            stroke: rgba(255,255,255,0.6);
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(12px); }
+        }
+
+        /* ========== 2. BY THE NUMBERS ========== */
+        .stats-section {
+            background: var(--color-cream);
+            padding: 100px 20px;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .stat-card {
+            background: var(--color-white);
+            border-radius: var(--radius-card);
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: var(--shadow-card);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 15px;
+            background: var(--gradient-teal);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .stat-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke: white;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--color-dark-teal);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--color-gray);
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        /* ========== 3. SITE ARCHITECTURE ========== */
+        .architecture-section {
+            background: var(--color-white);
+            padding: 100px 20px;
+        }
+        .arch-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .arch-node {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 12px;
+            background: var(--color-white);
+            border: 2px solid var(--color-teal);
+            border-radius: var(--radius-card);
+            min-width: 100px;
+            text-align: center;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+        .arch-node:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-card);
+            background: var(--color-cream);
+        }
+        .arch-node-icon {
+            font-size: 1.4rem;
+        }
+        .arch-node-name {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--color-dark-teal);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+        .arch-node-anchor {
+            font-size: 0.65rem;
+            color: var(--color-teal);
+            font-weight: 400;
+        }
+        .arch-arrow {
+            color: var(--color-teal);
+            font-size: 1.2rem;
+            padding: 0 4px;
+            flex-shrink: 0;
+        }
+
+        /* ========== 4. SECTION BREAKDOWN ========== */
+        .breakdown-section {
+            background: var(--color-cream);
+            padding: 100px 20px;
+        }
+        .breakdown-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        .breakdown-card {
+            background: var(--color-white);
+            border-radius: var(--radius-card);
+            overflow: hidden;
+            box-shadow: var(--shadow-card);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .breakdown-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 20px 20px 0;
+        }
+        .card-icon-badge {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        .card-icon-badge.teal { background: rgba(22, 144, 128, 0.1); }
+        .card-icon-badge.orange { background: rgba(169, 77, 0, 0.1); }
+        .card-title-group {
+            flex: 1;
+        }
+        .card-title-group h3 {
+            color: var(--color-dark);
+            margin-bottom: 2px;
+            font-size: 1.1rem;
+        }
+        .tag {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 50px;
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+        .tag-new {
+            background: rgba(22, 144, 128, 0.12);
+            color: var(--color-teal);
+        }
+        .tag-improved {
+            background: rgba(169, 77, 0, 0.1);
+            color: var(--color-orange);
+        }
+        .tag-fixed {
+            background: rgba(4, 96, 84, 0.1);
+            color: var(--color-dark-teal);
+        }
+        .mini-browser {
+            margin: 16px 20px;
+            border: 1px solid var(--color-light-gray);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        .mini-browser-toolbar {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 8px 10px;
+            background: #f8f8f8;
+            border-bottom: 1px solid var(--color-light-gray);
+        }
+        .mini-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+        .mini-dot.red { background: #ff5f56; }
+        .mini-dot.yellow { background: #ffbd2e; }
+        .mini-dot.green { background: #27c93f; }
+        .mini-browser-content {
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+        .mini-browser-content.hero-mock { background: var(--gradient-teal); }
+        .mini-browser-content.cream-mock { background: var(--color-cream); }
+        .mini-browser-content.white-mock { background: var(--color-white); }
+        .mini-browser-content.dark-mock { background: var(--color-dark-teal); }
+        .card-changes {
+            padding: 0 20px 20px;
+        }
+        .card-changes ul {
+            list-style: none;
+            padding: 0;
+        }
+        .card-changes li {
+            position: relative;
+            padding: 5px 0 5px 18px;
+            font-size: 0.85rem;
+            color: var(--color-gray);
+            line-height: 1.5;
+        }
+        .card-changes li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 12px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--color-teal);
+        }
+
+        /* ========== 5. KEY FEATURES ========== */
+        .features-section {
+            background: var(--color-dark-teal);
+            padding: 100px 20px;
+            position: relative;
+        }
+        .features-section h2 { color: var(--color-white); }
+        .features-section .section-subtitle { color: rgba(255,255,255,0.7); }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .feature-card {
+            background: rgba(255,255,255,0.06);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: var(--radius-card);
+            padding: 30px 24px;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s ease, box-shadow 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.1);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            font-size: 1.4rem;
+        }
+        .feature-card h3 {
+            color: var(--color-white);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        .feature-card p {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+        .feature-stats {
+            display: flex;
+            gap: 20px;
+        }
+        .feature-stat {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.5);
+            letter-spacing: 0.05em;
+        }
+        .feature-stat strong {
+            color: var(--color-cream);
+            font-size: 1rem;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        /* ========== 6. PERFORMANCE & SEO ========== */
+        .performance-section {
+            background: var(--color-white);
+            padding: 100px 20px;
+        }
+        .perf-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+        .perf-column h3 {
+            color: var(--color-dark-teal);
+            margin-bottom: 24px;
+            font-size: 1.2rem;
+        }
+        .progress-item {
+            margin-bottom: 24px;
+        }
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 8px;
+        }
+        .progress-label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--color-dark);
+        }
+        .progress-values {
+            font-size: 0.8rem;
+            color: var(--color-gray);
+        }
+        .progress-values .before {
+            text-decoration: line-through;
+            opacity: 0.5;
+            margin-right: 6px;
+        }
+        .progress-values .after {
+            color: var(--color-teal);
+            font-weight: 700;
+        }
+        .progress-track {
+            height: 10px;
+            background: var(--color-light-gray);
+            border-radius: 5px;
+            overflow: hidden;
+            position: relative;
+        }
+        .progress-fill {
+            height: 100%;
+            border-radius: 5px;
+            background: var(--gradient-teal);
+            width: 0%;
+            transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .progress-fill.animated {
+            /* width set via JS */
+        }
+        .checklist {
+            list-style: none;
+            padding: 0;
+        }
+        .checklist li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--color-light-gray);
+            font-size: 0.9rem;
+            color: var(--color-dark);
+        }
+        .checklist li:last-child { border-bottom: none; }
+        .check-icon {
+            width: 22px;
+            height: 22px;
+            background: var(--color-teal);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .check-icon svg {
+            width: 12px;
+            height: 12px;
+            stroke: white;
+            fill: none;
+            stroke-width: 3;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* ========== 7. TIMELINE ========== */
+        .timeline-section {
+            background: var(--color-cream);
+            padding: 100px 20px;
+        }
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--gradient-teal);
+            border-radius: 3px;
+        }
+        .timeline-item {
+            position: relative;
+            width: 50%;
+            padding: 0 40px 50px;
+        }
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            text-align: right;
+        }
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            text-align: left;
+        }
+        .timeline-dot {
+            position: absolute;
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            background: var(--color-teal);
+            border: 3px solid var(--color-cream);
+            border-radius: 50%;
+            z-index: 2;
+        }
+        .timeline-item:nth-child(odd) .timeline-dot {
+            right: -8px;
+        }
+        .timeline-item:nth-child(even) .timeline-dot {
+            left: -8px;
+        }
+        .timeline-date {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--color-teal);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+        .timeline-card {
+            background: var(--color-white);
+            border-radius: var(--radius-card);
+            padding: 20px;
+            box-shadow: var(--shadow-card);
+        }
+        .timeline-card h3 {
+            color: var(--color-dark);
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+        .timeline-card p {
+            font-size: 0.85rem;
+            color: var(--color-gray);
+            line-height: 1.6;
+        }
+        .timeline-tags {
+            display: flex;
+            gap: 6px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+        .timeline-item:nth-child(odd) .timeline-tags {
+            justify-content: flex-end;
+        }
+        .timeline-tag {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 50px;
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+        .timeline-tag.html { background: rgba(169,77,0,0.1); color: var(--color-orange); }
+        .timeline-tag.css { background: rgba(22,144,128,0.1); color: var(--color-teal); }
+        .timeline-tag.js { background: rgba(4,96,84,0.1); color: var(--color-dark-teal); }
+        .timeline-tag.a11y { background: rgba(169,77,0,0.12); color: #8B6914; }
+        .timeline-tag.integration { background: rgba(22,144,128,0.15); color: var(--color-dark-teal); }
+
+        /* ========== 8. WHAT'S NEXT ========== */
+        .next-section {
+            background: var(--color-white);
+            padding: 100px 20px;
+        }
+        .next-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .next-card {
+            background: var(--color-white);
+            border: 2px solid var(--color-light-gray);
+            border-radius: var(--radius-card);
+            padding: 24px;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        .next-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-card);
+            border-color: var(--color-teal);
+        }
+        .priority-badge {
+            display: inline-block;
+            padding: 3px 12px;
+            border-radius: 50px;
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+        .priority-next { background: var(--color-dark-teal); color: var(--color-white); }
+        .priority-planned { background: var(--color-teal); color: var(--color-white); }
+        .priority-awaiting { background: var(--color-orange); color: var(--color-white); }
+        .next-card h3 {
+            color: var(--color-dark);
+            margin-bottom: 8px;
+            font-size: 1.05rem;
+        }
+        .next-card p {
+            font-size: 0.9rem;
+            color: var(--color-gray);
+            line-height: 1.6;
+        }
+
+        /* ========== 9. FOOTER ========== */
+        .report-footer {
+            background: var(--color-dark);
+            padding: 60px 20px;
+            text-align: center;
+        }
+        .footer-logo {
+            width: 50px;
+            margin: 0 auto 20px;
+            opacity: 0.8;
+        }
+        .report-footer p {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.9rem;
+            margin-bottom: 6px;
+        }
+        .report-footer .footer-thanks {
+            color: rgba(255,255,255,0.85);
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+        .footer-divider {
+            width: 40px;
+            height: 2px;
+            background: var(--color-teal);
+            margin: 20px auto;
+            border-radius: 2px;
+        }
+
+        /* ========== RESPONSIVE: 768px ========== */
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .breakdown-grid, .features-grid, .next-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .perf-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .arch-flow {
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+            .arch-arrow { display: none; }
+            .arch-node { min-width: 80px; padding: 12px 8px; }
+            /* Timeline: all left-aligned */
+            .timeline::before {
+                left: 20px;
+                transform: none;
+            }
+            .timeline-item {
+                width: 100%;
+                left: 0 !important;
+                text-align: left !important;
+                padding-left: 50px;
+                padding-right: 0;
+            }
+            .timeline-item .timeline-dot {
+                left: 12px !important;
+                right: auto !important;
+            }
+            .timeline-item:nth-child(odd) .timeline-tags {
+                justify-content: flex-start;
+            }
+            .hero-logo { width: 130px; }
+        }
+
+        /* ========== RESPONSIVE: 480px ========== */
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .breakdown-grid, .features-grid, .next-grid {
+                grid-template-columns: 1fr;
+            }
+            .stat-card { padding: 20px 12px; }
+            .stat-number { font-size: 2rem; }
+            .hero-logo { width: 100px; }
+            section { padding: 60px 16px; }
+            .stats-section, .architecture-section, .breakdown-section,
+            .features-section, .performance-section, .timeline-section,
+            .next-section { padding: 60px 16px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================== 1. HERO ============================== -->
+    <section class="hero">
+        <canvas id="particle-canvas"></canvas>
+        <div class="hero-content">
+            <img src="../images/logo/miramar-logo.png" alt="Miramar Food Hall" class="hero-logo">
+            <h1>MIRAMAR FOOD HALL</h1>
+            <p class="hero-subtitle">Development Progress Report</p>
+            <span class="date-badge">March 2026</span>
+        </div>
+        <div class="scroll-indicator">
+            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="wave-divider" style="position:absolute;bottom:0;left:0;right:0;">
+            <svg viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+                <path d="M0,60 C360,120 720,0 1080,60 C1260,90 1380,90 1440,60 L1440,120 L0,120 Z" fill="#f6f4ed"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- ============================== 2. BY THE NUMBERS ============================== -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-label">By the Numbers</span>
+                <h2>What We Shipped</h2>
+                <p class="section-subtitle">A snapshot of the March 2026 development sprint — from initial build through integrations and accessibility.</p>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card fade-in">
+                    <div class="stat-icon">
+                        <svg viewBox="0 0 24 24"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg>
+                    </div>
+                    <div class="stat-number" data-target="7">0</div>
+                    <div class="stat-label">Commits Shipped</div>
+                </div>
+                <div class="stat-card fade-in">
+                    <div class="stat-icon">
+                        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+                    </div>
+                    <div class="stat-number" data-target="9">0</div>
+                    <div class="stat-label">Site Sections</div>
+                </div>
+                <div class="stat-card fade-in">
+                    <div class="stat-icon">
+                        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                    </div>
+                    <div class="stat-number" data-target="13">0</div>
+                    <div class="stat-label">Vendor Profiles</div>
+                </div>
+                <div class="stat-card fade-in">
+                    <div class="stat-icon">
+                        <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                    </div>
+                    <div class="stat-number" data-target="600" data-suffix="+">0</div>
+                    <div class="stat-label">Lines of Code</div>
+                </div>
+                <div class="stat-card fade-in">
+                    <div class="stat-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                    </div>
+                    <div class="stat-number" data-target="3">0</div>
+                    <div class="stat-label">Live Integrations</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wave: cream → white -->
+    <div class="wave-top">
+        <svg viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M0,60 C360,0 720,120 1080,60 C1260,30 1380,30 1440,60 L1440,0 L0,0 Z" fill="#f6f4ed"/>
+        </svg>
+    </div>
+
+    <!-- ============================== 3. SITE ARCHITECTURE ============================== -->
+    <section class="architecture-section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-label">Site Architecture</span>
+                <h2>How It All Connects</h2>
+                <p class="section-subtitle">Nine distinct sections flow together as a single-page experience with smooth anchor navigation.</p>
+            </div>
+            <div class="arch-flow scale-in">
+                <div class="arch-node">
+                    <span class="arch-node-icon">&#127968;</span>
+                    <span class="arch-node-name">Hero</span>
+                    <span class="arch-node-anchor">#home</span>
+                </div>
+                <span class="arch-arrow">&#8594;</span>
+                <div class="arch-node">
+                    <span class="arch-node-icon">&#9733;</span>
+                    <span class="arch-node-name">Intro</span>
+                    <span class="arch-node-anchor">#intro</span>
+                </div>
+                <span class="arch-arrow">&#8594;</span>
+                <div class="arch-node">
+                    <span class="arch-node-icon">&#128214;</span>
+                    <span class="arch-node-name">Story</span>
+                    <span class="arch-node-anchor">#about</span>
+                </div>
+                <span class="arch-arrow">&#8594;</span>
+                <div class="arch-node">
+                    <span class="arch-node-icon">&#127860;</span>
+                    <span class="arch-node-name">Vendors</span>
+                    <span class="arch-node-anchor">#vendors</span>
+                </div>
+                <span class="arch-arrow">&#8594;</span>
+                <div class="arch-node">
+                    <span class="arch-node-icon">&#128205;</span>
+                    <span class="arch-node-name">Location</span>
+                    <span class="arch-node-anchor">#location</span>
+                </div>
+                <span class="arch-arrow">&#8594;</span>
+                <div class="arch-node">
+                    <span class="arch-node-icon">&#128247;</span>
+                    <span class="arch-node-name">Instagram</span>
+                    <span class="arch-node-anchor">#instagram</span>
+                </div>
+                <span class="arch-arrow">&#8594;</span>
+                <div class="arch-node">
+                    <span class="arch-node-icon">&#127881;</span>
+                    <span class="arch-node-name">Events</span>
+                    <span class="arch-node-anchor">#events</span>
+                </div>
+                <span class="arch-arrow">&#8594;</span>
+                <div class="arch-node">
+                    <span class="arch-node-icon">&#127870;</span>
+                    <span class="arch-node-name">Bookings</span>
+                    <span class="arch-node-anchor">#bookings</span>
+                </div>
+                <span class="arch-arrow">&#8594;</span>
+                <div class="arch-node">
+                    <span class="arch-node-icon">&#9993;</span>
+                    <span class="arch-node-name">Contact</span>
+                    <span class="arch-node-anchor">#contact</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wave: white → cream -->
+    <div class="wave-divider">
+        <svg viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M0,60 C360,120 720,0 1080,60 C1260,90 1380,90 1440,60 L1440,120 L0,120 Z" fill="#f6f4ed"/>
+        </svg>
+    </div>
+
+    <!-- ============================== 4. SECTION BREAKDOWN ============================== -->
+    <section class="breakdown-section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-label">Section-by-Section</span>
+                <h2>What We Built</h2>
+                <p class="section-subtitle">Every section of the site, with the specific changes and enhancements delivered.</p>
+            </div>
+            <div class="breakdown-grid">
+
+                <!-- Hero -->
+                <div class="breakdown-card fade-in">
+                    <div class="card-header">
+                        <div class="card-icon-badge teal">&#127968;</div>
+                        <div class="card-title-group">
+                            <h3>Hero</h3>
+                            <span class="tag tag-improved">Improved</span>
+                        </div>
+                    </div>
+                    <div class="mini-browser">
+                        <div class="mini-browser-toolbar">
+                            <span class="mini-dot red"></span>
+                            <span class="mini-dot yellow"></span>
+                            <span class="mini-dot green"></span>
+                        </div>
+                        <div class="mini-browser-content hero-mock">&#127968;</div>
+                    </div>
+                    <div class="card-changes">
+                        <ul>
+                            <li>Full-viewport hero with gradient overlay</li>
+                            <li>Parallax scrolling effect on scroll</li>
+                            <li>Animated wave SVG divider transition</li>
+                            <li>"Global Bites, Local Vibes" tagline typography</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Intro -->
+                <div class="breakdown-card fade-in">
+                    <div class="card-header">
+                        <div class="card-icon-badge teal">&#9733;</div>
+                        <div class="card-title-group">
+                            <h3>Intro</h3>
+                            <span class="tag tag-improved">Improved</span>
+                        </div>
+                    </div>
+                    <div class="mini-browser">
+                        <div class="mini-browser-toolbar">
+                            <span class="mini-dot red"></span>
+                            <span class="mini-dot yellow"></span>
+                            <span class="mini-dot green"></span>
+                        </div>
+                        <div class="mini-browser-content cream-mock">&#9733;</div>
+                    </div>
+                    <div class="card-changes">
+                        <ul>
+                            <li>Welcoming venue description copy</li>
+                            <li>Highlights bar: 15 vendors, 2 bars, ocean views</li>
+                            <li>Responsive layout for all screen sizes</li>
+                            <li>Cream background with smooth transitions</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- About/Story -->
+                <div class="breakdown-card fade-in">
+                    <div class="card-header">
+                        <div class="card-icon-badge teal">&#128214;</div>
+                        <div class="card-title-group">
+                            <h3>About / Story</h3>
+                            <span class="tag tag-improved">Improved</span>
+                        </div>
+                    </div>
+                    <div class="mini-browser">
+                        <div class="mini-browser-toolbar">
+                            <span class="mini-dot red"></span>
+                            <span class="mini-dot yellow"></span>
+                            <span class="mini-dot green"></span>
+                        </div>
+                        <div class="mini-browser-content dark-mock" style="color: #F5ECD7; font-size: 1.4rem; font-weight: 700;">1938 &#8226; 2020 &#8226; 2026</div>
+                    </div>
+                    <div class="card-changes">
+                        <ul>
+                            <li>Three-era timeline: 1938, 2020, 2026</li>
+                            <li>Animated year count-up on scroll</li>
+                            <li>Historic images with alternating grid layout</li>
+                            <li>Wave SVG dividers top and bottom</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Vendors -->
+                <div class="breakdown-card fade-in">
+                    <div class="card-header">
+                        <div class="card-icon-badge teal">&#127860;</div>
+                        <div class="card-title-group">
+                            <h3>Vendors</h3>
+                            <span class="tag tag-improved">Improved</span>
+                        </div>
+                    </div>
+                    <div class="mini-browser">
+                        <div class="mini-browser-toolbar">
+                            <span class="mini-dot red"></span>
+                            <span class="mini-dot yellow"></span>
+                            <span class="mini-dot green"></span>
+                        </div>
+                        <div class="mini-browser-content cream-mock" style="font-size: 0.7rem; color: var(--color-gray); gap: 4px; display: grid; grid-template-columns: repeat(3,1fr); padding: 8px;">
+                            <span style="background:var(--color-white);padding:4px;border-radius:4px;text-align:center;">&#127828;</span>
+                            <span style="background:var(--color-white);padding:4px;border-radius:4px;text-align:center;">&#127790;</span>
+                            <span style="background:var(--color-white);padding:4px;border-radius:4px;text-align:center;">&#127833;</span>
+                            <span style="background:var(--color-white);padding:4px;border-radius:4px;text-align:center;">&#9749;</span>
+                            <span style="background:var(--color-white);padding:4px;border-radius:4px;text-align:center;">&#127834;</span>
+                            <span style="background:var(--color-white);padding:4px;border-radius:4px;text-align:center;">&#127829;</span>
+                        </div>
+                    </div>
+                    <div class="card-changes">
+                        <ul>
+                            <li>13 vendor cards with photos and descriptions</li>
+                            <li>Instagram profile links on each card</li>
+                            <li>Image optimization (Hen Haus compressed)</li>
+                            <li>Responsive grid layout with hover effects</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Location -->
+                <div class="breakdown-card fade-in">
+                    <div class="card-header">
+                        <div class="card-icon-badge teal">&#128205;</div>
+                        <div class="card-title-group">
+                            <h3>Location</h3>
+                            <span class="tag tag-improved">Improved</span>
+                        </div>
+                    </div>
+                    <div class="mini-browser">
+                        <div class="mini-browser-toolbar">
+                            <span class="mini-dot red"></span>
+                            <span class="mini-dot yellow"></span>
+                            <span class="mini-dot green"></span>
+                        </div>
+                        <div class="mini-browser-content white-mock" style="font-size: 0.75rem; color: var(--color-gray); flex-direction: column; gap: 2px;">
+                            <span>&#128205;</span>
+                            <span style="font-weight:600; color: var(--color-dark-teal);">San Clemente, CA</span>
+                        </div>
+                    </div>
+                    <div class="card-changes">
+                        <ul>
+                            <li>Embedded Google Maps with accessible title</li>
+                            <li>Full address and operating hours display</li>
+                            <li>Get Directions button with map link</li>
+                            <li>Static section title (marquee removed)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Instagram -->
+                <div class="breakdown-card fade-in">
+                    <div class="card-header">
+                        <div class="card-icon-badge orange">&#128247;</div>
+                        <div class="card-title-group">
+                            <h3>Instagram Feed</h3>
+                            <span class="tag tag-new">New</span>
+                        </div>
+                    </div>
+                    <div class="mini-browser">
+                        <div class="mini-browser-toolbar">
+                            <span class="mini-dot red"></span>
+                            <span class="mini-dot yellow"></span>
+                            <span class="mini-dot green"></span>
+                        </div>
+                        <div class="mini-browser-content white-mock" style="gap: 4px; display: grid; grid-template-columns: repeat(4,1fr); padding: 8px;">
+                            <span style="background:var(--gradient-teal);border-radius:3px;height:100%;"></span>
+                            <span style="background:linear-gradient(135deg,#A94d00,#d4a373);border-radius:3px;"></span>
+                            <span style="background:var(--gradient-teal);border-radius:3px;"></span>
+                            <span style="background:linear-gradient(135deg,#A94d00,#d4a373);border-radius:3px;"></span>
+                        </div>
+                    </div>
+                    <div class="card-changes">
+                        <ul>
+                            <li>Live feed via Behold.so widget integration</li>
+                            <li>Edge-to-edge layout wider than container</li>
+                            <li>Responsive sizing across all devices</li>
+                            <li>Auto-updating with latest @miramarfoodhall posts</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Events -->
+                <div class="breakdown-card fade-in">
+                    <div class="card-header">
+                        <div class="card-icon-badge orange">&#127881;</div>
+                        <div class="card-title-group">
+                            <h3>Events</h3>
+                            <span class="tag tag-new">New</span>
+                        </div>
+                    </div>
+                    <div class="mini-browser">
+                        <div class="mini-browser-toolbar">
+                            <span class="mini-dot red"></span>
+                            <span class="mini-dot yellow"></span>
+                            <span class="mini-dot green"></span>
+                        </div>
+                        <div class="mini-browser-content cream-mock" style="font-size: 0.7rem; flex-direction: column; gap: 3px; color: var(--color-dark-teal); font-weight: 600;">
+                            <span>&#128197; Live from Google Sheets</span>
+                        </div>
+                    </div>
+                    <div class="card-changes">
+                        <ul>
+                            <li>Dynamic loading from Google Sheets CSV</li>
+                            <li>Real-time content updates without code changes</li>
+                            <li>Optional URL column for event links</li>
+                            <li>Fallback events when feed is unavailable</li>
+                            <li>Robust CSV parser with quote handling</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Bookings -->
+                <div class="breakdown-card fade-in">
+                    <div class="card-header">
+                        <div class="card-icon-badge teal">&#127870;</div>
+                        <div class="card-title-group">
+                            <h3>Bookings</h3>
+                            <span class="tag tag-improved">Improved</span>
+                        </div>
+                    </div>
+                    <div class="mini-browser">
+                        <div class="mini-browser-toolbar">
+                            <span class="mini-dot red"></span>
+                            <span class="mini-dot yellow"></span>
+                            <span class="mini-dot green"></span>
+                        </div>
+                        <div class="mini-browser-content dark-mock" style="color: white; font-size: 0.7rem; font-weight: 600;">&#127881; Book Your Event</div>
+                    </div>
+                    <div class="card-changes">
+                        <ul>
+                            <li>Celebrations modal for parties of 15+</li>
+                            <li>Full booking form with date and guest count</li>
+                            <li>Wave divider transition from events section</li>
+                            <li>Compelling call-to-action design</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Contact -->
+                <div class="breakdown-card fade-in">
+                    <div class="card-header">
+                        <div class="card-icon-badge teal">&#9993;</div>
+                        <div class="card-title-group">
+                            <h3>Let's Connect</h3>
+                            <span class="tag tag-improved">Improved</span>
+                        </div>
+                    </div>
+                    <div class="mini-browser">
+                        <div class="mini-browser-toolbar">
+                            <span class="mini-dot red"></span>
+                            <span class="mini-dot yellow"></span>
+                            <span class="mini-dot green"></span>
+                        </div>
+                        <div class="mini-browser-content cream-mock" style="font-size: 0.7rem; color: var(--color-gray); gap: 10px;">
+                            <span style="font-weight:600; color: var(--color-dark-teal);">&#128231; Info</span>
+                            <span>|</span>
+                            <span style="font-weight:600; color: var(--color-dark-teal);">&#128221; Form</span>
+                        </div>
+                    </div>
+                    <div class="card-changes">
+                        <ul>
+                            <li>Two-column layout: contact info + inquiry form</li>
+                            <li>Inquiry type dropdown (General, Vendor, Careers)</li>
+                            <li>File upload for career applications (drag-drop, 5MB)</li>
+                            <li>ADA-compliant validation with ARIA live regions</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Wave: cream → dark teal -->
+    <div class="wave-top">
+        <svg viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M0,60 C360,0 720,120 1080,60 C1260,30 1380,30 1440,60 L1440,0 L0,0 Z" fill="#f6f4ed"/>
+        </svg>
+    </div>
+
+    <!-- ============================== 5. KEY FEATURES ============================== -->
+    <section class="features-section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-label" style="background: rgba(255,255,255,0.15); color: white;">Key Features</span>
+                <h2>Notable Highlights</h2>
+                <p class="section-subtitle">The standout capabilities that make this site a modern, accessible, and dynamic experience.</p>
+            </div>
+            <div class="features-grid">
+
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">&#9776;</div>
+                    <h3>Responsive Navigation</h3>
+                    <p>Fully responsive navbar with hamburger menu toggle, smooth-scroll anchor links, and scroll-triggered styling that adapts as users browse.</p>
+                    <div class="feature-stats">
+                        <div class="feature-stat"><strong>9</strong>Nav links</div>
+                        <div class="feature-stat"><strong>3</strong>Breakpoints</div>
+                    </div>
+                </div>
+
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">&#9855;</div>
+                    <h3>ADA / WCAG AA Compliance</h3>
+                    <p>Comprehensive accessibility pass including skip-to-content link, ARIA labels on all interactive elements, focus-visible states, and contrast ratio fixes.</p>
+                    <div class="feature-stats">
+                        <div class="feature-stat"><strong>#555</strong>Contrast fix</div>
+                        <div class="feature-stat"><strong>AA</strong>WCAG level</div>
+                    </div>
+                </div>
+
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">&#128247;</div>
+                    <h3>Live Instagram Feed</h3>
+                    <p>Behold.so widget integration pulls live posts from @miramarfoodhall with an edge-to-edge layout that breaks out of the content container.</p>
+                    <div class="feature-stats">
+                        <div class="feature-stat"><strong>Live</strong>Real-time</div>
+                        <div class="feature-stat"><strong>Auto</strong>Updates</div>
+                    </div>
+                </div>
+
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">&#128197;</div>
+                    <h3>Dynamic Events System</h3>
+                    <p>Google Sheets serves as a lightweight CMS — events update in real time without code changes. Includes CSV parsing with quote handling and optional URL columns.</p>
+                    <div class="feature-stats">
+                        <div class="feature-stat"><strong>CSV</strong>Parser</div>
+                        <div class="feature-stat"><strong>0</strong>Deploy needed</div>
+                    </div>
+                </div>
+
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">&#128221;</div>
+                    <h3>Smart Form System</h3>
+                    <p>Contact form and celebrations modal with dynamic field validation, drag-and-drop file upload for career applications (PDF/DOC, 5MB limit), and accessible error states.</p>
+                    <div class="feature-stats">
+                        <div class="feature-stat"><strong>2</strong>Forms</div>
+                        <div class="feature-stat"><strong>5MB</strong>Upload limit</div>
+                    </div>
+                </div>
+
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">&#9889;</div>
+                    <h3>Performance Optimized</h3>
+                    <p>Lazy-loaded iframes, IntersectionObserver-driven animations, CSS transitions over JavaScript animations, and image compression for fast load times.</p>
+                    <div class="feature-stats">
+                        <div class="feature-stat"><strong>0</strong>JS libraries</div>
+                        <div class="feature-stat"><strong>CSS</strong>Animations</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Wave: dark teal → white -->
+    <div class="wave-divider" style="background: var(--color-dark-teal);">
+        <svg viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M0,60 C360,120 720,0 1080,60 C1260,90 1380,90 1440,60 L1440,120 L0,120 Z" fill="#ffffff"/>
+        </svg>
+    </div>
+
+    <!-- ============================== 6. PERFORMANCE & SEO ============================== -->
+    <section class="performance-section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-label">Performance &amp; SEO</span>
+                <h2>Quality Benchmarks</h2>
+                <p class="section-subtitle">Measurable improvements in accessibility, responsiveness, and best-practice compliance.</p>
+            </div>
+            <div class="perf-grid">
+                <div class="perf-column slide-left">
+                    <h3>Progress Metrics</h3>
+
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <span class="progress-label">Accessibility Score</span>
+                            <span class="progress-values"><span class="before">65%</span><span class="after">95%</span></span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="progress-fill" data-width="95"></div>
+                        </div>
+                    </div>
+
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <span class="progress-label">Mobile Responsiveness</span>
+                            <span class="progress-values"><span class="before">80%</span><span class="after">98%</span></span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="progress-fill" data-width="98"></div>
+                        </div>
+                    </div>
+
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <span class="progress-label">Content Completeness</span>
+                            <span class="progress-values"><span class="before">40%</span><span class="after">90%</span></span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="progress-fill" data-width="90"></div>
+                        </div>
+                    </div>
+
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <span class="progress-label">Integration Status</span>
+                            <span class="progress-values"><span class="before">0%</span><span class="after">85%</span></span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="progress-fill" data-width="85"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="perf-column slide-right">
+                    <h3>Best Practices Checklist</h3>
+                    <ul class="checklist">
+                        <li>
+                            <span class="check-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+                            Semantic HTML5 structure
+                        </li>
+                        <li>
+                            <span class="check-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+                            Meta description &amp; keywords
+                        </li>
+                        <li>
+                            <span class="check-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+                            Alt text on all images
+                        </li>
+                        <li>
+                            <span class="check-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+                            ARIA labels &amp; roles
+                        </li>
+                        <li>
+                            <span class="check-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+                            Mobile viewport configured
+                        </li>
+                        <li>
+                            <span class="check-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+                            Google Fonts preconnect
+                        </li>
+                        <li>
+                            <span class="check-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+                            Lazy-loaded iframes
+                        </li>
+                        <li>
+                            <span class="check-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+                            Skip navigation link
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wave: white → cream -->
+    <div class="wave-divider">
+        <svg viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M0,60 C360,120 720,0 1080,60 C1260,90 1380,90 1440,60 L1440,120 L0,120 Z" fill="#f6f4ed"/>
+        </svg>
+    </div>
+
+    <!-- ============================== 7. DEVELOPMENT TIMELINE ============================== -->
+    <section class="timeline-section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-label">Timeline</span>
+                <h2>Development Milestones</h2>
+                <p class="section-subtitle">A chronological view of the March 2026 development sprint.</p>
+            </div>
+            <div class="timeline">
+
+                <div class="timeline-item fade-in">
+                    <div class="timeline-dot"></div>
+                    <span class="timeline-date">March 16, 2026</span>
+                    <div class="timeline-card">
+                        <h3>Complete Site Overhaul</h3>
+                        <p>Full redesign implementing Tasks 1 through 14 and 17 — restructured HTML, overhauled CSS with brand design system, and expanded JavaScript functionality. 483 lines added, 279 removed.</p>
+                        <div class="timeline-tags">
+                            <span class="timeline-tag html">HTML</span>
+                            <span class="timeline-tag css">CSS</span>
+                            <span class="timeline-tag js">JS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item fade-in">
+                    <div class="timeline-dot"></div>
+                    <span class="timeline-date">March 16, 2026</span>
+                    <div class="timeline-card">
+                        <h3>Responsive Fix &amp; Image Optimization</h3>
+                        <p>Resolved navbar overlap on medium-width screens and optimized the Hen Haus vendor card image for faster loading.</p>
+                        <div class="timeline-tags">
+                            <span class="timeline-tag css">CSS</span>
+                            <span class="timeline-tag html">Fix</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item fade-in">
+                    <div class="timeline-dot"></div>
+                    <span class="timeline-date">March 16, 2026</span>
+                    <div class="timeline-card">
+                        <h3>Instagram Feed Integration</h3>
+                        <p>Connected live Instagram feed via Behold.so, enabling auto-updating social content from @miramarfoodhall with a responsive, edge-to-edge layout.</p>
+                        <div class="timeline-tags">
+                            <span class="timeline-tag integration">Integration</span>
+                            <span class="timeline-tag css">CSS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item fade-in">
+                    <div class="timeline-dot"></div>
+                    <span class="timeline-date">March 16, 2026</span>
+                    <div class="timeline-card">
+                        <h3>Accessibility &amp; Visual QA</h3>
+                        <p>Deep ADA/WCAG AA compliance pass — added skip-to-content link, ARIA labels, focus-visible states, improved contrast ratios, and keyboard support throughout.</p>
+                        <div class="timeline-tags">
+                            <span class="timeline-tag a11y">A11Y</span>
+                            <span class="timeline-tag js">JS</span>
+                            <span class="timeline-tag css">CSS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item fade-in">
+                    <div class="timeline-dot"></div>
+                    <span class="timeline-date">March 16, 2026</span>
+                    <div class="timeline-card">
+                        <h3>Events Data Source Connected</h3>
+                        <p>Linked the events section to a Google Sheets CSV feed, enabling the team to manage events content without touching any code.</p>
+                        <div class="timeline-tags">
+                            <span class="timeline-tag integration">Integration</span>
+                            <span class="timeline-tag js">JS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item fade-in">
+                    <div class="timeline-dot"></div>
+                    <span class="timeline-date">March 17, 2026</span>
+                    <div class="timeline-card">
+                        <h3>Events Enhancement</h3>
+                        <p>Added optional URL column support to the Google Sheets events integration, allowing each event to link out to an external page or ticket URL.</p>
+                        <div class="timeline-tags">
+                            <span class="timeline-tag js">JS</span>
+                            <span class="timeline-tag css">CSS</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Wave: cream → white -->
+    <div class="wave-top">
+        <svg viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M0,60 C360,0 720,120 1080,60 C1260,30 1380,30 1440,60 L1440,0 L0,0 Z" fill="#f6f4ed"/>
+        </svg>
+    </div>
+
+    <!-- ============================== 8. WHAT'S NEXT ============================== -->
+    <section class="next-section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-label">What's Next</span>
+                <h2>Upcoming Work</h2>
+                <p class="section-subtitle">Planned enhancements and next steps on the development roadmap.</p>
+            </div>
+            <div class="next-grid">
+
+                <div class="next-card fade-in">
+                    <span class="priority-badge priority-next">Next Up</span>
+                    <h3>Form Backend</h3>
+                    <p>Connect contact and booking forms to an email delivery service for live form submissions.</p>
+                </div>
+
+                <div class="next-card fade-in">
+                    <span class="priority-badge priority-next">Next Up</span>
+                    <h3>Production Deploy</h3>
+                    <p>Domain setup, hosting configuration, and launch on the production URL.</p>
+                </div>
+
+                <div class="next-card fade-in">
+                    <span class="priority-badge priority-planned">Planned</span>
+                    <h3>Analytics Setup</h3>
+                    <p>Google Analytics and Tag Manager integration for traffic insights and conversion tracking.</p>
+                </div>
+
+                <div class="next-card fade-in">
+                    <span class="priority-badge priority-planned">Planned</span>
+                    <h3>Vendor Menu Pages</h3>
+                    <p>Individual detail pages for each vendor featuring full menus, photos, and story.</p>
+                </div>
+
+                <div class="next-card fade-in">
+                    <span class="priority-badge priority-awaiting">Awaiting Input</span>
+                    <h3>Accessibility Widget</h3>
+                    <p>UserWay integration for an on-page accessibility toolbar — pending final vendor selection.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================== 9. FOOTER ============================== -->
+    <footer class="report-footer">
+        <img src="../images/logo/logo.png" alt="Miramar Food Hall" class="footer-logo">
+        <p class="footer-thanks">Prepared for the Miramar Food Hall team.</p>
+        <div class="footer-divider"></div>
+        <p>Development Progress Report &mdash; March 2026</p>
+        <p style="margin-top: 12px; font-size: 0.8rem; opacity: 0.5;">&copy; 2026 Miramar Food Hall. All rights reserved.</p>
+    </footer>
+
+    <!-- ============================== JAVASCRIPT ============================== -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        // ==================== Particle Canvas ====================
+        (function initParticles() {
+            var canvas = document.getElementById('particle-canvas');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var isMobile = window.matchMedia('(max-width: 768px)').matches;
+            var particleCount = isMobile ? 30 : 60;
+            var particles = [];
+
+            function resize() {
+                canvas.width = canvas.offsetWidth;
+                canvas.height = canvas.offsetHeight;
+            }
+            resize();
+            window.addEventListener('resize', resize);
+
+            for (var i = 0; i < particleCount; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    r: Math.random() * 2 + 1,
+                    speed: Math.random() * 0.5 + 0.2,
+                    drift: (Math.random() - 0.5) * 0.3,
+                    opacity: Math.random() * 0.2 + 0.05
+                });
+            }
+
+            function draw() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                for (var i = 0; i < particles.length; i++) {
+                    var p = particles[i];
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                    ctx.fillStyle = 'rgba(255,255,255,' + p.opacity + ')';
+                    ctx.fill();
+                    p.y -= p.speed;
+                    p.x += p.drift;
+                    if (p.y < -10) {
+                        p.y = canvas.height + 10;
+                        p.x = Math.random() * canvas.width;
+                    }
+                    if (p.x < -10) p.x = canvas.width + 10;
+                    if (p.x > canvas.width + 10) p.x = -10;
+                }
+                requestAnimationFrame(draw);
+            }
+            draw();
+        })();
+
+        // ==================== Scroll Reveal (Fade-in, Slide, Scale) ====================
+        (function initScrollReveal() {
+            var elements = document.querySelectorAll('.fade-in, .slide-left, .slide-right, .scale-in');
+            if (!elements.length) return;
+
+            var observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        // Stagger children if it's a grid parent
+                        var parent = entry.target.closest('.stats-grid, .breakdown-grid, .features-grid, .next-grid, .timeline');
+                        if (parent) {
+                            var siblings = parent.querySelectorAll('.fade-in, .slide-left, .slide-right, .scale-in');
+                            var idx = Array.prototype.indexOf.call(siblings, entry.target);
+                            entry.target.style.transitionDelay = (idx * 0.1) + 's';
+                        }
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+            elements.forEach(function(el) { observer.observe(el); });
+        })();
+
+        // ==================== Animated Counters ====================
+        (function initCounters() {
+            var counters = document.querySelectorAll('.stat-number[data-target]');
+            if (!counters.length) return;
+            var animated = false;
+
+            var observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting && !animated) {
+                        animated = true;
+                        counters.forEach(function(counter) {
+                            var target = parseInt(counter.getAttribute('data-target'), 10);
+                            var suffix = counter.getAttribute('data-suffix') || '';
+                            var duration = 1500;
+                            var start = performance.now();
+
+                            function easeOutCubic(t) {
+                                return 1 - Math.pow(1 - t, 3);
+                            }
+
+                            function update(now) {
+                                var elapsed = now - start;
+                                var progress = Math.min(elapsed / duration, 1);
+                                var value = Math.round(easeOutCubic(progress) * target);
+                                counter.textContent = value + suffix;
+                                if (progress < 1) {
+                                    requestAnimationFrame(update);
+                                } else {
+                                    counter.textContent = target + suffix;
+                                }
+                            }
+                            requestAnimationFrame(update);
+                        });
+                        observer.disconnect();
+                    }
+                });
+            }, { threshold: 0.3 });
+
+            var statsSection = document.querySelector('.stats-section');
+            if (statsSection) observer.observe(statsSection);
+        })();
+
+        // ==================== Progress Bar Animation ====================
+        (function initProgressBars() {
+            var fills = document.querySelectorAll('.progress-fill[data-width]');
+            if (!fills.length) return;
+
+            var observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        var bars = entry.target.querySelectorAll('.progress-fill[data-width]');
+                        bars.forEach(function(bar, i) {
+                            setTimeout(function() {
+                                bar.style.width = bar.getAttribute('data-width') + '%';
+                            }, i * 200);
+                        });
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.3 });
+
+            var perfSection = document.querySelector('.performance-section');
+            if (perfSection) observer.observe(perfSection);
+        })();
+
+    });
+    </script>
+</body>
+</html>
