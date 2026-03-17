@@ -730,6 +730,21 @@ a:focus-visible {
     color: var(--color-gray);
 }
 
+.event-link {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--color-teal);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.event-link:hover {
+    color: var(--color-dark-teal);
+    text-decoration: underline;
+}
+
 /* Bookings Section */
 .bookings {
     position: relative;

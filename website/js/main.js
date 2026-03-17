@@ -548,6 +548,7 @@ function loadEventsFromSheet() {
                         <div class="event-info">
                             <h3>${escapeHTML(event.title)}</h3>
                             <p>${escapeHTML(event.description)}</p>
+                            ${event.url ? `<a href="${normalizeURL(event.url)}" target="_blank" rel="noopener noreferrer" class="event-link">Learn More</a>` : ''}
                         </div>
                     </div>
                 `).join('');
@@ -580,11 +581,20 @@ function parseCSV(csv) {
             cols.push(current.trim());
 
             if (cols.length >= 3 && cols[0] && cols[1] && cols[2]) {
-                return { month: cols[0], day: cols[1], title: cols[2], description: cols[3] || '' };
+                return { month: cols[0], day: cols[1], title: cols[2], description: cols[3] || '', url: cols[4] || '' };
             }
             return null;
         })
         .filter(Boolean);
+}
+
+function normalizeURL(url) {
+    url = url.trim();
+    if (!url) return '';
+    if (!/^https?:\/\//i.test(url)) {
+        url = 'https://' + url;
+    }
+    return escapeHTML(url);
 }
 
 function escapeHTML(str) {
