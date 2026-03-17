@@ -523,7 +523,7 @@ function initCelebrationsModal() {
 // ─────────────────────────────────────────────────
 function loadEventsFromSheet() {
     // TODO: Paste the published Google Sheet CSV URL here
-    const SHEET_CSV_URL = '';
+    const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTAIPRmWzZ21BbTIKqx-Q8UR5hXfok2VQIoYjw7TqkO7-S16yvbKKDkLmP8ZhBAwu9cVv_8AQtgowmd/pub?output=csv';
 
     if (!SHEET_CSV_URL) return; // Skip if no sheet URL configured
 
