@@ -293,21 +293,23 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
             gap: 0;
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
         }
         .arch-node {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 8px;
-            padding: 16px 12px;
+            gap: 6px;
+            padding: 14px 8px;
             background: var(--color-white);
             border: 2px solid var(--color-teal);
             border-radius: var(--radius-card);
-            min-width: 100px;
+            min-width: 0;
+            flex: 1 1 0;
+            max-width: 110px;
             text-align: center;
             transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
@@ -897,9 +899,10 @@
             .arch-flow {
                 flex-wrap: wrap;
                 gap: 8px;
+                justify-content: center;
             }
             .arch-arrow { display: none; }
-            .arch-node { min-width: 80px; padding: 12px 8px; }
+            .arch-node { min-width: 80px; max-width: 100px; padding: 12px 8px; flex: 0 0 auto; }
             .timeline::before {
                 left: 20px;
                 transform: none;
