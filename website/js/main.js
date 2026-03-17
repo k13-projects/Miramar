@@ -511,11 +511,18 @@ function initCelebrationsModal() {
 }
 
 // UPDATED: Google Sheets Events Integration (T12)
-// Instructions for client: Create a Google Sheet with columns: Month, Day, Title, Description
-// Publish to web as CSV, then replace the SHEET_CSV_URL below
+// ─────────────────────────────────────────────────
+// HOW TO SET UP (for James / client):
+// 1. Create a Google Sheet with these exact column headers in row 1:
+//    Month | Day | Title | Description
+// 2. Add events in rows below, e.g.: MAR | 22 | Live Music Night | Join us for local bands
+// 3. Go to File > Share > Publish to web
+// 4. Select "Entire Document" and "Comma-separated values (.csv)"
+// 5. Click Publish and copy the URL
+// 6. Paste that URL as the SHEET_CSV_URL value below
+// ─────────────────────────────────────────────────
 function loadEventsFromSheet() {
-    // TODO: Replace with actual published Google Sheet CSV URL
-    // Format: https://docs.google.com/spreadsheets/d/e/SHEET_ID/pub?output=csv
+    // TODO: Paste the published Google Sheet CSV URL here
     const SHEET_CSV_URL = '';
 
     if (!SHEET_CSV_URL) return; // Skip if no sheet URL configured
@@ -524,29 +531,23 @@ function loadEventsFromSheet() {
     if (!eventsGrid) return;
 
     fetch(SHEET_CSV_URL)
-        .then(response => response.text())
+        .then(response => {
+            if (!response.ok) throw new Error('Failed to fetch');
+            return response.text();
+        })
         .then(csv => {
-            const rows = csv.split('\n').slice(1); // Skip header row
-            const events = rows
-                .map(row => {
-                    const cols = row.split(',').map(c => c.trim().replace(/^"|"$/g, ''));
-                    if (cols.length >= 4 && cols[0] && cols[1] && cols[2]) {
-                        return { month: cols[0], day: cols[1], title: cols[2], description: cols[3] || '' };
-                    }
-                    return null;
-                })
-                .filter(Boolean);
+            const events = parseCSV(csv);
 
             if (events.length > 0) {
                 eventsGrid.innerHTML = events.map(event => `
                     <div class="event-card">
                         <div class="event-date">
-                            <span class="month">${event.month}</span>
-                            <span class="day">${event.day}</span>
+                            <span class="month">${escapeHTML(event.month)}</span>
+                            <span class="day">${escapeHTML(event.day)}</span>
                         </div>
                         <div class="event-info">
-                            <h3>${event.title}</h3>
-                            <p>${event.description}</p>
+                            <h3>${escapeHTML(event.title)}</h3>
+                            <p>${escapeHTML(event.description)}</p>
                         </div>
                     </div>
                 `).join('');
@@ -555,6 +556,41 @@ function loadEventsFromSheet() {
         .catch(() => {
             // Fallback: keep the hardcoded events in the HTML
         });
+}
+
+function parseCSV(csv) {
+    const lines = csv.split('\n').slice(1); // Skip header row
+    return lines
+        .map(line => {
+            // Handle quoted fields (commas inside descriptions)
+            const cols = [];
+            let current = '';
+            let inQuotes = false;
+            for (let i = 0; i < line.length; i++) {
+                const ch = line[i];
+                if (ch === '"') {
+                    inQuotes = !inQuotes;
+                } else if (ch === ',' && !inQuotes) {
+                    cols.push(current.trim());
+                    current = '';
+                } else {
+                    current += ch;
+                }
+            }
+            cols.push(current.trim());
+
+            if (cols.length >= 3 && cols[0] && cols[1] && cols[2]) {
+                return { month: cols[0], day: cols[1], title: cols[2], description: cols[3] || '' };
+            }
+            return null;
+        })
+        .filter(Boolean);
+}
+
+function escapeHTML(str) {
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
 }
 
 // Add CSS for animations

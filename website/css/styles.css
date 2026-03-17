@@ -38,7 +38,7 @@
     --color-cream: #f6f4ed;
     --color-white: #ffffff;
     --color-dark: #1a1a1a;
-    --color-gray: #666666;
+    --color-gray: #555555; /* UPDATED: Darkened from #666 for WCAG AA contrast (T17) */
     --color-light-gray: #e5e5e5;
 
     --font-title: 'Josefin Sans', sans-serif;
@@ -323,7 +323,7 @@ a:focus-visible {
     font-size: clamp(1rem, 2vw, 1.5rem);
     font-style: italic;
     letter-spacing: 0.2em;
-    opacity: 0.9;
+    /* UPDATED: Removed opacity for better contrast (T17) */
 }
 
 .hero-wave {
@@ -430,7 +430,7 @@ a:focus-visible {
 .story-text p {
     font-size: 1.25rem;
     line-height: 1.9;
-    opacity: 0.95;
+    /* UPDATED: Removed opacity for better contrast (T17) */
 }
 
 .story-image {
@@ -595,7 +595,10 @@ a:focus-visible {
     align-items: stretch;
 }
 
-.location-info h2 {
+.location-info h3.location-heading,
+.location-info > h3:first-child {
+    font-size: clamp(1.5rem, 3vw, 2.5rem); /* Match h2 sizing for visual hierarchy */
+    color: var(--color-dark-teal);
     margin-bottom: 20px;
 }
 
@@ -748,8 +751,8 @@ a:focus-visible {
 
 .bookings-tagline {
     font-size: 1.25rem;
-    opacity: 0.9;
     margin-bottom: 40px;
+    /* UPDATED: Removed opacity for better contrast (T17) */
 }
 
 /* Let's Connect Section */
@@ -787,7 +790,7 @@ a:focus-visible {
 
 .connect-subtitle {
     font-size: 1.1rem;
-    color: rgba(255, 255, 255, 0.85);
+    color: rgba(255, 255, 255, 0.92); /* UPDATED: Increased from 0.85 for contrast (T17) */
     margin-bottom: 40px;
     line-height: 1.6;
 }
@@ -812,7 +815,7 @@ a:focus-visible {
 }
 
 .contact-item a {
-    color: rgba(255, 255, 255, 0.85);
+    color: rgba(255, 255, 255, 0.92); /* UPDATED: Increased from 0.85 for contrast (T17) */
     font-size: 0.95rem;
     transition: var(--transition);
 }
@@ -1210,7 +1213,7 @@ a:focus-visible {
 
 .footer p {
     font-size: 0.875rem;
-    opacity: 0.7;
+    opacity: 0.85; /* UPDATED: Increased from 0.7 for contrast (T17) */
 }
 
 /* Responsive Design */
@@ -1360,6 +1363,16 @@ a:focus-visible {
     .contact-social-links svg {
         width: 18px;
         height: 18px;
+    }
+
+    /* Modal responsive */
+    .modal-content {
+        padding: 25px;
+        max-height: 95vh;
+    }
+
+    .modal-content h2 {
+        font-size: 1.25rem;
     }
 }
 
