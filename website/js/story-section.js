@@ -293,4 +293,16 @@ document.addEventListener('DOMContentLoaded', function () {
     setTimeout(function () {
         onScroll();
     }, 100);
+
+    // ---- H. Reset function for scroll-to-top ----
+    window.resetStoryAnimations = function () {
+        chapters.forEach(function (ch) {
+            ch.classList.remove('in-view');
+            chapterObserver.observe(ch);
+        });
+        transitions.forEach(function (t) {
+            t.classList.remove('in-view');
+            transitionObserver.observe(t);
+        });
+    };
 });

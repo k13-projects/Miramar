@@ -41,7 +41,8 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
+            const href = this.getAttribute('href');
+            const target = href.length > 1 ? document.querySelector(href) : null;
             if (target) {
                 const headerOffset = 80;
                 const elementPosition = target.getBoundingClientRect().top;
@@ -51,6 +52,29 @@ document.addEventListener('DOMContentLoaded', function() {
                     top: offsetPosition,
                     behavior: 'smooth'
                 });
+            } else {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+
+                // Wait for scroll to reach top before resetting animations
+                function waitForScrollTop() {
+                    if (window.pageYOffset <= 5) {
+                        // Reset fade-in animations
+                        document.querySelectorAll('.fade-in.visible').forEach(el => {
+                            el.classList.remove('visible');
+                            observer.observe(el);
+                        });
+                        // Reset story section animations
+                        if (typeof window.resetStoryAnimations === 'function') {
+                            window.resetStoryAnimations();
+                        }
+                    } else {
+                        requestAnimationFrame(waitForScrollTop);
+                    }
+                }
+                requestAnimationFrame(waitForScrollTop);
             }
         });
     });
