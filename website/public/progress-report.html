@@ -164,7 +164,7 @@
             z-index: 2;
         }
         .hero-logo {
-            width: 200px;
+            width: 400px;
             margin: 0 auto 1.5rem;
             filter: brightness(0) invert(1);
         }
@@ -344,38 +344,72 @@
         /* ========== 4. SECTION BREAKDOWN ========== */
         .breakdown-section {
             background: var(--color-cream);
-            padding: 100px 20px;
+            padding: 100px 20px 40px;
         }
-        .breakdown-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
+        .breakdown-list {
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
         }
         .breakdown-card {
             background: var(--color-white);
-            border-radius: var(--radius-card);
+            border-radius: 12px;
             overflow: hidden;
             box-shadow: var(--shadow-card);
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .breakdown-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-hover);
+        .card-visual {
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid var(--color-light-gray);
+        }
+        .card-visual img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .breakdown-card:hover .card-visual img {
+            transform: scale(1.02);
+        }
+        .mini-browser-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 12px 16px;
+            background: rgba(248, 248, 248, 0.92);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 2;
+        }
+        .mini-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+        }
+        .mini-dot.red { background: #ff5f56; }
+        .mini-dot.yellow { background: #ffbd2e; }
+        .mini-dot.green { background: #27c93f; }
+        .card-details {
+            padding: 32px 36px;
         }
         .card-header {
             display: flex;
             align-items: center;
-            gap: 12px;
-            padding: 20px 20px 0;
+            gap: 16px;
+            margin-bottom: 20px;
         }
         .card-icon-badge {
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             flex-shrink: 0;
         }
         .card-icon-badge.teal { background: rgba(22, 144, 128, 0.1); }
@@ -383,14 +417,14 @@
         .card-title-group { flex: 1; }
         .card-title-group h3 {
             color: var(--color-dark);
-            margin-bottom: 2px;
-            font-size: 1.1rem;
+            margin-bottom: 4px;
+            font-size: 1.5rem;
         }
         .tag {
             display: inline-block;
-            padding: 2px 10px;
+            padding: 4px 16px;
             border-radius: 50px;
-            font-size: 0.6rem;
+            font-size: 0.7rem;
             font-weight: 700;
             letter-spacing: 0.1em;
             text-transform: uppercase;
@@ -407,53 +441,20 @@
             background: rgba(4, 96, 84, 0.12);
             color: var(--color-dark-teal);
         }
-        .mini-browser {
-            margin: 16px 20px;
-            border: 1px solid var(--color-light-gray);
-            border-radius: 6px;
-            overflow: hidden;
-        }
-        .mini-browser-toolbar {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            padding: 8px 10px;
-            background: #f8f8f8;
-            border-bottom: 1px solid var(--color-light-gray);
-        }
-        .mini-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-        }
-        .mini-dot.red { background: #ff5f56; }
-        .mini-dot.yellow { background: #ffbd2e; }
-        .mini-dot.green { background: #27c93f; }
-        .mini-browser-content {
-            height: 160px;
-            overflow: hidden;
-            background: var(--color-cream);
-        }
-        .mini-browser-content img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: top center;
-            display: block;
-        }
-        .card-changes {
-            padding: 0 20px 20px;
-        }
         .card-changes ul {
             list-style: none;
             padding: 0;
+            margin: 0;
+            columns: 2;
+            column-gap: 24px;
         }
         .card-changes li {
             position: relative;
-            padding: 5px 0 5px 18px;
-            font-size: 0.85rem;
+            padding: 7px 0 7px 24px;
+            font-size: 1.1rem;
             color: var(--color-gray);
-            line-height: 1.5;
+            line-height: 1.7;
+            break-inside: avoid;
         }
         .card-changes li::before {
             content: '';
@@ -840,7 +841,7 @@
             text-align: center;
         }
         .footer-logo {
-            width: 50px;
+            width: 150px;
             margin: 0 auto 20px;
             opacity: 0.8;
         }
@@ -875,9 +876,11 @@
             .stats-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
-            .breakdown-grid, .features-grid, .next-grid {
+            .features-grid, .next-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
+            .card-changes ul { columns: 1; }
+            .card-details { padding: 24px 20px; }
             .perf-grid {
                 grid-template-columns: 1fr;
                 gap: 40px;
@@ -914,7 +917,7 @@
             .timeline-item:nth-child(odd) .timeline-tags {
                 justify-content: flex-start;
             }
-            .hero-logo { width: 140px; }
+            .hero-logo { width: 280px; }
         }
 
         /* ========== RESPONSIVE: 480px ========== */
@@ -922,7 +925,7 @@
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-            .breakdown-grid, .features-grid, .next-grid {
+            .breakdown-list, .features-grid, .next-grid {
                 grid-template-columns: 1fr;
             }
             .optim-grid {
@@ -931,7 +934,7 @@
             }
             .stat-card { padding: 20px 12px; }
             .stat-number { font-size: 2rem; }
-            .hero-logo { width: 100px; }
+            .hero-logo { width: 200px; }
             .stats-section, .architecture-section, .breakdown-section,
             .features-section, .performance-section, .timeline-section,
             .next-section { padding: 60px 16px; }
@@ -1096,260 +1099,278 @@
                 <h2>What We Built</h2>
                 <p class="section-subtitle">Every section of the site and the specific work that went into each one.</p>
             </div>
-            <div class="breakdown-grid">
+            <div class="breakdown-list">
 
                 <!-- Hero -->
-                <div class="breakdown-card fade-in">
-                    <div class="card-header">
-                        <div class="card-icon-badge teal">&#127968;</div>
-                        <div class="card-title-group">
-                            <h3>Hero</h3>
-                            <span class="tag tag-improved">Improved</span>
-                        </div>
-                    </div>
-                    <div class="mini-browser">
-                        <div class="mini-browser-toolbar">
+                <div class="breakdown-card slide-right">
+                    <div class="card-visual">
+                        <div class="mini-browser-bar">
                             <span class="mini-dot red"></span>
                             <span class="mini-dot yellow"></span>
                             <span class="mini-dot green"></span>
                         </div>
-                        <div class="mini-browser-content"><img src="../images/report/Hero.png" alt="Hero section screenshot"></div>
+                        <img src="../images/report/Hero.png" alt="Hero section screenshot">
                     </div>
-                    <div class="card-changes">
-                        <ul>
-                            <li>Full-viewport hero with teal gradient overlay</li>
-                            <li>Parallax scrolling effect with opacity fade</li>
-                            <li>Animated wave SVG divider transition to content</li>
-                            <li>"Global Bites, Local Vibes" tagline typography</li>
-                            <li>Updated logo assets (brand-aligned PNGs)</li>
-                        </ul>
+                    <div class="card-details">
+                        <div class="card-header">
+                            <div class="card-icon-badge teal">&#127968;</div>
+                            <div class="card-title-group">
+                                <h3>Hero</h3>
+                                <span class="tag tag-improved">Improved</span>
+                            </div>
+                        </div>
+                        <div class="card-changes">
+                            <ul>
+                                <li>Full-viewport hero with teal gradient overlay</li>
+                                <li>Parallax scrolling effect with opacity fade</li>
+                                <li>Animated wave SVG divider transition to content</li>
+                                <li>"Global Bites, Local Vibes" tagline typography</li>
+                                <li>Updated logo assets (brand-aligned PNGs)</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Intro -->
-                <div class="breakdown-card fade-in">
-                    <div class="card-header">
-                        <div class="card-icon-badge teal">&#9733;</div>
-                        <div class="card-title-group">
-                            <h3>Intro</h3>
-                            <span class="tag tag-improved">Improved</span>
-                        </div>
-                    </div>
-                    <div class="mini-browser">
-                        <div class="mini-browser-toolbar">
+                <div class="breakdown-card slide-left">
+                    <div class="card-visual">
+                        <div class="mini-browser-bar">
                             <span class="mini-dot red"></span>
                             <span class="mini-dot yellow"></span>
                             <span class="mini-dot green"></span>
                         </div>
-                        <div class="mini-browser-content"><img src="../images/report/Intro.png" alt="Intro section screenshot"></div>
+                        <img src="../images/report/Intro.png" alt="Intro section screenshot">
                     </div>
-                    <div class="card-changes">
-                        <ul>
-                            <li>Welcoming venue description and brand narrative</li>
-                            <li>Highlights bar: 15 vendors, 2 bars, ocean views</li>
-                            <li>Responsive layout for all screen sizes</li>
-                            <li>Cream background with smooth section transitions</li>
-                        </ul>
+                    <div class="card-details">
+                        <div class="card-header">
+                            <div class="card-icon-badge teal">&#9733;</div>
+                            <div class="card-title-group">
+                                <h3>Intro</h3>
+                                <span class="tag tag-improved">Improved</span>
+                            </div>
+                        </div>
+                        <div class="card-changes">
+                            <ul>
+                                <li>Welcoming venue description and brand narrative</li>
+                                <li>Highlights bar: 15 vendors, 2 bars, ocean views</li>
+                                <li>Responsive layout for all screen sizes</li>
+                                <li>Cream background with smooth section transitions</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Our Story -->
-                <div class="breakdown-card fade-in">
-                    <div class="card-header">
-                        <div class="card-icon-badge orange">&#128214;</div>
-                        <div class="card-title-group">
-                            <h3>Our Story</h3>
-                            <span class="tag tag-new">New</span>
-                        </div>
-                    </div>
-                    <div class="mini-browser">
-                        <div class="mini-browser-toolbar">
+                <div class="breakdown-card slide-right">
+                    <div class="card-visual">
+                        <div class="mini-browser-bar">
                             <span class="mini-dot red"></span>
                             <span class="mini-dot yellow"></span>
                             <span class="mini-dot green"></span>
                         </div>
-                        <div class="mini-browser-content"><img src="../images/report/Our Story.png" alt="Our Story section screenshot"></div>
+                        <img src="../images/report/Our Story.png" alt="Our Story section screenshot">
                     </div>
-                    <div class="card-changes">
-                        <ul>
-                            <li>5-chapter animated scroll timeline (1920s through 2026)</li>
-                            <li>Slot-machine 3D flip counter for year display</li>
-                            <li>Sticky year header with scroll progress bar</li>
-                            <li>14 sourced historic San Clemente photographs</li>
-                            <li>Chapter navigation dots with keyboard support</li>
-                            <li>Cinematic wipe-reveal and scale-settle photo animations</li>
-                            <li>Blueprint-style "Coming Soon" frames for 2026 chapter</li>
-                            <li>Logo reveal with glow pulse animation</li>
-                            <li>1,200+ lines of dedicated CSS and JavaScript</li>
-                            <li>Full reduced-motion accessibility support</li>
-                        </ul>
+                    <div class="card-details">
+                        <div class="card-header">
+                            <div class="card-icon-badge orange">&#128214;</div>
+                            <div class="card-title-group">
+                                <h3>Our Story</h3>
+                                <span class="tag tag-new">New</span>
+                            </div>
+                        </div>
+                        <div class="card-changes">
+                            <ul>
+                                <li>5-chapter animated scroll timeline (1920s through 2026)</li>
+                                <li>Slot-machine 3D flip counter for year display</li>
+                                <li>Sticky year header with scroll progress bar</li>
+                                <li>14 sourced historic San Clemente photographs</li>
+                                <li>Chapter navigation dots with keyboard support</li>
+                                <li>Cinematic wipe-reveal and scale-settle photo animations</li>
+                                <li>Blueprint-style "Coming Soon" frames for 2026 chapter</li>
+                                <li>Logo reveal with glow pulse animation</li>
+                                <li>1,200+ lines of dedicated CSS and JavaScript</li>
+                                <li>Full reduced-motion accessibility support</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Vendors -->
-                <div class="breakdown-card fade-in">
-                    <div class="card-header">
-                        <div class="card-icon-badge teal">&#127860;</div>
-                        <div class="card-title-group">
-                            <h3>Vendors</h3>
-                            <span class="tag tag-improved">Improved</span>
-                        </div>
-                    </div>
-                    <div class="mini-browser">
-                        <div class="mini-browser-toolbar">
+                <div class="breakdown-card slide-left">
+                    <div class="card-visual">
+                        <div class="mini-browser-bar">
                             <span class="mini-dot red"></span>
                             <span class="mini-dot yellow"></span>
                             <span class="mini-dot green"></span>
                         </div>
-                        <div class="mini-browser-content"><img src="../images/report/Vendors.png" alt="Vendors section screenshot"></div>
+                        <img src="../images/report/Vendors.png" alt="Vendors section screenshot">
                     </div>
-                    <div class="card-changes">
-                        <ul>
-                            <li>13 vendor cards with photos and descriptions</li>
-                            <li>Instagram handles displayed inline with icon</li>
-                            <li>Hover border effect via CSS pseudo-element</li>
-                            <li>GPU-accelerated transitions with will-change</li>
-                            <li>All 13 images compressed (50 MB total reduced to 1.8 MB)</li>
-                            <li>PNG-to-JPG conversion for Hen Haus and MOTO Pizza</li>
-                        </ul>
+                    <div class="card-details">
+                        <div class="card-header">
+                            <div class="card-icon-badge teal">&#127860;</div>
+                            <div class="card-title-group">
+                                <h3>Vendors</h3>
+                                <span class="tag tag-improved">Improved</span>
+                            </div>
+                        </div>
+                        <div class="card-changes">
+                            <ul>
+                                <li>13 vendor cards with photos and descriptions</li>
+                                <li>Instagram handles displayed inline with icon</li>
+                                <li>Hover border effect via CSS pseudo-element</li>
+                                <li>GPU-accelerated transitions with will-change</li>
+                                <li>All 13 images compressed (50 MB total reduced to 1.8 MB)</li>
+                                <li>PNG-to-JPG conversion for Hen Haus and MOTO Pizza</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Location -->
-                <div class="breakdown-card fade-in">
-                    <div class="card-header">
-                        <div class="card-icon-badge teal">&#128205;</div>
-                        <div class="card-title-group">
-                            <h3>Location</h3>
-                            <span class="tag tag-improved">Improved</span>
-                        </div>
-                    </div>
-                    <div class="mini-browser">
-                        <div class="mini-browser-toolbar">
+                <div class="breakdown-card slide-right">
+                    <div class="card-visual">
+                        <div class="mini-browser-bar">
                             <span class="mini-dot red"></span>
                             <span class="mini-dot yellow"></span>
                             <span class="mini-dot green"></span>
                         </div>
-                        <div class="mini-browser-content"><img src="../images/report/Location.png" alt="Location section screenshot"></div>
+                        <img src="../images/report/Location.png" alt="Location section screenshot">
                     </div>
-                    <div class="card-changes">
-                        <ul>
-                            <li>Embedded Google Maps with accessible iframe title</li>
-                            <li>Full address and operating hours display</li>
-                            <li>Get Directions button with map link</li>
-                            <li>Static section title (replaced marquee animation)</li>
-                        </ul>
+                    <div class="card-details">
+                        <div class="card-header">
+                            <div class="card-icon-badge teal">&#128205;</div>
+                            <div class="card-title-group">
+                                <h3>Location</h3>
+                                <span class="tag tag-improved">Improved</span>
+                            </div>
+                        </div>
+                        <div class="card-changes">
+                            <ul>
+                                <li>Embedded Google Maps with accessible iframe title</li>
+                                <li>Full address and operating hours display</li>
+                                <li>Get Directions button with map link</li>
+                                <li>Static section title (replaced marquee animation)</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Instagram -->
-                <div class="breakdown-card fade-in">
-                    <div class="card-header">
-                        <div class="card-icon-badge orange">&#128247;</div>
-                        <div class="card-title-group">
-                            <h3>Instagram Feed</h3>
-                            <span class="tag tag-new">New</span>
-                        </div>
-                    </div>
-                    <div class="mini-browser">
-                        <div class="mini-browser-toolbar">
+                <div class="breakdown-card slide-left">
+                    <div class="card-visual">
+                        <div class="mini-browser-bar">
                             <span class="mini-dot red"></span>
                             <span class="mini-dot yellow"></span>
                             <span class="mini-dot green"></span>
                         </div>
-                        <div class="mini-browser-content"><img src="../images/report/Instagram.png" alt="Instagram section screenshot"></div>
+                        <img src="../images/report/Instagram.png" alt="Instagram section screenshot">
                     </div>
-                    <div class="card-changes">
-                        <ul>
-                            <li>Live feed via Behold.so widget integration</li>
-                            <li>Edge-to-edge layout wider than content container</li>
-                            <li>Responsive sizing across all devices</li>
-                            <li>Auto-updating with latest @miramarfoodhall posts</li>
-                        </ul>
+                    <div class="card-details">
+                        <div class="card-header">
+                            <div class="card-icon-badge orange">&#128247;</div>
+                            <div class="card-title-group">
+                                <h3>Instagram Feed</h3>
+                                <span class="tag tag-new">New</span>
+                            </div>
+                        </div>
+                        <div class="card-changes">
+                            <ul>
+                                <li>Live feed via Behold.so widget integration</li>
+                                <li>Edge-to-edge layout wider than content container</li>
+                                <li>Responsive sizing across all devices</li>
+                                <li>Auto-updating with latest @miramarfoodhall posts</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Events -->
-                <div class="breakdown-card fade-in">
-                    <div class="card-header">
-                        <div class="card-icon-badge orange">&#127881;</div>
-                        <div class="card-title-group">
-                            <h3>Events</h3>
-                            <span class="tag tag-new">New</span>
-                        </div>
-                    </div>
-                    <div class="mini-browser">
-                        <div class="mini-browser-toolbar">
+                <div class="breakdown-card slide-right">
+                    <div class="card-visual">
+                        <div class="mini-browser-bar">
                             <span class="mini-dot red"></span>
                             <span class="mini-dot yellow"></span>
                             <span class="mini-dot green"></span>
                         </div>
-                        <div class="mini-browser-content"><img src="../images/report/Events.png" alt="Events section screenshot"></div>
+                        <img src="../images/report/Events.png" alt="Events section screenshot">
                     </div>
-                    <div class="card-changes">
-                        <ul>
-                            <li>Dynamic loading from Google Sheets CSV</li>
-                            <li>Real-time content updates without code deploys</li>
-                            <li>Optional URL column for event links</li>
-                            <li>Fallback events when feed is unavailable</li>
-                            <li>Robust CSV parser with quote handling and XSS protection</li>
-                        </ul>
+                    <div class="card-details">
+                        <div class="card-header">
+                            <div class="card-icon-badge orange">&#127881;</div>
+                            <div class="card-title-group">
+                                <h3>Events</h3>
+                                <span class="tag tag-new">New</span>
+                            </div>
+                        </div>
+                        <div class="card-changes">
+                            <ul>
+                                <li>Dynamic loading from Google Sheets CSV</li>
+                                <li>Real-time content updates without code deploys</li>
+                                <li>Optional URL column for event links</li>
+                                <li>Fallback events when feed is unavailable</li>
+                                <li>Robust CSV parser with quote handling and XSS protection</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Bookings -->
-                <div class="breakdown-card fade-in">
-                    <div class="card-header">
-                        <div class="card-icon-badge teal">&#127870;</div>
-                        <div class="card-title-group">
-                            <h3>Bookings</h3>
-                            <span class="tag tag-improved">Improved</span>
-                        </div>
-                    </div>
-                    <div class="mini-browser">
-                        <div class="mini-browser-toolbar">
+                <div class="breakdown-card slide-left">
+                    <div class="card-visual">
+                        <div class="mini-browser-bar">
                             <span class="mini-dot red"></span>
                             <span class="mini-dot yellow"></span>
                             <span class="mini-dot green"></span>
                         </div>
-                        <div class="mini-browser-content"><img src="../images/report/Bookings.png" alt="Bookings section screenshot"></div>
+                        <img src="../images/report/Bookings.png" alt="Bookings section screenshot">
                     </div>
-                    <div class="card-changes">
-                        <ul>
-                            <li>Celebrations modal for parties of 15+</li>
-                            <li>Full booking form with date, guest count, and details</li>
-                            <li>Wave divider transition from events section</li>
-                            <li>Compelling call-to-action design</li>
-                        </ul>
+                    <div class="card-details">
+                        <div class="card-header">
+                            <div class="card-icon-badge teal">&#127870;</div>
+                            <div class="card-title-group">
+                                <h3>Bookings</h3>
+                                <span class="tag tag-improved">Improved</span>
+                            </div>
+                        </div>
+                        <div class="card-changes">
+                            <ul>
+                                <li>Celebrations modal for parties of 15+</li>
+                                <li>Full booking form with date, guest count, and details</li>
+                                <li>Wave divider transition from events section</li>
+                                <li>Compelling call-to-action design</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Contact -->
-                <div class="breakdown-card fade-in">
-                    <div class="card-header">
-                        <div class="card-icon-badge teal">&#9993;</div>
-                        <div class="card-title-group">
-                            <h3>Let's Connect</h3>
-                            <span class="tag tag-improved">Improved</span>
-                        </div>
-                    </div>
-                    <div class="mini-browser">
-                        <div class="mini-browser-toolbar">
+                <div class="breakdown-card slide-right">
+                    <div class="card-visual">
+                        <div class="mini-browser-bar">
                             <span class="mini-dot red"></span>
                             <span class="mini-dot yellow"></span>
                             <span class="mini-dot green"></span>
                         </div>
-                        <div class="mini-browser-content"><img src="../images/report/Contact.png" alt="Contact section screenshot"></div>
+                        <img src="../images/report/Contact.png" alt="Contact section screenshot">
                     </div>
-                    <div class="card-changes">
-                        <ul>
-                            <li>Two-column layout: contact info + inquiry form</li>
-                            <li>Inquiry type dropdown (General, Vendor, Careers)</li>
-                            <li>File upload for career applications (drag-drop, 5 MB limit)</li>
-                            <li>ADA-compliant validation with ARIA live regions</li>
-                            <li>Compacted form layout for better visual balance</li>
-                            <li>Scroll-to-top reset after form submission</li>
-                        </ul>
+                    <div class="card-details">
+                        <div class="card-header">
+                            <div class="card-icon-badge teal">&#9993;</div>
+                            <div class="card-title-group">
+                                <h3>Let's Connect</h3>
+                                <span class="tag tag-improved">Improved</span>
+                            </div>
+                        </div>
+                        <div class="card-changes">
+                            <ul>
+                                <li>Two-column layout: contact info + inquiry form</li>
+                                <li>Inquiry type dropdown (General, Vendor, Careers)</li>
+                                <li>File upload for career applications (drag-drop, 5 MB limit)</li>
+                                <li>ADA-compliant validation with ARIA live regions</li>
+                                <li>Compacted form layout for better visual balance</li>
+                                <li>Scroll-to-top reset after form submission</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
@@ -1847,7 +1868,7 @@
             var observer = new IntersectionObserver(function(entries) {
                 entries.forEach(function(entry) {
                     if (entry.isIntersecting) {
-                        var parent = entry.target.closest('.stats-grid, .breakdown-grid, .features-grid, .next-grid, .timeline');
+                        var parent = entry.target.closest('.stats-grid, .breakdown-list, .features-grid, .next-grid, .timeline');
                         if (parent) {
                             var siblings = parent.querySelectorAll('.fade-in, .slide-left, .slide-right, .scale-in');
                             var idx = Array.prototype.indexOf.call(siblings, entry.target);
