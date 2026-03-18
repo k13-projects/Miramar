@@ -1,0 +1,903 @@
+/* ===================================
+   Miramar Food Hall - Story Section
+   Animated scroll timeline experience
+   All styles scoped under .story-section
+   =================================== */
+
+/* ---- A. Section Base ---- */
+.story-section {
+    position: relative;
+    background-color: var(--color-dark-teal);
+    color: var(--color-white);
+    padding: 0 0 100px;
+}
+
+.story-section .wave-top svg {
+    display: block;
+    width: 100%;
+    height: 120px;
+}
+
+.story-content {
+    position: relative;
+}
+
+/* ---- B. Sticky Year Strip + Progress Bar ---- */
+.story-sticky-strip {
+    position: sticky;
+    top: 0;
+    z-index: 500;
+    background: var(--color-dark-teal);
+    padding: 20px 0 0;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.story-flip-counter {
+    display: inline-flex;
+    gap: 6px;
+}
+
+.story-progress-bar {
+    height: 3px;
+    background: rgba(255, 255, 255, 0.1);
+    margin-top: 16px;
+}
+
+.story-progress-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--color-orange);
+    transition: width 50ms linear;
+}
+
+/* ---- C. Flip Counter Digits ---- */
+.flip-digit {
+    position: relative;
+    width: 48px;
+    height: 72px;
+    perspective: 300px;
+    font-family: var(--font-title);
+    font-weight: 700;
+    color: #F5ECD7;
+}
+
+.flip-digit-top,
+.flip-digit-bottom {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 50%;
+    overflow: hidden;
+    background: #0a3d35;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flip-digit-top {
+    top: 0;
+    border-radius: 6px 6px 0 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    align-items: flex-end;
+}
+
+.flip-digit-bottom {
+    bottom: 0;
+    border-radius: 0 0 6px 6px;
+    align-items: flex-start;
+}
+
+.flip-digit-top span,
+.flip-digit-bottom span {
+    font-size: 44px;
+    line-height: 72px;
+    display: block;
+}
+
+.flip-digit-top span {
+    transform: translateY(50%);
+}
+
+.flip-digit-bottom span {
+    transform: translateY(-50%);
+}
+
+/* Flip card overlay */
+.flip-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    transform-origin: bottom center;
+    border-radius: 6px 6px 0 0;
+    overflow: hidden;
+    background: #0a3d35;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    backface-visibility: hidden;
+    transform: rotateX(0deg);
+    z-index: 2;
+}
+
+.flip-card span {
+    font-size: 44px;
+    line-height: 72px;
+    display: block;
+    transform: translateY(50%);
+}
+
+/* No stagger — all digits roll simultaneously */
+
+/* ---- D. Chapter Layout ---- */
+.story-chapter {
+    padding: 120px 0;
+}
+
+.chapter-header {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.chapter-label-after {
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: rgba(255, 255, 255, 0.55);
+    font-weight: 600;
+    white-space: nowrap;
+    order: 2;
+}
+
+.chapter-rule {
+    width: 32px;
+    height: 2px;
+    border: none;
+    background: var(--color-orange);
+    margin: 0 0 40px;
+}
+
+.chapter-headline--full {
+    font-family: var(--font-title);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--color-white);
+    margin: 0;
+}
+
+.line-wrap {
+    display: block;
+    overflow: hidden;
+}
+
+.line-inner {
+    display: block;
+}
+
+/* ---- E. Spread Layout (tall photo + text/wide photo rectangle) ---- */
+
+/* Layout A: text+wide on left, tall on right */
+/* Layout B (--flip): tall on left, text+wide on right */
+
+.spread-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.spread-col-text {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.spread-text p {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.spread-photo-tall {
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+.spread-photo-tall img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    border-radius: 4px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.spread-photo-wide {
+    overflow: hidden;
+    border-radius: 4px;
+    flex: 1;
+    min-height: 200px;
+}
+
+.spread-photo-wide img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    border-radius: 4px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Layout B: tall photo on left, text column on right */
+.chapter-spread--flip .spread-photo-tall {
+    order: -1;
+}
+
+/* ---- F. Transition Dividers ---- */
+.story-transition {
+    padding: 30px 0;
+    text-align: center;
+}
+
+.transition-text {
+    font-family: var(--font-title);
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 700;
+    color: rgba(245, 236, 215, 0.18);
+    -webkit-text-stroke: 1.5px rgba(245, 236, 215, 0.55);
+    letter-spacing: 0.05em;
+    display: inline-block;
+}
+
+/* ---- G. Coming Soon Frames (Blueprint Style) ---- */
+
+/* Shared frame base */
+.cs-frame {
+    position: relative;
+    background: #071f1b;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Dot grid background */
+.cs-grid {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+    background-size: 24px 24px;
+    pointer-events: none;
+}
+
+/* Horizontal scanning beam */
+.cs-scan-line {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--color-orange), transparent);
+    opacity: 0.4;
+    pointer-events: none;
+    top: 0;
+}
+
+/* ---- Tall frame ---- */
+.cs-frame--tall {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 420px;
+}
+
+.cs-border-trace {
+    position: absolute;
+    inset: 6px;
+    border-radius: 2px;
+    pointer-events: none;
+}
+
+/* Marching ants border via repeating-linear-gradient */
+.cs-border-trace::before,
+.cs-border-trace::after {
+    content: '';
+    position: absolute;
+    border-radius: 2px;
+}
+
+/* Horizontal lines (top & bottom) */
+.cs-border-trace::before {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        repeating-linear-gradient(90deg, rgba(255,255,255,0.15) 0, rgba(255,255,255,0.15) 8px, transparent 8px, transparent 16px) top left / 100% 1px no-repeat,
+        repeating-linear-gradient(90deg, rgba(255,255,255,0.15) 0, rgba(255,255,255,0.15) 8px, transparent 8px, transparent 16px) bottom left / 100% 1px no-repeat,
+        repeating-linear-gradient(0deg, rgba(255,255,255,0.15) 0, rgba(255,255,255,0.15) 8px, transparent 8px, transparent 16px) top left / 1px 100% no-repeat,
+        repeating-linear-gradient(0deg, rgba(255,255,255,0.15) 0, rgba(255,255,255,0.15) 8px, transparent 8px, transparent 16px) top right / 1px 100% no-repeat;
+}
+
+.cs-frame-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.cs-big-text {
+    font-family: var(--font-title);
+    font-size: clamp(2.8rem, 7vw, 5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: 0.05em;
+    color: transparent;
+    -webkit-text-stroke: 1.5px rgba(245, 236, 215, 0.35);
+    background: linear-gradient(
+        110deg,
+        rgba(245, 236, 215, 0.12) 0%,
+        rgba(245, 236, 215, 0.12) 35%,
+        rgba(245, 236, 215, 0.45) 50%,
+        rgba(245, 236, 215, 0.12) 65%,
+        rgba(245, 236, 215, 0.12) 100%
+    );
+    background-size: 250% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+/* Loading ring SVG */
+.cs-loading-ring {
+    width: 40px;
+    height: 40px;
+}
+
+.cs-loading-ring svg {
+    width: 100%;
+    height: 100%;
+}
+
+.cs-loading-ring circle {
+    fill: none;
+    stroke: var(--color-orange);
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-dasharray: 80 45;
+    opacity: 0.5;
+}
+
+.cs-frame-subtitle {
+    font-family: var(--font-title);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: rgba(245, 236, 215, 0.35);
+}
+
+/* ---- Wide frame ---- */
+.cs-frame--wide {
+    flex: 1;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0;
+}
+
+/* Inner layout: logo left, skeleton right */
+.cs-wide-inner {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: stretch;
+    height: 100%;
+    flex: 1;
+}
+
+/* Left zone: already loaded (logo) */
+.cs-loaded-zone {
+    flex: 0 0 38%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    position: relative;
+    background: linear-gradient(135deg, rgba(245, 236, 215, 0.04) 0%, transparent 100%);
+}
+
+/* Soft transition edge between loaded and loading */
+.cs-loaded-zone::after {
+    content: '';
+    position: absolute;
+    top: 10%;
+    right: 0;
+    bottom: 10%;
+    width: 1px;
+    background: linear-gradient(
+        180deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.1) 30%,
+        rgba(255, 255, 255, 0.15) 50%,
+        rgba(255, 255, 255, 0.1) 70%,
+        transparent 100%
+    );
+}
+
+.cs-logo {
+    max-width: 140px;
+    width: 100%;
+    height: auto;
+    opacity: 0.7;
+    filter: brightness(1.1);
+}
+
+/* Right zone: still loading */
+.cs-loading-zone {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 28px 28px 28px 24px;
+    gap: 16px;
+}
+
+.cs-skeleton {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.cs-skel-bar {
+    height: 10px;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.04);
+    overflow: hidden;
+    position: relative;
+}
+
+/* Shimmer sweep on skeleton bars */
+.cs-skel-bar::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.06) 40%,
+        rgba(255, 255, 255, 0.1) 50%,
+        rgba(255, 255, 255, 0.06) 60%,
+        transparent 100%
+    );
+    background-size: 200% 100%;
+}
+
+.cs-frame-label {
+    position: relative;
+    z-index: 2;
+    font-family: var(--font-title);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: rgba(245, 236, 215, 0.3);
+    margin-top: 4px;
+}
+
+/* Animated dots (...) */
+.cs-dots span {
+    display: inline-block;
+    opacity: 0;
+}
+
+/* ---- H. Nav Dots ---- */
+.story-nav-dots {
+    position: fixed;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    z-index: 600;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.story-nav-dots.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.story-nav-dots .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+
+.story-nav-dots .dot:hover {
+    border-color: rgba(255, 255, 255, 0.8);
+    transform: scale(1.3);
+}
+
+.story-nav-dots .dot:focus-visible {
+    outline: 2px solid var(--color-orange);
+    outline-offset: 3px;
+}
+
+.story-nav-dots .dot.active {
+    background: var(--color-orange);
+    border-color: var(--color-orange);
+}
+
+/* ---- I. Animations (motion-safe only) ---- */
+@media (prefers-reduced-motion: no-preference) {
+
+    /* Flip card transition — normal roll speed */
+    .flip-card {
+        transition: transform 0.12s ease-in-out;
+    }
+
+    .flip-card.flipping {
+        transform: rotateX(-90deg);
+    }
+
+    /* Fast flip for snap-to-9999 phase */
+    .flip-card.flip-fast {
+        transition: transform 0.06s ease-in-out;
+    }
+
+    /* Slide-up headline lines */
+    .line-inner {
+        transform: translateY(110%);
+        transition: transform 0.7s cubic-bezier(0.33, 1, 0.68, 1);
+    }
+
+    .line-wrap:nth-child(2) .line-inner {
+        transition-delay: 0.12s;
+    }
+
+    .line-wrap:nth-child(3) .line-inner {
+        transition-delay: 0.24s;
+    }
+
+    .story-chapter.in-view .line-inner {
+        transform: translateY(0);
+    }
+
+    /* Wipe reveal (photo slides in from left via width) */
+    .wipe-reveal {
+        max-width: 0;
+        transition: max-width 1s cubic-bezier(0.33, 1, 0.68, 1);
+    }
+
+    .story-chapter.in-view .wipe-reveal {
+        max-width: 100%;
+    }
+
+    /* Scale-settle for wide photos */
+    .scale-settle img {
+        transform: scale(1.15);
+        opacity: 0;
+        transition: transform 0.9s ease, opacity 0.7s ease;
+        transition-delay: 0.3s;
+    }
+
+    .story-chapter.in-view .scale-settle img {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    /* Chapter text fade-in */
+    .chapter-label-after,
+    .chapter-rule,
+    .spread-text p {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+        transition-delay: 0.15s;
+    }
+
+    .story-chapter.in-view .chapter-label-after,
+    .story-chapter.in-view .chapter-rule,
+    .story-chapter.in-view .spread-text p {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Transition text fade+rise (appears first, before next chapter) */
+    .transition-text {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.33, 1, 0.68, 1);
+    }
+
+    .story-transition.in-view .transition-text {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* ---- Logo reveal in wide frame ---- */
+    .cs-logo {
+        opacity: 0;
+        transform: scale(0.85);
+        filter: brightness(1.1) blur(4px);
+        transition: opacity 1s ease, transform 1s cubic-bezier(0.33, 1, 0.68, 1), filter 1.2s ease;
+        transition-delay: 0.6s;
+    }
+
+    .story-chapter.in-view .cs-logo {
+        opacity: 0.7;
+        transform: scale(1);
+        filter: brightness(1.1) blur(0px);
+    }
+
+    /* Loaded zone glow pulse — subtle "just loaded" effect */
+    .cs-loaded-zone::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(ellipse at center, rgba(245, 236, 215, 0.06) 0%, transparent 70%);
+        opacity: 0;
+        transition: opacity 1.5s ease;
+        transition-delay: 1.2s;
+        pointer-events: none;
+    }
+
+    .story-chapter.in-view .cs-loaded-zone::before {
+        opacity: 1;
+        animation: loadedPulse 3s ease-in-out 1.8s infinite;
+    }
+
+    @keyframes loadedPulse {
+        0%, 100% { opacity: 0.6; }
+        50% { opacity: 1; }
+    }
+
+    /* ---- Coming Soon Blueprint Animations ---- */
+
+    /* Scan line sweeps vertically */
+    .cs-scan-line {
+        animation: scanSweep 4s ease-in-out infinite;
+    }
+
+    .cs-frame--wide .cs-scan-line {
+        animation-delay: -2s;
+    }
+
+    @keyframes scanSweep {
+        0%   { top: -2%; opacity: 0; }
+        10%  { opacity: 0.4; }
+        90%  { opacity: 0.4; }
+        100% { top: 102%; opacity: 0; }
+    }
+
+    /* Shimmer sweep on "Coming Soon" text */
+    .cs-big-text {
+        animation: textShimmer 3.5s ease-in-out infinite;
+    }
+
+    @keyframes textShimmer {
+        0%   { background-position: 150% center; }
+        100% { background-position: -50% center; }
+    }
+
+    /* Loading ring rotation */
+    .cs-loading-ring svg {
+        animation: ringRotate 2s linear infinite;
+    }
+
+    @keyframes ringRotate {
+        to { transform: rotate(360deg); }
+    }
+
+    /* Skeleton bar shimmer (staggered) */
+    .cs-skel-bar::after {
+        animation: skelShimmer 2.2s ease-in-out infinite;
+    }
+
+    .cs-skel-bar:nth-child(2)::after { animation-delay: 0.15s; }
+    .cs-skel-bar:nth-child(3)::after { animation-delay: 0.3s; }
+    .cs-skel-bar:nth-child(4)::after { animation-delay: 0.45s; }
+
+    @keyframes skelShimmer {
+        0%   { background-position: 150% center; }
+        100% { background-position: -50% center; }
+    }
+
+    /* Marching ants on border — shift background-position */
+    .cs-border-trace::before {
+        animation: marchAnts 2s linear infinite;
+    }
+
+    @keyframes marchAnts {
+        to { background-position: 16px 0, 16px 100%, 0 16px, 100% 16px; }
+    }
+
+    /* Animated loading dots */
+    .cs-dots span {
+        animation: dotPulse 1.5s ease-in-out infinite;
+    }
+
+    .cs-dots span:nth-child(2) { animation-delay: 0.3s; }
+    .cs-dots span:nth-child(3) { animation-delay: 0.6s; }
+
+    @keyframes dotPulse {
+        0%, 60%, 100% { opacity: 0; }
+        30% { opacity: 1; }
+    }
+}
+
+/* Reduced motion: show everything immediately */
+@media (prefers-reduced-motion: reduce) {
+    .line-inner { transform: none; }
+    .wipe-reveal { max-width: 100%; }
+    .scale-settle img { transform: none; opacity: 1; }
+    .chapter-label-after,
+    .chapter-rule,
+    .spread-text p { opacity: 1; transform: none; }
+    .transition-text { opacity: 1; transform: none; }
+    .flip-card,
+    .flip-card.flip-fast { transition: none; }
+    .cs-scan-line,
+    .cs-big-text,
+    .cs-loading-ring svg,
+    .cs-skel-bar::after,
+    .cs-border-trace::before,
+    .cs-dots span,
+    .cs-loaded-zone::before { animation: none; }
+    .cs-dots span { opacity: 1; }
+    .cs-big-text { background-position: center; }
+    .cs-logo { opacity: 0.7; transform: none; filter: brightness(1.1) blur(0); }
+}
+
+/* ---- J. Responsive ---- */
+
+/* Tablet */
+@media (max-width: 992px) {
+    .spread-layout {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .chapter-spread--flip .spread-photo-tall {
+        order: 0;
+    }
+
+    .story-chapter {
+        padding: 80px 0;
+    }
+
+    .story-transition {
+        padding: 60px 0;
+    }
+
+    .story-nav-dots {
+        display: none;
+    }
+
+    .cs-frame--tall {
+        min-height: 320px;
+    }
+
+    .cs-logo {
+        max-width: 120px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .flip-digit {
+        width: 36px;
+        height: 54px;
+    }
+
+    .flip-digit-top span,
+    .flip-digit-bottom span,
+    .flip-card span {
+        font-size: 33px;
+        line-height: 54px;
+    }
+
+    .flip-digit-top span {
+        transform: translateY(50%);
+    }
+
+    .flip-digit-bottom span {
+        transform: translateY(-50%);
+    }
+
+    .flip-card span {
+        transform: translateY(50%);
+    }
+
+    .story-chapter {
+        padding: 60px 0;
+    }
+
+    .story-transition {
+        padding: 40px 0;
+    }
+
+    .story-sticky-strip {
+        padding: 14px 0 0;
+    }
+
+    .story-progress-bar {
+        margin-top: 12px;
+    }
+
+    .cs-wide-inner {
+        flex-direction: column;
+    }
+
+    .cs-loaded-zone {
+        flex: 0 0 auto;
+        padding: 20px;
+    }
+
+    .cs-loaded-zone::after {
+        top: auto;
+        right: 10%;
+        left: 10%;
+        bottom: 0;
+        width: auto;
+        height: 1px;
+        background: linear-gradient(
+            90deg,
+            transparent 0%,
+            rgba(255, 255, 255, 0.1) 30%,
+            rgba(255, 255, 255, 0.15) 50%,
+            rgba(255, 255, 255, 0.1) 70%,
+            transparent 100%
+        );
+    }
+
+    .cs-logo {
+        max-width: 100px;
+    }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+    .flip-digit {
+        width: 28px;
+        height: 42px;
+    }
+
+    .flip-digit-top span,
+    .flip-digit-bottom span,
+    .flip-card span {
+        font-size: 26px;
+        line-height: 42px;
+    }
+
+    .story-flip-counter {
+        gap: 4px;
+    }
+
+    .chapter-grid {
+        gap: 30px;
+    }
+
+    .story-section {
+        padding-bottom: 60px;
+    }
+
+    .cs-frame--tall {
+        min-height: 300px;
+    }
+}
