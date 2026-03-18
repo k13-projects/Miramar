@@ -430,27 +430,16 @@
         .mini-dot.yellow { background: #ffbd2e; }
         .mini-dot.green { background: #27c93f; }
         .mini-browser-content {
-            height: 80px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-        }
-        .mini-browser-content.hero-mock { background: var(--gradient-teal); }
-        .mini-browser-content.cream-mock { background: var(--color-cream); }
-        .mini-browser-content.white-mock { background: var(--color-white); }
-        .mini-browser-content.dark-mock { background: var(--color-dark-teal); }
-        .mini-browser-content.blueprint-mock {
-            background: #071f1b;
-            position: relative;
+            height: 160px;
             overflow: hidden;
+            background: var(--color-cream);
         }
-        .mini-browser-content.blueprint-mock::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px);
-            background-size: 12px 12px;
+        .mini-browser-content img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+            display: block;
         }
         .card-changes {
             padding: 0 20px 20px;
@@ -1124,7 +1113,7 @@
                             <span class="mini-dot yellow"></span>
                             <span class="mini-dot green"></span>
                         </div>
-                        <div class="mini-browser-content hero-mock">&#127968;</div>
+                        <div class="mini-browser-content"><img src="../images/report/Hero.png" alt="Hero section screenshot"></div>
                     </div>
                     <div class="card-changes">
                         <ul>
@@ -1152,7 +1141,7 @@
                             <span class="mini-dot yellow"></span>
                             <span class="mini-dot green"></span>
                         </div>
-                        <div class="mini-browser-content cream-mock">&#9733;</div>
+                        <div class="mini-browser-content"><img src="../images/report/Intro.png" alt="Intro section screenshot"></div>
                     </div>
                     <div class="card-changes">
                         <ul>
@@ -1179,17 +1168,7 @@
                             <span class="mini-dot yellow"></span>
                             <span class="mini-dot green"></span>
                         </div>
-                        <div class="mini-browser-content dark-mock" style="color: #F5ECD7; font-size: 1rem; font-weight: 700; gap: 6px;">
-                            <span>1920</span>
-                            <span style="opacity:0.4;">&#8226;</span>
-                            <span>1938</span>
-                            <span style="opacity:0.4;">&#8226;</span>
-                            <span>1965</span>
-                            <span style="opacity:0.4;">&#8226;</span>
-                            <span>2020</span>
-                            <span style="opacity:0.4;">&#8226;</span>
-                            <span>2026</span>
-                        </div>
+                        <div class="mini-browser-content"><img src="../images/report/Our Story.png" alt="Our Story section screenshot"></div>
                     </div>
                     <div class="card-changes">
                         <ul>
@@ -1222,14 +1201,7 @@
                             <span class="mini-dot yellow"></span>
                             <span class="mini-dot green"></span>
                         </div>
-                        <div class="mini-browser-content cream-mock" style="font-size: 0.7rem; color: var(--color-gray); gap: 4px; display: grid; grid-template-columns: repeat(3,1fr); padding: 8px;">
-                            <span style="background:var(--color-white);padding:4px;border-radius:4px;text-align:center;">&#127828;</span>
-                            <span style="background:var(--color-white);padding:4px;border-radius:4px;text-align:center;">&#127790;</span>
-                            <span style="background:var(--color-white);padding:4px;border-radius:4px;text-align:center;">&#127833;</span>
-                            <span style="background:var(--color-white);padding:4px;border-radius:4px;text-align:center;">&#9749;</span>
-                            <span style="background:var(--color-white);padding:4px;border-radius:4px;text-align:center;">&#127834;</span>
-                            <span style="background:var(--color-white);padding:4px;border-radius:4px;text-align:center;">&#127829;</span>
-                        </div>
+                        <div class="mini-browser-content"><img src="../images/report/Vendors.png" alt="Vendors section screenshot"></div>
                     </div>
                     <div class="card-changes">
                         <ul>
@@ -1258,10 +1230,7 @@
                             <span class="mini-dot yellow"></span>
                             <span class="mini-dot green"></span>
                         </div>
-                        <div class="mini-browser-content white-mock" style="font-size: 0.75rem; color: var(--color-gray); flex-direction: column; gap: 2px;">
-                            <span>&#128205;</span>
-                            <span style="font-weight:600; color: var(--color-dark-teal);">San Clemente, CA</span>
-                        </div>
+                        <div class="mini-browser-content"><img src="../images/report/Location.png" alt="Location section screenshot"></div>
                     </div>
                     <div class="card-changes">
                         <ul>
@@ -1288,12 +1257,7 @@
                             <span class="mini-dot yellow"></span>
                             <span class="mini-dot green"></span>
                         </div>
-                        <div class="mini-browser-content white-mock" style="gap: 4px; display: grid; grid-template-columns: repeat(4,1fr); padding: 8px;">
-                            <span style="background:var(--gradient-teal);border-radius:3px;height:100%;"></span>
-                            <span style="background:linear-gradient(135deg,#A94d00,#d4a373);border-radius:3px;"></span>
-                            <span style="background:var(--gradient-teal);border-radius:3px;"></span>
-                            <span style="background:linear-gradient(135deg,#A94d00,#d4a373);border-radius:3px;"></span>
-                        </div>
+                        <div class="mini-browser-content"><img src="../images/report/Instagram.png" alt="Instagram section screenshot"></div>
                     </div>
                     <div class="card-changes">
                         <ul>
@@ -1320,9 +1284,7 @@
                             <span class="mini-dot yellow"></span>
                             <span class="mini-dot green"></span>
                         </div>
-                        <div class="mini-browser-content cream-mock" style="font-size: 0.7rem; flex-direction: column; gap: 3px; color: var(--color-dark-teal); font-weight: 600;">
-                            <span>&#128197; Live from Google Sheets</span>
-                        </div>
+                        <div class="mini-browser-content"><img src="../images/report/Events.png" alt="Events section screenshot"></div>
                     </div>
                     <div class="card-changes">
                         <ul>
@@ -1350,7 +1312,7 @@
                             <span class="mini-dot yellow"></span>
                             <span class="mini-dot green"></span>
                         </div>
-                        <div class="mini-browser-content dark-mock" style="color: white; font-size: 0.7rem; font-weight: 600;">&#127881; Book Your Event</div>
+                        <div class="mini-browser-content"><img src="../images/report/Bookings.png" alt="Bookings section screenshot"></div>
                     </div>
                     <div class="card-changes">
                         <ul>
@@ -1377,11 +1339,7 @@
                             <span class="mini-dot yellow"></span>
                             <span class="mini-dot green"></span>
                         </div>
-                        <div class="mini-browser-content cream-mock" style="font-size: 0.7rem; color: var(--color-gray); gap: 10px;">
-                            <span style="font-weight:600; color: var(--color-dark-teal);">&#128231; Info</span>
-                            <span>|</span>
-                            <span style="font-weight:600; color: var(--color-dark-teal);">&#128221; Form</span>
-                        </div>
+                        <div class="mini-browser-content"><img src="../images/report/Contact.png" alt="Contact section screenshot"></div>
                     </div>
                     <div class="card-changes">
                         <ul>
