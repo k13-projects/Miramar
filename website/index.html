@@ -13,8 +13,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/story-section.css">
 </head>
 <body>
+    <!-- UPDATED: Skip to content link for ADA accessibility (T17) -->
+    <a href="#intro" class="skip-to-content">Skip to main content</a>
+
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
@@ -37,6 +41,7 @@
         </div>
     </nav>
 
+    <main>
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-overlay"></div>
@@ -45,7 +50,7 @@
             <p class="tagline">GLOBAL BITES, LOCAL VIBES</p>
         </div>
         <div class="hero-wave">
-            <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+            <svg viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
                 <path d="M0,60 C360,120 720,0 1080,60 C1260,90 1380,90 1440,60 L1440,120 L0,120 Z" fill="#f6f4ed"/>
             </svg>
         </div>
@@ -67,45 +72,242 @@
         </div>
     </section>
 
-    <!-- About/Story Section -->
-    <section class="about" id="about">
+    <!-- Story Section — Animated scroll timeline -->
+    <section class="story-section" id="about">
         <div class="wave-top">
-            <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+            <svg viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
                 <path d="M0,60 C360,0 720,120 1080,60 C1260,30 1380,30 1440,60 L1440,0 L0,0 Z" fill="#f6f4ed"/>
             </svg>
         </div>
-        <div class="about-content">
-            <div class="container">
-                <div class="story-grid">
-                    <div class="story-text">
-                        <h2>OUR STORY</h2>
-                        <div class="story-year">1938</div>
-                        <p>Miramar Food Hall was born from a vision to bring new life to one of San Clemente's most treasured landmarks. Once home to the Miramar Theatre and the San Clemente Bowling Center, this 1938 Spanish Colonial Revival gem had been closed for over three decades.</p>
-                    </div>
-                    <div class="story-image">
-                        <img src="images/story/historic-1.png" alt="Historic Miramar Theatre 1938">
-                    </div>
+
+        <!-- Sticky year header strip -->
+        <div class="story-sticky-strip" aria-hidden="true">
+            <div class="story-flip-counter">
+                <div class="flip-digit" data-index="0">
+                    <div class="flip-digit-top"><span>0</span></div>
+                    <div class="flip-digit-bottom"><span>0</span></div>
+                    <div class="flip-card"><span>0</span></div>
                 </div>
-                <div class="story-grid reverse">
-                    <div class="story-text">
-                        <div class="story-year">2020</div>
-                        <p>In 2020, we took on the challenge of restoring the space, honoring its rich history while transforming it into a vibrant culinary destination. Today, Miramar Food Hall stands as a celebration of community, global bites, local vibes and the enduring spirit of Southern California, marking the long-awaited revival of an iconic coastal landmark.</p>
-                    </div>
-                    <div class="story-image">
-                        <img src="images/story/historic-2.png" alt="Historic Miramar">
-                    </div>
+                <div class="flip-digit" data-index="1">
+                    <div class="flip-digit-top"><span>0</span></div>
+                    <div class="flip-digit-bottom"><span>0</span></div>
+                    <div class="flip-card"><span>0</span></div>
                 </div>
-                <div class="story-grid">
-                    <div class="story-text">
-                        <div class="story-year">2026</div>
-                        <p>Rooted in the relaxed spirit of coastal California, Miramar Food Hall brings together the artistry of local chefs and global flavors under one roof. Designed as a family-friendly gathering place, we offer an elevated yet approachable dining experience that reflects a balance of tradition and innovation, celebrating the region's diverse culinary scene while honoring the charm and character of this historic setting.</p>
+                <div class="flip-digit" data-index="2">
+                    <div class="flip-digit-top"><span>0</span></div>
+                    <div class="flip-digit-bottom"><span>0</span></div>
+                    <div class="flip-card"><span>0</span></div>
+                </div>
+                <div class="flip-digit" data-index="3">
+                    <div class="flip-digit-top"><span>0</span></div>
+                    <div class="flip-digit-bottom"><span>0</span></div>
+                    <div class="flip-card"><span>0</span></div>
+                </div>
+            </div>
+            <div class="story-progress-bar">
+                <div class="story-progress-fill"></div>
+            </div>
+        </div>
+
+        <!-- Story content -->
+        <div class="story-content">
+
+            <!-- Chapter 1: 1920s — Layout A (text+wide left, tall right) -->
+            <div class="story-chapter chapter-spread" data-year="1920">
+                <div class="container">
+                    <div class="chapter-header">
+                        <div class="chapter-label-after">1920s &mdash; San Clemente Origins</div>
+                        <h3 class="chapter-headline chapter-headline--full">
+                            <span class="line-wrap"><span class="line-inner">The Spanish Village by the Sea</span></span>
+                        </h3>
                     </div>
-                    <div class="story-image">
-                        <img src="images/story/today.png" alt="Miramar Food Hall Today">
+                    <hr class="chapter-rule" aria-hidden="true">
+                    <div class="spread-layout">
+                        <div class="spread-col-text">
+                            <div class="spread-text">
+                                <p>In 1925, former Seattle mayor Ole Hanson purchased two thousand acres of coastal ranchland and set out to build his dream: a "Spanish Village by the Sea." Inspired by the whitewashed towns of the Mediterranean, he laid out tree-lined avenues, red-tile roofs, and a grand pier stretching into the Pacific. San Clemente was born — a seaside haven where the rhythm of the waves set the pace of daily life.</p>
+                            </div>
+                            <div class="spread-photo-wide scale-settle">
+                                <img src="images/story/1920s-cars-victoria-ave.jpg" alt="1920s automobiles parked on Avenida Victoria near the San Clemente pier" loading="lazy">
+                            </div>
+                        </div>
+                        <div class="spread-photo-tall wipe-reveal">
+                            <img src="images/story/filler-ole-hanson.jpg" alt="Ole Hanson's office with men on horseback" loading="lazy" style="object-position: 20% center;">
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+
+            <!-- Transition -->
+            <div class="story-transition" aria-hidden="true">
+                <div class="container">
+                    <span class="transition-text">A Town Takes Shape</span>
+                </div>
+            </div>
+
+            <!-- Chapter 2: 1938 — Layout B (tall left, text+wide right) -->
+            <div class="story-chapter chapter-spread chapter-spread--flip" data-year="1938">
+                <div class="container">
+                    <div class="chapter-header">
+                        <div class="chapter-label-after">1938 &mdash; The Miramar Theatre</div>
+                        <h3 class="chapter-headline chapter-headline--full">
+                            <span class="line-wrap"><span class="line-inner">A Landmark is Born</span></span>
+                        </h3>
+                    </div>
+                    <hr class="chapter-rule" aria-hidden="true">
+                    <div class="spread-layout">
+                        <div class="spread-col-text">
+                            <div class="spread-text">
+                                <p>Miramar Food Hall was born from a vision to bring new life to one of San Clemente's most treasured landmarks. Once home to the Miramar Theatre and the San Clemente Bowling Center, this 1938 Spanish Colonial Revival gem had been closed for over three decades — its art deco marquee dark, its seats empty, but its place in the town's memory unshaken.</p>
+                            </div>
+                            <div class="spread-photo-wide scale-settle">
+                                <img src="images/story/1938-theatre.jpg" alt="The Miramar Theatre building, circa 1938" loading="lazy" style="object-position: 100% center;">
+                            </div>
+                        </div>
+                        <div class="spread-photo-tall wipe-reveal">
+                            <img src="images/story/filler-theatre-program.jpg" alt="San Clemente Theatre grand opening program" loading="lazy">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Transition -->
+            <div class="story-transition" aria-hidden="true">
+                <div class="container">
+                    <span class="transition-text">Decades of Memories</span>
+                </div>
+            </div>
+
+            <!-- Chapter 3: 1965 — Layout A (text+wide left, tall right) -->
+            <div class="story-chapter chapter-spread" data-year="1965">
+                <div class="container">
+                    <div class="chapter-header">
+                        <div class="chapter-label-after">1965 &mdash; The Surf Capital</div>
+                        <h3 class="chapter-headline chapter-headline--full">
+                            <span class="line-wrap"><span class="line-inner">Riding the Wave of Culture</span></span>
+                        </h3>
+                    </div>
+                    <hr class="chapter-rule" aria-hidden="true">
+                    <div class="spread-layout">
+                        <div class="spread-col-text">
+                            <div class="spread-text">
+                                <p>By the 1960s, San Clemente had become the heartbeat of Southern California surf culture. Local hero Joyce Hoffman, a San Clemente High standout, captured back-to-back women's world surfing championships in 1965 and 1966 — putting the town on the global map. Trestles became a pilgrimage site, and the laid-back coastal identity that defines San Clemente today was forged in the salt and spray of that golden era.</p>
+                            </div>
+                            <div class="spread-photo-wide scale-settle">
+                                <img src="images/story/1965-joyce-hoffman.jpg" alt="Joyce Hoffman, San Clemente High surfing champion, 1965" loading="lazy" style="object-position: 100% center;">
+                            </div>
+                        </div>
+                        <div class="spread-photo-tall wipe-reveal">
+                            <img src="images/story/filler-anchor-inn.jpg" alt="The Anchor Inn House of Sea Food, a beloved San Clemente restaurant" loading="lazy" style="object-position: 85% center;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Transition -->
+            <div class="story-transition" aria-hidden="true">
+                <div class="container">
+                    <span class="transition-text">A New Chapter Begins</span>
+                </div>
+            </div>
+
+            <!-- Chapter 4: 2020 — Layout B (tall left, text+wide right) -->
+            <div class="story-chapter chapter-spread chapter-spread--flip" data-year="2020">
+                <div class="container">
+                    <div class="chapter-header">
+                        <div class="chapter-label-after">2020 &mdash; The Revival</div>
+                        <h3 class="chapter-headline chapter-headline--full">
+                            <span class="line-wrap"><span class="line-inner">Honoring the Past, Building the Future</span></span>
+                        </h3>
+                    </div>
+                    <hr class="chapter-rule" aria-hidden="true">
+                    <div class="spread-layout">
+                        <div class="spread-col-text">
+                            <div class="spread-text">
+                                <p>In 2020, we took on the challenge of restoring the space, honoring its rich history while transforming it into a vibrant culinary destination. Today, Miramar Food Hall stands as a celebration of community, global bites, local vibes and the enduring spirit of Southern California, marking the long-awaited revival of an iconic coastal landmark.</p>
+                            </div>
+                            <div class="spread-photo-wide scale-settle">
+                                <img src="images/story/2020-movie-house.jpg" alt="The San Clemente Movie House before renovation, 2020" loading="lazy">
+                            </div>
+                        </div>
+                        <div class="spread-photo-tall wipe-reveal">
+                            <img src="images/story/filler-horseback.jpg" alt="Horseback rider on El Camino Real in front of the Riding Academy" loading="lazy" style="object-position: 90% center;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Transition -->
+            <div class="story-transition" aria-hidden="true">
+                <div class="container">
+                    <span class="transition-text">The Destination Arrives</span>
+                </div>
+            </div>
+
+            <!-- Chapter 5: 2026 — Today / Coming Soon -->
+            <div class="story-chapter chapter-spread" data-year="2026">
+                <div class="container">
+                    <div class="chapter-header">
+                        <div class="chapter-label-after">2026 &mdash; Today</div>
+                        <h3 class="chapter-headline chapter-headline--full">
+                            <span class="line-wrap"><span class="line-inner">Global Bites, Local Vibes</span></span>
+                        </h3>
+                    </div>
+                    <hr class="chapter-rule" aria-hidden="true">
+                    <div class="spread-layout">
+                        <div class="spread-col-text">
+                            <div class="spread-text">
+                                <p>Rooted in the relaxed spirit of coastal California, Miramar Food Hall brings together the artistry of local chefs and global flavors under one roof. Designed as a family-friendly gathering place, we offer an elevated yet approachable dining experience that reflects a balance of tradition and innovation, celebrating the region's diverse culinary scene while honoring the charm and character of this historic setting.</p>
+                            </div>
+                            <!-- Wide frame: logo loaded + skeleton loading -->
+                            <div class="cs-frame cs-frame--wide">
+                                <div class="cs-grid"></div>
+                                <div class="cs-scan-line"></div>
+                                <div class="cs-wide-inner">
+                                    <div class="cs-loaded-zone">
+                                        <img src="images/logo/logo.png" alt="Miramar Food Hall" class="cs-logo">
+                                    </div>
+                                    <div class="cs-loading-zone">
+                                        <div class="cs-skeleton">
+                                            <div class="cs-skel-bar" style="width:92%"></div>
+                                            <div class="cs-skel-bar" style="width:68%"></div>
+                                            <div class="cs-skel-bar" style="width:80%"></div>
+                                            <div class="cs-skel-bar" style="width:50%"></div>
+                                        </div>
+                                        <span class="cs-frame-label">Loading the future<span class="cs-dots"><span>.</span><span>.</span><span>.</span></span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Tall frame: blueprint coming soon -->
+                        <div class="cs-frame cs-frame--tall">
+                            <div class="cs-grid"></div>
+                            <div class="cs-scan-line"></div>
+                            <div class="cs-border-trace"></div>
+                            <div class="cs-frame-content">
+                                <span class="cs-big-text">Coming<br>Soon</span>
+                                <div class="cs-loading-ring">
+                                    <svg viewBox="0 0 50 50">
+                                        <circle cx="25" cy="25" r="20"></circle>
+                                    </svg>
+                                </div>
+                                <span class="cs-frame-subtitle">Something extraordinary is being built</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /.story-content -->
+
+        <!-- Fixed nav dots -->
+        <nav class="story-nav-dots" aria-label="Story timeline navigation">
+            <button data-target="0" aria-label="1920s: San Clemente Origins" class="dot active"></button>
+            <button data-target="1" aria-label="1938: The Miramar Theatre" class="dot"></button>
+            <button data-target="2" aria-label="1965: The Surf Capital" class="dot"></button>
+            <button data-target="3" aria-label="2020: The Revival" class="dot"></button>
+            <button data-target="4" aria-label="2026: Today" class="dot"></button>
+        </nav>
     </section>
 
     <!-- Vendors Section -->
@@ -115,37 +317,46 @@
             <div class="vendors-grid">
                 <div class="vendor-card">
                     <div class="vendor-image">
-                        <img src="images/vendors/cosmos.jpg" alt="Cosmos Burger">
+                        <img src="images/vendors/cosmos.jpg" alt="Cosmos Burger" loading="lazy">
                     </div>
                     <div class="vendor-info">
                         <h3>Cosmos Burger</h3>
                         <p>Burgers made with fresh, premium ingredients with locations in Oceanside and Carlsbad, CA. Best known for the signature Spicy Jam Burger and Monkey Fries.</p>
-                        <a href="https://instagram.com/burger.cosmos" target="_blank" class="vendor-social">@burger.cosmos</a>
+                        <a href="https://instagram.com/burger.cosmos" target="_blank" rel="noopener noreferrer" class="vendor-instagram" aria-label="Cosmos Burger on Instagram">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"/></svg>
+                            <span>@burger.cosmos</span>
+                        </a>
                     </div>
                 </div>
                 <div class="vendor-card">
                     <div class="vendor-image">
-                        <img src="images/vendors/el-puerto.jpg" alt="El Puerto Street Tacos">
+                        <img src="images/vendors/el-puerto.jpg" alt="El Puerto Street Tacos" loading="lazy">
                     </div>
                     <div class="vendor-info">
                         <h3>El Puerto Street Tacos</h3>
                         <p>Authentic Mexican street tacos, burritos, and quesadillas made with fresh ingredients since 2005, with two Carlsbad, California locations.</p>
-                        <a href="https://instagram.com/elpuertocarlsbad" target="_blank" class="vendor-social">@elpuertocarlsbad</a>
+                        <a href="https://instagram.com/elpuertocarlsbad" target="_blank" rel="noopener noreferrer" class="vendor-instagram" aria-label="El Puerto Street Tacos on Instagram">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"/></svg>
+                            <span>@elpuertocarlsbad</span>
+                        </a>
                     </div>
                 </div>
                 <div class="vendor-card">
                     <div class="vendor-image">
-                        <img src="images/vendors/graciously-thai.jpg" alt="Graciously Thai">
+                        <img src="images/vendors/graciously-thai.jpg" alt="Graciously Thai" loading="lazy">
                     </div>
                     <div class="vendor-info">
                         <h3>Graciously Thai</h3>
                         <p>Late night destination for authentic, home-style Thai food with a location in Temecula, CA.</p>
-                        <a href="https://instagram.com/graciouslythaifood" target="_blank" class="vendor-social">@graciouslythaifood</a>
+                        <a href="https://instagram.com/graciouslythaifood" target="_blank" rel="noopener noreferrer" class="vendor-instagram" aria-label="Graciously Thai on Instagram">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"/></svg>
+                            <span>@graciouslythaifood</span>
+                        </a>
                     </div>
                 </div>
                 <div class="vendor-card">
                     <div class="vendor-image">
-                        <img src="images/vendors/hen-haus.png" alt="Hen Haus">
+                        <img src="images/vendors/hen-haus.jpg" alt="Hen Haus" loading="lazy" style="object-position: center;">
                     </div>
                     <div class="vendor-info">
                         <h3>Hen Haus</h3>
@@ -154,92 +365,119 @@
                 </div>
                 <div class="vendor-card">
                     <div class="vendor-image">
-                        <img src="images/vendors/immersion-coffee.jpg" alt="Immersion Coffee Co.">
+                        <img src="images/vendors/immersion-coffee.jpg" alt="Immersion Coffee Co." loading="lazy">
                     </div>
                     <div class="vendor-info">
                         <h3>Immersion Coffee Co.</h3>
                         <p>Community-focused coffee shop, formerly Manivela Coffee Truck, with locations in San Diego's Little Italy and La Jolla neighborhoods.</p>
-                        <a href="https://instagram.com/immersionsd" target="_blank" class="vendor-social">@immersionsd</a>
+                        <a href="https://instagram.com/immersionsd" target="_blank" rel="noopener noreferrer" class="vendor-instagram" aria-label="Immersion Coffee Co. on Instagram">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"/></svg>
+                            <span>@immersionsd</span>
+                        </a>
                     </div>
                 </div>
                 <div class="vendor-card">
                     <div class="vendor-image">
-                        <img src="images/vendors/its-allll-rice.jpg" alt="It's Allll Rice">
+                        <img src="images/vendors/its-allll-rice.jpg" alt="It's Allll Rice" loading="lazy">
                     </div>
                     <div class="vendor-info">
                         <h3>It's Allll Rice</h3>
                         <p>Fried Rice with no Rules. First brick-and-mortar location for the globally-inspired fried rice-focused concept.</p>
-                        <a href="https://instagram.com/its.allll.rice" target="_blank" class="vendor-social">@its.allll.rice</a>
+                        <a href="https://instagram.com/its.allll.rice" target="_blank" rel="noopener noreferrer" class="vendor-instagram" aria-label="It's Allll Rice on Instagram">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"/></svg>
+                            <span>@its.allll.rice</span>
+                        </a>
                     </div>
                 </div>
                 <div class="vendor-card">
                     <div class="vendor-image">
-                        <img src="images/vendors/la-vida.jpg" alt="La Vida">
+                        <img src="images/vendors/la-vida.jpg" alt="La Vida" loading="lazy">
                     </div>
                     <div class="vendor-info">
                         <h3>La Vida</h3>
                         <p>Healthy eats including salads, sandwiches and wraps, toasts, and smoothies with a location in Carlsbad, CA.</p>
-                        <a href="https://instagram.com/lavida.sandiego" target="_blank" class="vendor-social">@lavida.sandiego</a>
+                        <a href="https://instagram.com/lavida.sandiego" target="_blank" rel="noopener noreferrer" class="vendor-instagram" aria-label="La Vida on Instagram">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"/></svg>
+                            <span>@lavida.sandiego</span>
+                        </a>
                     </div>
                 </div>
                 <div class="vendor-card">
                     <div class="vendor-image">
-                        <img src="images/vendors/lobster-lab.jpg" alt="Lobster Lab">
+                        <img src="images/vendors/lobster-lab.jpg" alt="Lobster Lab" loading="lazy">
                     </div>
                     <div class="vendor-info">
                         <h3>Lobster Lab</h3>
                         <p>Seafood concept with a location in Carlsbad, CA serving up various lobster roll iterations, including the popular Lobster Grilled Cheese. Number 1 Ranked Lobster Roll in San Diego 2024 on Yelp.</p>
-                        <a href="https://instagram.com/lobsterlab.us" target="_blank" class="vendor-social">@lobsterlab.us</a>
+                        <a href="https://instagram.com/lobsterlab.us" target="_blank" rel="noopener noreferrer" class="vendor-instagram" aria-label="Lobster Lab on Instagram">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"/></svg>
+                            <span>@lobsterlab.us</span>
+                        </a>
                     </div>
                 </div>
                 <div class="vendor-card">
                     <div class="vendor-image">
-                        <img src="images/vendors/moto-pizza.png" alt="MOTO Pizza">
+                        <img src="images/vendors/moto-pizza.jpg" alt="MOTO Pizza" loading="lazy">
                     </div>
                     <div class="vendor-info">
                         <h3>MOTO Pizza</h3>
                         <p>The first out-of-state outpost for the acclaimed Seattle-based pizza chain known for its "odd pizza," combining Detroit, New York, and Roman styles with Filipino influences.</p>
-                        <a href="https://instagram.com/motopizzashop" target="_blank" class="vendor-social">@motopizzashop</a>
+                        <a href="https://instagram.com/motopizzashop" target="_blank" rel="noopener noreferrer" class="vendor-instagram" aria-label="MOTO Pizza on Instagram">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"/></svg>
+                            <span>@motopizzashop</span>
+                        </a>
                     </div>
                 </div>
                 <div class="vendor-card">
                     <div class="vendor-image">
-                        <img src="images/vendors/norigiri.jpg" alt="Norigiri">
+                        <img src="images/vendors/norigiri.jpg" alt="Norigiri" loading="lazy">
                     </div>
                     <div class="vendor-info">
                         <h3>Norigiri</h3>
                         <p>Fresh, modern take on Japanese onigiri - handmade rice balls with bold fillings - served fast and packed with flavor, with a location in Irvine.</p>
-                        <a href="https://instagram.com/norigiri.official" target="_blank" class="vendor-social">@norigiri.official</a>
+                        <a href="https://instagram.com/norigiri.official" target="_blank" rel="noopener noreferrer" class="vendor-instagram" aria-label="Norigiri on Instagram">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"/></svg>
+                            <span>@norigiri.official</span>
+                        </a>
                     </div>
                 </div>
                 <div class="vendor-card">
                     <div class="vendor-image">
-                        <img src="images/vendors/rolledup.jpg" alt="RolledUp SC">
+                        <img src="images/vendors/rolledup.jpg" alt="RolledUp SC" loading="lazy">
                     </div>
                     <div class="vendor-info">
                         <h3>RolledUp SC</h3>
                         <p>Sushi rolls and customizable burritos and bowls, with a location in Carlsbad, CA.</p>
-                        <a href="https://instagram.com/rolledupsd" target="_blank" class="vendor-social">@rolledupsd</a>
+                        <a href="https://instagram.com/rolledupsd" target="_blank" rel="noopener noreferrer" class="vendor-instagram" aria-label="RolledUp SC on Instagram">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"/></svg>
+                            <span>@rolledupsd</span>
+                        </a>
                     </div>
                 </div>
                 <div class="vendor-card">
                     <div class="vendor-image">
-                        <img src="images/vendors/sidelines.jpg" alt="Sidelines Sandwiches">
+                        <img src="images/vendors/sidelines.jpg" alt="Sidelines Sandwiches" loading="lazy">
                     </div>
                     <div class="vendor-info">
                         <h3>Sidelines Sandwiches</h3>
                         <p>The concept started as a pop-up at Del Mar, CA's Surf Sports Park (formerly the San Diego Polo Fields), serving sandwiches on the "sidelines" of youth soccer tournaments.</p>
-                        <a href="https://instagram.com/sidelinessocal" target="_blank" class="vendor-social">@sidelinessocal</a>
+                        <a href="https://instagram.com/sidelinessocal" target="_blank" rel="noopener noreferrer" class="vendor-instagram" aria-label="Sidelines Sandwiches on Instagram">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"/></svg>
+                            <span>@sidelinessocal</span>
+                        </a>
                     </div>
                 </div>
                 <div class="vendor-card">
                     <div class="vendor-image">
-                        <img src="images/vendors/the-pita.jpg" alt="The Pita">
+                        <img src="images/vendors/the-pita.jpg" alt="The Pita" loading="lazy">
                     </div>
                     <div class="vendor-info">
                         <h3>The Pita</h3>
                         <p>A Middle Eastern concept, serving shawarma, gyros, pita, hummus, and more, from the husband and wife owners of San Clemente's Rocket Fizz soda pop & candy shop.</p>
-                        <a href="https://instagram.com/the_pita_san_clemente" target="_blank" class="vendor-social">@the_pita_san_clemente</a>
+                        <a href="https://instagram.com/the_pita_san_clemente" target="_blank" rel="noopener noreferrer" class="vendor-instagram" aria-label="The Pita on Instagram">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"/></svg>
+                            <span>@the_pita_san_clemente</span>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -249,24 +487,18 @@
     <!-- Location Section -->
     <section class="location" id="location">
         <div class="wave-top">
-            <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+            <svg viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
                 <path d="M0,60 C360,0 720,120 1080,60 C1260,30 1380,30 1440,60 L1440,0 L0,0 Z" fill="#ffffff"/>
             </svg>
         </div>
-        <div class="marquee">
-            <div class="marquee-content">
-                <span>GENERAL INFORMATION</span>
-                <span>GENERAL INFORMATION</span>
-                <span>GENERAL INFORMATION</span>
-                <span>GENERAL INFORMATION</span>
-            </div>
-        </div>
+        <!-- UPDATED: Replaced marquee with static title (T7) -->
+        <h2 class="section-title location-title"><span>GENERAL INFORMATION</span></h2>
         <div class="container">
             <div class="location-grid">
                 <div class="location-info" id="hours">
-                    <h2>LOCATION</h2>
+                    <h3>LOCATION</h3>
                     <address>1720 North El Camino Real, San Clemente, CA 92672</address>
-                    <a href="https://maps.google.com/?q=1720+North+El+Camino+Real,+San+Clemente,+CA+92672" target="_blank" class="btn btn-primary">Get Directions</a>
+                    <a href="https://maps.google.com/?q=1720+North+El+Camino+Real,+San+Clemente,+CA+92672" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Get Directions</a>
                     <h3>OPERATING HOURS</h3>
                     <div class="hours-list">
                         <div class="hours-item">
@@ -284,6 +516,7 @@
                     </div>
                 </div>
                 <div class="location-map">
+                    <!-- UPDATED: Added title for ADA accessibility (T17) -->
                     <iframe
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3329.5!2d-117.6!3d33.45!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2s1720+N+El+Camino+Real%2C+San+Clemente%2C+CA+92672!5e0!3m2!1sen!2sus!4v1"
                         width="100%"
@@ -291,63 +524,37 @@
                         style="border:0;"
                         allowfullscreen=""
                         loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade">
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="Google Maps showing Miramar Food Hall location at 1720 N El Camino Real, San Clemente, CA">
                     </iframe>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Instagram Section -->
+    <!-- Follow Us / Instagram Section -->
+    <!-- UPDATED: Removed marquee, replaced with static title (T10) -->
     <section class="instagram" id="instagram">
-        <div class="marquee instagram-marquee">
-            <div class="marquee-content">
-                <span>INSTAGRAM</span>
-                <span>INSTAGRAM</span>
-                <span>INSTAGRAM</span>
-                <span>INSTAGRAM</span>
-            </div>
+        <div class="container">
+            <h2 class="section-title"><span>FOLLOW US</span></h2>
         </div>
-        <div class="instagram-carousel-wrapper">
-            <button class="carousel-btn carousel-prev" aria-label="Previous">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M15 18l-6-6 6-6"/>
-                </svg>
-            </button>
-            <div class="instagram-carousel">
-                <div class="instagram-grid">
-                    <div class="instagram-placeholder"></div>
-                    <div class="instagram-placeholder"></div>
-                    <div class="instagram-placeholder"></div>
-                    <div class="instagram-placeholder"></div>
-                </div>
-                <div class="instagram-grid">
-                    <div class="instagram-placeholder"></div>
-                    <div class="instagram-placeholder"></div>
-                    <div class="instagram-placeholder"></div>
-                    <div class="instagram-placeholder"></div>
-                </div>
-            </div>
-            <button class="carousel-btn carousel-next" aria-label="Next">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M9 18l6-6-6-6"/>
-                </svg>
-            </button>
-        </div>
-        <div class="carousel-dots">
-            <button class="carousel-dot active" aria-label="Page 1"></button>
-            <button class="carousel-dot" aria-label="Page 2"></button>
+        <!-- UPDATED: Live Instagram feed via Behold.so (T11) — wider than container -->
+        <div class="instagram-feed">
+            <div data-behold-id="x51BN3Vsq8FiymTrv0KF"></div>
         </div>
         <div class="container">
-            <a href="https://instagram.com/miramarfoodhall" target="_blank" class="btn btn-primary">Follow Us</a>
+            <a href="https://instagram.com/miramarfoodhall" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Follow @miramarfoodhall</a>
         </div>
     </section>
 
     <!-- Events Section -->
+    <!-- UPDATED: Events now dynamically loaded from Google Sheets (T12) -->
     <section class="events" id="events">
         <div class="container">
             <h2 class="section-title"><span>UPCOMING EVENTS</span></h2>
-            <div class="events-grid">
+            <div class="events-grid" id="eventsGrid">
+                <!-- Events loaded dynamically from Google Sheets -->
+                <!-- Fallback events shown if fetch fails -->
                 <div class="event-card">
                     <div class="event-date">
                         <span class="month">JAN</span>
@@ -375,7 +582,7 @@
     <!-- Bookings Section -->
     <section class="bookings" id="bookings">
         <div class="wave-top">
-            <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+            <svg viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
                 <path d="M0,60 C360,0 720,120 1080,60 C1260,30 1380,30 1440,60 L1440,0 L0,0 Z" fill="#fff"/>
             </svg>
         </div>
@@ -383,71 +590,165 @@
             <div class="bookings-content">
                 <h2>Celebrate with Miramar Food Hall</h2>
                 <p class="bookings-tagline">We love a special occasion.<br>Book your next event.</p>
-                <a href="#contact-form" class="btn btn-secondary">Get in Touch</a>
+                <!-- UPDATED: Links to celebrations modal (T13, T14) -->
+                <a href="#" class="btn btn-secondary" id="celebrationsCta">Get in Touch</a>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
+    <!-- Let's Connect Section -->
+    <section class="connect" id="contact">
         <div class="container">
-            <div class="contact-grid">
-                <div class="contact-info">
-                    <h2>CONTACT</h2>
-                    <address>
-                        101 N El Camino Real<br>
-                        San Clemente, CA 92672
-                    </address>
-                    <p class="contact-email">info@miramarfoodhall.com</p>
-                    <p class="contact-phone">(949) 555-0123</p>
-                    <div class="social-links">
-                        <a href="https://instagram.com/miramarfoodhall" target="_blank" aria-label="Instagram">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                        </a>
-                        <a href="https://facebook.com/miramarfoodhall" target="_blank" aria-label="Facebook">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
-                        </a>
+            <div class="connect-grid">
+                <!-- Left Side - Contact Information -->
+                <div class="connect-left">
+                    <h2 class="connect-title">Let's Connect</h2>
+                    <p class="connect-subtitle">We'd love to hear from you. Reach out for inquiries, opportunities, or just to say hello.</p>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <h4>General Inquiries</h4>
+                            <p><a href="mailto:info@miramarfoodhall.com">info@miramarfoodhall.com</a></p>
+                            <p><a href="tel:+19495550123">(949) 555-0123</a></p>
+                        </div>
+                        <div class="contact-item">
+                            <h4>Vendor Opportunities</h4>
+                            <p><a href="mailto:vendors@miramarfoodhall.com">vendors@miramarfoodhall.com</a></p>
+                        </div>
+                        <div class="contact-item">
+                            <h4>Careers</h4>
+                            <p><a href="mailto:careers@miramarfoodhall.com">careers@miramarfoodhall.com</a></p>
+                        </div>
+                        <div class="contact-item">
+                            <h4>Follow Us</h4>
+                            <div class="contact-social-links">
+                                <a href="https://instagram.com/miramarfoodhall" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Instagram">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"></path>
+                                    </svg>
+                                </a>
+                                <a href="https://linkedin.com/company/miramarfoodhall" target="_blank" rel="noopener noreferrer" aria-label="Follow us on LinkedIn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M19 3A2 2 0 0 1 21 5V19A2 2 0 0 1 19 21H5A2 2 0 0 1 3 19V5A2 2 0 0 1 5 3H19M18.5 18.5V13.2A3.26 3.26 0 0 0 15.24 9.94C14.39 9.94 13.4 10.46 12.92 11.24V10.13H10.13V18.5H12.92V13.57C12.92 12.8 13.54 12.17 14.31 12.17A1.4 1.4 0 0 1 15.71 13.57V18.5H18.5M6.88 8.56A1.68 1.68 0 0 0 8.56 6.88C8.56 5.95 7.81 5.19 6.88 5.19A1.69 1.69 0 0 0 5.19 6.88C5.19 7.81 5.95 8.56 6.88 8.56M8.27 18.5V10.13H5.5V18.5H8.27Z"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="contact-form" id="contact-form">
-                    <h3>Party of 15 or more? Contact us</h3>
-                    <form action="#" method="POST">
-                        <div class="form-group">
-                            <label for="name">Event Host Name *</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email *</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Phone</label>
-                            <input type="tel" id="phone" name="phone">
+                <!-- Right Side - Contact Form -->
+                <div class="connect-right" id="contact-form">
+                    <form id="connectForm" action="#" method="POST" novalidate>
+                        <div aria-live="polite" aria-atomic="true" class="form-message" id="formMessage" role="status"></div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="fullName">Full Name <span class="required">*</span></label>
+                                <input type="text" id="fullName" name="fullName" required aria-required="true" autocomplete="name">
+                                <span class="field-error" id="fullNameError" aria-live="polite"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="emailAddress">Email Address <span class="required">*</span></label>
+                                <input type="email" id="emailAddress" name="emailAddress" required aria-required="true" autocomplete="email">
+                                <span class="field-error" id="emailAddressError" aria-live="polite"></span>
+                            </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="date">Date</label>
-                                <input type="date" id="date" name="date">
+                                <label for="phoneNumber">Phone Number</label>
+                                <input type="tel" id="phoneNumber" name="phoneNumber" autocomplete="tel">
+                                <span class="field-error" id="phoneNumberError" aria-live="polite"></span>
                             </div>
                             <div class="form-group">
-                                <label for="time">Time</label>
-                                <input type="time" id="time" name="time">
+                                <label for="inquiryType">Inquiry Type <span class="required">*</span></label>
+                                <select id="inquiryType" name="inquiryType" required aria-required="true">
+                                    <option value="">Select an option</option>
+                                    <option value="general">General Inquiry</option>
+                                    <option value="vendor">Vendor Opportunity</option>
+                                    <option value="reservation">Group Reservation</option>
+                                    <option value="career">Career Opportunity</option>
+                                    <option value="other">Other</option>
+                                </select>
+                                <span class="field-error" id="inquiryTypeError" aria-live="polite"></span>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="guests">Number of Guests</label>
-                            <input type="number" id="guests" name="guests" min="15">
+                        <!-- File Upload - Only visible for Career Opportunity -->
+                        <div class="form-group file-upload-group" id="fileUploadGroup" style="display: none;" aria-hidden="true">
+                            <label for="resumeUpload">Upload Resume/CV</label>
+                            <div class="file-upload-area" id="fileUploadArea" role="button" tabindex="0" aria-label="Click or drag files to upload">
+                                <input type="file" id="resumeUpload" name="resumeUpload" accept=".pdf,.doc,.docx" multiple aria-describedby="fileUploadHelp">
+                                <div class="file-upload-content">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                                    <p>Click to upload or drag and drop</p>
+                                    <span id="fileUploadHelp">PDF, DOC, DOCX (max 2 files, 5MB each)</span>
+                                </div>
+                            </div>
+                            <div class="uploaded-files" id="uploadedFiles" aria-live="polite"></div>
+                            <span class="file-warning" id="fileWarning" aria-live="polite"></span>
                         </div>
                         <div class="form-group">
-                            <label for="message">Message *</label>
-                            <textarea id="message" name="message" rows="4" required></textarea>
+                            <label for="messageText">Message <span class="required">*</span></label>
+                            <textarea id="messageText" name="messageText" rows="8" required aria-required="true"></textarea>
+                            <span class="field-error" id="messageTextError" aria-live="polite"></span>
                         </div>
-                        <button type="submit" class="btn btn-primary">Send Message</button>
+                        <button type="submit" class="btn btn-primary btn-submit">Send Message</button>
                     </form>
                 </div>
             </div>
         </div>
     </section>
+
+    </main>
+
+    <!-- UPDATED: Celebrations Form Modal (T14) -->
+    <div class="modal-overlay" id="celebrationsModal" aria-hidden="true" role="dialog" aria-labelledby="celebrationsTitle">
+        <div class="modal-content">
+            <button class="modal-close" id="celebrationsClose" aria-label="Close celebrations form">&times;</button>
+            <h2 id="celebrationsTitle">Party of 15 or more... Contact us</h2>
+            <p class="modal-subtitle">We love a special occasion. Book your next event.</p>
+            <form id="celebrationsForm" action="#" method="POST" novalidate>
+                <div aria-live="polite" aria-atomic="true" class="form-message" id="celebrationsFormMessage" role="status"></div>
+                <div class="form-group">
+                    <label for="eventHostName">Event Host Name <span class="required">*</span></label>
+                    <input type="text" id="eventHostName" name="eventHostName" required aria-required="true" autocomplete="name">
+                    <span class="field-error" id="eventHostNameError" aria-live="polite"></span>
+                </div>
+                <div class="form-group">
+                    <label for="celebrationEmail">Email <span class="required">*</span></label>
+                    <input type="email" id="celebrationEmail" name="celebrationEmail" required aria-required="true" autocomplete="email">
+                    <span class="field-error" id="celebrationEmailError" aria-live="polite"></span>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="celebrationPhone">Phone</label>
+                        <input type="tel" id="celebrationPhone" name="celebrationPhone" autocomplete="tel">
+                    </div>
+                    <div class="form-group">
+                        <label for="guestCount">Number of Guests</label>
+                        <input type="number" id="guestCount" name="guestCount" min="15" placeholder="15+">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="eventDate">Date</label>
+                        <input type="date" id="eventDate" name="eventDate">
+                    </div>
+                    <div class="form-group">
+                        <label for="eventTime">Time</label>
+                        <input type="time" id="eventTime" name="eventTime">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="celebrationMessage">Message <span class="required">*</span></label>
+                    <textarea id="celebrationMessage" name="celebrationMessage" rows="4" required aria-required="true" placeholder="Tell us about your event..."></textarea>
+                    <span class="field-error" id="celebrationMessageError" aria-live="polite"></span>
+                </div>
+                <button type="submit" class="btn btn-primary btn-submit">Send Request</button>
+            </form>
+            <div class="modal-contact-info">
+                <p>1720 N El Camino Real, San Clemente, CA 92672</p>
+                <p><a href="mailto:info@miramarfoodhall.com">info@miramarfoodhall.com</a> &bull; <a href="tel:+19495550123">(949) 555-0123</a></p>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
@@ -459,6 +760,11 @@
         </div>
     </footer>
 
+    <!-- TODO: Consider integrating a free accessibility widget (UserWay free tier) -->
+    <!-- Notify James before any paid subscription integration -->
+    <!-- Behold.so Instagram Feed Widget -->
+    <script>(function(){const d=document,s=d.createElement("script");s.type="module";s.src="https://w.behold.so/widget.js";d.head.append(s);})();</script>
     <script src="js/main.js"></script>
+    <script src="js/story-section.js"></script>
 </body>
 </html>
