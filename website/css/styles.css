@@ -1332,6 +1332,8 @@ a:focus-visible {
 @media (max-width: 768px) {
     .nav-toggle {
         display: flex;
+        position: absolute;
+        right: 30px;
     }
 
     .nav-menu {
