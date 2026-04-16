@@ -442,6 +442,8 @@ a:focus-visible {
 }
 
 .vendor-card {
+    display: flex;
+    flex-direction: column;
     position: relative;
     background-color: var(--color-cream);
     border-radius: 8px;
@@ -488,6 +490,9 @@ a:focus-visible {
 }
 
 .vendor-info {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
     padding: 20px;
     padding-bottom: 16px;
     text-align: center;
@@ -510,6 +515,7 @@ a:focus-visible {
     align-items: center;
     justify-content: center;
     gap: 6px;
+    margin-top: auto;
     padding: 12px 20px 0;
     color: var(--color-teal);
     text-decoration: none;
