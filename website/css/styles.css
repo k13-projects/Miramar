@@ -1221,14 +1221,37 @@ a:focus-visible {
 .footer {
     background-color: var(--color-dark);
     color: var(--color-white);
-    padding: 40px 0;
+    padding: 24px 0 20px;
     text-align: center;
 }
 
+.footer-logo-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 12px;
+}
+
+.footer-logo-row::before,
+.footer-logo-row::after {
+    content: '';
+    flex-shrink: 0;
+    width: 200px;
+    height: 16px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='16' viewBox='0 0 160 16'%3E%3Cpath d='M5,10 Q20,3 40,9 Q55,14 70,8 Q85,2 100,9 Q115,15 130,9 Q145,3 155,10' fill='none' stroke='%23ffffff' stroke-width='1.5' stroke-linecap='round' opacity='0.5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.footer-logo-row::after {
+    transform: scaleX(-1);
+}
+
 .footer-logo {
-    height: 40px;
-    margin: 0 auto 20px;
-    /* UPDATED: Logo replaced with white version - no filter needed */
+    height: 188px;
+    width: auto;
 }
 
 .footer p {
@@ -1387,6 +1410,15 @@ a:focus-visible {
     .hours-time {
         min-width: auto;
         text-align: right;
+    }
+
+    .footer-logo {
+        height: 110px;
+    }
+
+    .footer-logo-row::before,
+    .footer-logo-row::after {
+        width: 80px;
     }
 
     /* Modal responsive */
