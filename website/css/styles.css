@@ -375,12 +375,8 @@ a:focus-visible {
 .intro-location {
     font-size: 1.1rem;
     color: var(--color-gray);
-    margin-bottom: 40px;
-    font-style: italic;
-}
-
-.intro .section-title {
     margin-bottom: 0;
+    font-style: italic;
 }
 
 /* About Section — styles moved to story-section.css */
@@ -427,6 +423,27 @@ a:focus-visible {
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
+}
+
+/* Dark background section title overrides (story, location) */
+.story-title,
+.location-title {
+    padding-top: 20px;
+}
+
+.story-title span,
+.location-title span {
+    color: var(--color-white);
+}
+
+.story-title::before,
+.location-title::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='20' viewBox='0 0 160 20'%3E%3Cpath d='M5,12 Q20,4 40,10 Q55,15 70,8 Q85,1 100,10 Q115,18 130,10 Q145,4 155,12' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round'/%3E%3Cpath d='M15,14 Q30,8 45,12 Q60,16 75,10 Q90,4 105,12 Q120,18 135,12 Q145,8 150,14' fill='none' stroke='%23ffffff' stroke-width='0.75' stroke-linecap='round' opacity='0.35'/%3E%3C/svg%3E");
+}
+
+.story-title::after,
+.location-title::after {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='14' viewBox='0 0 100 14'%3E%3Ccircle cx='12' cy='7' r='2' fill='%23A94d00' opacity='0.7'/%3E%3Cpath d='M24,7 Q37,1 50,7 Q63,13 76,7' fill='none' stroke='%23ffffff' stroke-width='1.5' stroke-linecap='round'/%3E%3Ccircle cx='88' cy='7' r='2' fill='%23A94d00' opacity='0.7'/%3E%3C/svg%3E");
 }
 
 /* Vendors Section */
@@ -558,7 +575,6 @@ a:focus-visible {
 }
 
 .location-title span {
-    background-color: rgba(255, 255, 255, 0.15);
     color: var(--color-white);
 }
 
@@ -1316,6 +1332,8 @@ a:focus-visible {
 @media (max-width: 768px) {
     .nav-toggle {
         display: flex;
+        position: absolute;
+        right: 30px;
     }
 
     .nav-menu {
