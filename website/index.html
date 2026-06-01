@@ -46,6 +46,22 @@
     <section class="hero" id="home">
         <div class="hero-overlay"></div>
         <div class="hero-content">
+            <div class="coming-soon-wrap">
+                <svg class="coming-soon-divider" viewBox="0 0 70 20" fill="none" aria-hidden="true">
+                    <circle cx="5" cy="10" r="3" fill="currentColor"/>
+                    <path d="M13 10 Q20 3 27 10 T41 10 T55 10" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                    <circle cx="64" cy="10" r="3" fill="currentColor"/>
+                </svg>
+                <div class="coming-soon-stamp" role="img" aria-label="Coming Soon — we are working to open soon">
+                    <span class="coming-soon-stamp__title">COMING SOON</span>
+                    <span class="coming-soon-stamp__subtext">We're working to open soon</span>
+                </div>
+                <svg class="coming-soon-divider coming-soon-divider--right" viewBox="0 0 70 20" fill="none" aria-hidden="true">
+                    <circle cx="5" cy="10" r="3" fill="currentColor"/>
+                    <path d="M13 10 Q20 3 27 10 T41 10 T55 10" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                    <circle cx="64" cy="10" r="3" fill="currentColor"/>
+                </svg>
+            </div>
             <h1>THE NEW CULINARY DESTINATION<br>AT SAN CLEMENTE, CALIFORNIA</h1>
             <p class="tagline">GLOBAL BITES, LOCAL VIBES</p>
         </div>
@@ -600,7 +616,7 @@
     <!-- Let's Connect Section -->
     <section class="connect" id="contact">
         <div class="container">
-            <div class="connect-grid">
+            <div class="connect-grid connect-grid--form-hidden">
                 <!-- Left Side - Contact Information -->
                 <div class="connect-left">
                     <h2 class="connect-title">Let's Connect</h2>
@@ -632,7 +648,14 @@
                     </div>
                 </div>
                 <!-- Right Side - Contact Form -->
-                <div class="connect-right" id="contact-form">
+                <!--
+                    TEMPORARILY HIDDEN (2026-06-01): The contact form is hidden until we have the
+                    email backend / connection details wired up (where submissions get delivered).
+                    TO RESTORE: remove the `hidden` attribute below AND remove the
+                    `connect-grid--form-hidden` class from the .connect-grid wrapper above.
+                    See js/main.js for the submit handler (currently a stub — needs a real endpoint).
+                -->
+                <div class="connect-right" id="contact-form" hidden>
                     <form id="connectForm" action="#" method="POST" novalidate>
                         <div aria-live="polite" aria-atomic="true" class="form-message" id="formMessage" role="status"></div>
                         <div class="form-row">
