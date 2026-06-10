@@ -155,7 +155,7 @@ Every push to the `main` branch automatically triggers a deployment:
 ## Contact
 
 **Miramar Food Hall**
-1720 North El Camino Real
+150 W Avenida Pico
 San Clemente, CA 92672
 
 - Website: [miramarfoodhall.com](https://miramarfoodhall.com)
