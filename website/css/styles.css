@@ -502,6 +502,10 @@ a:focus-visible {
     will-change: transform;
 }
 
+.vendor-image img[alt="The Pita"] {
+    object-position: center 60%; /* Shift The Pita image framing down */
+}
+
 .vendor-card:hover .vendor-image img {
     transform: scale(1.05);
 }
