@@ -16,6 +16,16 @@
     <link rel="stylesheet" href="css/story-section.css">
 </head>
 <body>
+    <!-- Opening announcement pop-up — shows on page load -->
+    <div class="opening-popup" id="openingPopup" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Miramar Food Hall opening announcement">
+        <button class="opening-popup__close" id="openingPopupClose" aria-label="Close announcement">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+                <path d="M6 6 L18 18 M18 6 L6 18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+        </button>
+        <img class="opening-popup__image" src="images/opening-popup.jpeg" alt="Join us for the official opening of Miramar Food Hall — Thursday, June 18, 150 W Avenida Pico, San Clemente, CA">
+    </div>
+
     <!-- UPDATED: Skip to content link for ADA accessibility (T17) -->
     <a href="#intro" class="skip-to-content">Skip to main content</a>
 
@@ -46,22 +56,6 @@
     <section class="hero" id="home">
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <div class="coming-soon-wrap">
-                <svg class="coming-soon-divider" viewBox="0 0 70 20" fill="none" aria-hidden="true">
-                    <circle cx="5" cy="10" r="3" fill="currentColor"/>
-                    <path d="M13 10 Q20 3 27 10 T41 10 T55 10" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-                    <circle cx="64" cy="10" r="3" fill="currentColor"/>
-                </svg>
-                <div class="coming-soon-stamp" role="img" aria-label="Coming Soon — we are working to open soon">
-                    <span class="coming-soon-stamp__title">COMING SOON</span>
-                    <span class="coming-soon-stamp__subtext">We're working to open soon</span>
-                </div>
-                <svg class="coming-soon-divider coming-soon-divider--right" viewBox="0 0 70 20" fill="none" aria-hidden="true">
-                    <circle cx="5" cy="10" r="3" fill="currentColor"/>
-                    <path d="M13 10 Q20 3 27 10 T41 10 T55 10" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-                    <circle cx="64" cy="10" r="3" fill="currentColor"/>
-                </svg>
-            </div>
             <h1>THE NEW CULINARY DESTINATION<br>AT SAN CLEMENTE, CALIFORNIA</h1>
             <p class="tagline">GLOBAL BITES, LOCAL VIBES</p>
         </div>
@@ -570,27 +564,11 @@
         <div class="container">
             <h2 class="section-title"><span>UPCOMING EVENTS</span></h2>
             <div class="events-grid" id="eventsGrid">
-                <!-- Events loaded dynamically from Google Sheets -->
-                <!-- Fallback events shown if fetch fails -->
-                <div class="event-card">
-                    <div class="event-date">
-                        <span class="month">JAN</span>
-                        <span class="day">25</span>
-                    </div>
-                    <div class="event-info">
-                        <h3>Live Music Night</h3>
-                        <p>Join us for live local bands and great food every Saturday.</p>
-                    </div>
-                </div>
-                <div class="event-card">
-                    <div class="event-date">
-                        <span class="month">FEB</span>
-                        <span class="day">14</span>
-                    </div>
-                    <div class="event-info">
-                        <h3>Valentine's Special</h3>
-                        <p>Celebrate love with special dishes from all our vendors.</p>
-                    </div>
+                <!-- Events loaded dynamically from Google Sheets (see main.js) -->
+                <!-- This empty state shows by default and whenever the sheet is empty or unreachable -->
+                <div class="events-empty">
+                    <p>No events scheduled right now — check back soon!</p>
+                    <a href="https://instagram.com/miramarfoodhall" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Follow @miramarfoodhall for updates</a>
                 </div>
             </div>
         </div>
