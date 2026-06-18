@@ -108,6 +108,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // UPDATED: Celebrations modal (T13, T14)
     initCelebrationsModal();
 
+    // Opening announcement pop-up (shows on page load)
+    initOpeningPopup();
+
     // Parallax effect for hero section (throttled with rAF)
     const hero = document.querySelector('.hero');
     if (hero) {
@@ -398,6 +401,37 @@ function initConnectForm() {
     });
 }
 
+// Opening announcement pop-up — shows on page load
+function initOpeningPopup() {
+    const popup = document.getElementById('openingPopup');
+    const closeBtn = document.getElementById('openingPopupClose');
+
+    if (!popup || !closeBtn) return;
+
+    // Open on load
+    popup.classList.add('active');
+    popup.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    closeBtn.focus();
+
+    function closePopup() {
+        popup.classList.remove('active');
+        popup.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+    }
+
+    closeBtn.addEventListener('click', closePopup);
+
+    // Close when clicking the dark backdrop (outside the image)
+    popup.addEventListener('click', function(e) {
+        if (e.target === popup) closePopup();
+    });
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && popup.classList.contains('active')) closePopup();
+    });
+}
+
 // UPDATED: Celebrations Modal (T13, T14)
 function initCelebrationsModal() {
     const cta = document.getElementById('celebrationsCta');
@@ -534,6 +568,15 @@ function loadEventsFromSheet() {
     const eventsGrid = document.getElementById('eventsGrid');
     if (!eventsGrid) return;
 
+    // Graceful empty state — shown when the sheet has no events OR can't be reached.
+    // No stale/dummy events ever appear; visitors get a friendly nudge instead.
+    const EMPTY_STATE = `
+        <div class="events-empty">
+            <p>No events scheduled right now — check back soon!</p>
+            <a href="https://instagram.com/miramarfoodhall" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Follow @miramarfoodhall for updates</a>
+        </div>
+    `;
+
     fetch(SHEET_CSV_URL)
         .then(response => {
             if (!response.ok) throw new Error('Failed to fetch');
@@ -556,10 +599,14 @@ function loadEventsFromSheet() {
                         </div>
                     </div>
                 `).join('');
+            } else {
+                // Sheet reached but empty (all events deleted) → show empty state
+                eventsGrid.innerHTML = EMPTY_STATE;
             }
         })
         .catch(() => {
-            // Fallback: keep the hardcoded events in the HTML
+            // Fetch failed (sheet unpublished / offline) → same empty state
+            eventsGrid.innerHTML = EMPTY_STATE;
         });
 }
 
