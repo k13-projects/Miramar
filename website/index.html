@@ -341,6 +341,15 @@
                 </div>
                 <div class="vendor-card">
                     <div class="vendor-image">
+                        <img src="images/vendors/egg-and-out.png" alt="Egg & Out" loading="lazy">
+                    </div>
+                    <div class="vendor-info">
+                        <h3>Egg &amp; Out</h3>
+                        <p>A go-to spot for egg-forward favorites, from loaded burritos to satisfying sandwiches. Comfort food, reimagined for any hour of the day.</p>
+                    </div>
+                </div>
+                <div class="vendor-card">
+                    <div class="vendor-image">
                         <img src="images/vendors/el-puerto.jpg" alt="El Puerto Street Tacos" loading="lazy">
                     </div>
                     <div class="vendor-info">
@@ -516,17 +525,19 @@
                             <span class="hours-label">Bar (Daily)</span>
                             <span class="hours-time">11:00 AM - 10:00 PM</span>
                         </div>
-                        <div class="hours-item">
-                            <span class="hours-label">Food Vendors</span>
+                        <div class="hours-item hours-item--has-sub">
+                            <span class="hours-label">Food Vendors*</span>
                             <span class="hours-time">7:00 AM - 9:00 PM</span>
                         </div>
-                        <div class="hours-item">
-                            <span class="hours-label">Egg &amp; Out</span>
-                            <span class="hours-time">8:00 AM - 3:00 PM</span>
-                        </div>
-                        <div class="hours-item">
-                            <span class="hours-label">Immersion</span>
-                            <span class="hours-time">8:00 AM - 10:00 PM</span>
+                        <div class="hours-exceptions">
+                            <div class="hours-exception">
+                                <span class="hours-exception-label">*Egg &amp; Out</span>
+                                <span class="hours-exception-time">8:00 AM - 3:00 PM</span>
+                            </div>
+                            <div class="hours-exception">
+                                <span class="hours-exception-label">*Immersion</span>
+                                <span class="hours-exception-time">8:00 AM - 10:00 PM</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -769,5 +780,17 @@
     <script>(function(){const d=document,s=d.createElement("script");s.type="module";s.src="https://w.behold.so/widget.js";d.head.append(s);})();</script>
     <script src="js/main.js"></script>
     <script src="js/story-section.js"></script>
+
+    <!-- Vercel Web Analytics (cookieless — no consent banner needed). Active only when hosted on Vercel. -->
+    <script>
+        window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
+
+    <!-- Vercel Speed Insights (Core Web Vitals from real visitors). -->
+    <script>
+        window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/speed-insights/script.js"></script>
 </body>
 </html>
