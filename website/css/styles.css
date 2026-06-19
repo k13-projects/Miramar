@@ -530,6 +530,7 @@ a:focus-visible {
     margin-bottom: 0;
 }
 
+
 /* UPDATED: Instagram link centered below vendor description */
 .vendor-instagram {
     display: flex;
@@ -662,7 +663,51 @@ a:focus-visible {
     white-space: nowrap;
     font-variant-numeric: tabular-nums;
     min-width: 145px;
-    text-align: left;
+    text-align: right;
+}
+
+/* Drop the divider on the parent row so its exceptions read as a sub-section */
+.hours-item--has-sub {
+    border-bottom: none;
+    padding-bottom: 6px;
+}
+
+/* Vendor-specific exceptions nested under the general Food Vendors line —
+   smaller, indented, asterisked to signal they differ from the norm. */
+.hours-exceptions {
+    margin-bottom: 18px;
+    padding: 2px 0 2px 18px;
+    border-left: 2px solid var(--color-light-gray);
+}
+
+.hours-exception {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    padding: 5px 0;
+    font-size: 0.8125rem;
+}
+
+.hours-exception-label {
+    font-weight: 600;
+    color: var(--color-dark);
+    white-space: nowrap;
+}
+
+.hours-exception-time {
+    color: var(--color-gray);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+    min-width: 145px;
+    text-align: right;
+}
+
+.hours-exception-note {
+    margin: 8px 0 0;
+    font-size: 0.6875rem;
+    font-style: italic;
+    color: var(--color-gray);
 }
 
 .location-map {
@@ -907,6 +952,7 @@ a:focus-visible {
 
 .contact-social-links {
     display: flex;
+    justify-content: center;
     gap: 12px;
     margin-top: 5px;
 }
