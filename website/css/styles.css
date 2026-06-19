@@ -662,8 +662,30 @@ a:focus-visible {
     color: var(--color-gray);
     white-space: nowrap;
     font-variant-numeric: tabular-nums;
-    min-width: 145px;
+}
+
+/* Split time into fixed-width segments so the dash lines up across every row.
+   Widths are in rem (not em) so they stay aligned even at the smaller
+   exception font size. */
+.t-open,
+.t-close {
+    display: inline-block;
+    width: 4.8rem;
+    font-variant-numeric: tabular-nums;
+}
+
+.t-open {
     text-align: right;
+}
+
+.t-close {
+    text-align: left;
+}
+
+.t-sep {
+    display: inline-block;
+    width: 1rem;
+    text-align: center;
 }
 
 /* Drop the divider on the parent row so its exceptions read as a sub-section */
@@ -677,7 +699,6 @@ a:focus-visible {
 .hours-exceptions {
     margin-bottom: 18px;
     padding: 2px 0 2px 18px;
-    border-left: 2px solid var(--color-light-gray);
 }
 
 .hours-exception {
@@ -691,7 +712,7 @@ a:focus-visible {
 
 .hours-exception-label {
     font-weight: 600;
-    color: var(--color-dark);
+    color: var(--color-gray);
     white-space: nowrap;
 }
 
@@ -699,15 +720,6 @@ a:focus-visible {
     color: var(--color-gray);
     white-space: nowrap;
     font-variant-numeric: tabular-nums;
-    min-width: 145px;
-    text-align: right;
-}
-
-.hours-exception-note {
-    margin: 8px 0 0;
-    font-size: 0.6875rem;
-    font-style: italic;
-    color: var(--color-gray);
 }
 
 .location-map {
