@@ -338,44 +338,53 @@ function initConnectForm() {
             return;
         }
 
-        // Simulate form submission
-        const submitBtn = form.querySelector('button[type="submit"]');
-        const originalText = submitBtn.textContent;
-        submitBtn.textContent = 'Sending...';
-        submitBtn.disabled = true;
+        // Build the email body from the fields and hand off to the visitor's mail client
+        const inquiryLabels = {
+            general: 'General Inquiry',
+            vendor: 'Vendor Opportunity',
+            reservation: 'Group Reservation',
+            career: 'Career Opportunity',
+            other: 'Other'
+        };
+        const phone = (formData.get('phoneNumber') || '').trim();
+        const inquiryLabel = inquiryLabels[inquiry] || inquiry;
 
-        // Simulate API call
+        const bodyLines = [
+            `Full Name: ${fullName}`,
+            `Email: ${email}`,
+            `Phone: ${phone || '—'}`,
+            `Inquiry Type: ${inquiryLabel}`,
+            '',
+            'Message:',
+            message
+        ];
+        // mailto: can't attach files — surface selected resumes as a note instead
+        if (uploadedFiles.length) {
+            bodyLines.push(
+                '',
+                `Note: ${uploadedFiles.length} resume file(s) selected (${uploadedFiles.map(f => f.name).join(', ')}). Please attach them to this email before sending.`
+            );
+        }
+
+        window.location.href = 'mailto:info@miramarfoodhall.com'
+            + '?subject=' + encodeURIComponent(`${inquiryLabel} — ${fullName}`)
+            + '&body=' + encodeURIComponent(bodyLines.join('\n'));
+
+        // Confirm to the user, then reset
+        formMessage.className = 'form-message success';
+        formMessage.textContent = 'Opening your email app to send your message…';
+
+        form.reset();
+        uploadedFiles = [];
+        renderUploadedFiles();
+        fileUploadGroup.style.display = 'none';
+        fileUploadGroup.setAttribute('aria-hidden', 'true');
+        fileWarning.textContent = '';
+
         setTimeout(() => {
-            // Success
-            formMessage.className = 'form-message success';
-            formMessage.textContent = 'Thank you for your message! We\'ll get back to you soon.';
-
-            // Reset form
-            form.reset();
-            uploadedFiles = [];
-            renderUploadedFiles();
-            fileUploadGroup.style.display = 'none';
-            fileUploadGroup.setAttribute('aria-hidden', 'true');
-            fileWarning.textContent = '';
-
-            submitBtn.textContent = originalText;
-            submitBtn.disabled = false;
-
-            // Clear success message after 5 seconds
-            setTimeout(() => {
-                formMessage.className = 'form-message';
-                formMessage.textContent = '';
-            }, 5000);
-
-            console.log('Form submitted:', {
-                fullName,
-                email,
-                phone: formData.get('phoneNumber'),
-                inquiryType: inquiry,
-                message,
-                files: uploadedFiles.map(f => f.name)
-            });
-        }, 1500);
+            formMessage.className = 'form-message';
+            formMessage.textContent = '';
+        }, 5000);
     });
 
     function showFieldError(fieldName, message) {
@@ -517,25 +526,41 @@ function initCelebrationsModal() {
             return;
         }
 
-        // Simulate submission
-        const submitBtn = form.querySelector('button[type="submit"]');
-        const originalText = submitBtn.textContent;
-        submitBtn.textContent = 'Sending...';
-        submitBtn.disabled = true;
+        // Build the email body from the fields and hand off to the visitor's mail client
+        const hostName = data.get('eventHostName').trim();
+        const phone = (data.get('celebrationPhone') || '').trim();
+        const guests = (data.get('guestCount') || '').trim();
+        const eventDate = (data.get('eventDate') || '').trim();
+        const eventTime = (data.get('eventTime') || '').trim();
+        const message = data.get('celebrationMessage').trim();
+
+        const subject = `Event Inquiry — ${hostName}`;
+        const body = [
+            `Event Host Name: ${hostName}`,
+            `Email: ${email}`,
+            `Phone: ${phone || '—'}`,
+            `Number of Guests: ${guests || '—'}`,
+            `Date: ${eventDate || '—'}`,
+            `Time: ${eventTime || '—'}`,
+            '',
+            'Message:',
+            message
+        ].join('\n');
+
+        window.location.href = 'mailto:info@miramarfoodhall.com'
+            + '?subject=' + encodeURIComponent(subject)
+            + '&body=' + encodeURIComponent(body);
+
+        // Confirm to the user, then reset & close
+        formMessage.className = 'form-message success';
+        formMessage.textContent = 'Opening your email app to send the request…';
+        form.reset();
 
         setTimeout(() => {
-            formMessage.className = 'form-message success';
-            formMessage.textContent = 'Thank you! We\'ll be in touch about your event.';
-            form.reset();
-            submitBtn.textContent = originalText;
-            submitBtn.disabled = false;
-
-            setTimeout(() => {
-                formMessage.className = 'form-message';
-                formMessage.textContent = '';
-                closeModal();
-            }, 3000);
-        }, 1500);
+            formMessage.className = 'form-message';
+            formMessage.textContent = '';
+            closeModal();
+        }, 3000);
     });
 
     // Clear field errors on input
