@@ -11,19 +11,25 @@
     <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Fonts loaded async (non-render-blocking); display=swap avoids invisible text -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600;700&display=swap"></noscript>
+    <!-- Preload the LCP image (opening popup shows on page load) -->
+    <link rel="preload" as="image" href="images/opening-popup.webp" type="image/webp" fetchpriority="high">
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/story-section.css">
+    <!-- Story-timeline styles are below the fold — load async so they don't block first render -->
+    <link rel="preload" as="style" href="css/story-section.css" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="css/story-section.css"></noscript>
 </head>
 <body>
     <!-- Opening announcement pop-up — shows on page load -->
-    <div class="opening-popup" id="openingPopup" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Miramar Food Hall opening announcement">
+    <div class="opening-popup active" id="openingPopup" aria-hidden="false" role="dialog" aria-modal="true" aria-label="Miramar Food Hall opening announcement">
         <button class="opening-popup__close" id="openingPopupClose" aria-label="Close announcement">
             <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
                 <path d="M6 6 L18 18 M18 6 L6 18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
             </svg>
         </button>
-        <img class="opening-popup__image" src="images/opening-popup.jpeg" alt="Join us for the official opening of Miramar Food Hall — Thursday, June 18, 150 W Avenida Pico, San Clemente, CA">
+        <picture><source type="image/webp" srcset="images/opening-popup.webp"><img class="opening-popup__image" src="images/opening-popup.jpeg" alt="Join us for the official opening of Miramar Food Hall — Thursday, June 18, 150 W Avenida Pico, San Clemente, CA" fetchpriority="high" decoding="async"></picture>
     </div>
 
     <!-- UPDATED: Skip to content link for ADA accessibility (T17) -->
@@ -33,14 +39,14 @@
     <nav class="navbar">
         <div class="nav-container">
             <a href="#" class="logo">
-                <img src="images/logo/miramar-logo.png" alt="Miramar Food Hall">
+                <picture><source type="image/webp" srcset="images/logo/miramar-logo.webp"><img src="images/logo/miramar-logo.png" alt="Miramar Food Hall"></picture>
             </a>
-            <button class="nav-toggle" aria-label="Toggle navigation">
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navMenu">
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
-            <ul class="nav-menu">
+            <ul class="nav-menu" id="navMenu">
                 <li><a href="#about">About</a></li>
                 <li><a href="#vendors">Vendors</a></li>
                 <li><a href="#events">Events</a></li>
@@ -139,11 +145,11 @@
                                 <p>In 1925, former Seattle mayor Ole Hanson purchased two thousand acres of coastal ranchland and set out to build his dream: a "Spanish Village by the Sea." Inspired by the whitewashed towns of the Mediterranean, he laid out tree-lined avenues, red-tile roofs, and a grand pier stretching into the Pacific. San Clemente was born — a seaside haven where the rhythm of the waves set the pace of daily life.</p>
                             </div>
                             <div class="spread-photo-wide scale-settle">
-                                <img src="images/story/1920s-cars-victoria-ave.jpg" alt="1920s automobiles parked on Avenida Victoria near the San Clemente pier" loading="lazy">
+                                <picture><source type="image/webp" srcset="images/story/1920s-cars-victoria-ave.webp"><img src="images/story/1920s-cars-victoria-ave.jpg" alt="1920s automobiles parked on Avenida Victoria near the San Clemente pier" loading="lazy"></picture>
                             </div>
                         </div>
                         <div class="spread-photo-tall wipe-reveal">
-                            <img src="images/story/filler-ole-hanson.jpg" alt="Ole Hanson's office with men on horseback" loading="lazy" style="object-position: 20% center;">
+                            <picture><source type="image/webp" srcset="images/story/filler-ole-hanson.webp"><img src="images/story/filler-ole-hanson.jpg" alt="Ole Hanson's office with men on horseback" loading="lazy" style="object-position: 20% center;"></picture>
                         </div>
                     </div>
                 </div>
@@ -172,11 +178,11 @@
                                 <p>Miramar Food Hall was born from a vision to bring new life to one of San Clemente's most treasured landmarks. Once home to the Miramar Theatre and the San Clemente Bowling Center, this 1938 Spanish Colonial Revival gem had been closed for over three decades — its art deco marquee dark, its seats empty, but its place in the town's memory unshaken.</p>
                             </div>
                             <div class="spread-photo-wide scale-settle">
-                                <img src="images/story/1938-theatre.jpg" alt="The Miramar Theatre building, circa 1938" loading="lazy" style="object-position: 100% center;">
+                                <picture><source type="image/webp" srcset="images/story/1938-theatre.webp"><img src="images/story/1938-theatre.jpg" alt="The Miramar Theatre building, circa 1938" loading="lazy" style="object-position: 100% center;"></picture>
                             </div>
                         </div>
                         <div class="spread-photo-tall wipe-reveal">
-                            <img src="images/story/filler-theatre-program.jpg" alt="San Clemente Theatre grand opening program" loading="lazy">
+                            <picture><source type="image/webp" srcset="images/story/filler-theatre-program.webp"><img src="images/story/filler-theatre-program.jpg" alt="San Clemente Theatre grand opening program" loading="lazy"></picture>
                         </div>
                     </div>
                 </div>
@@ -205,11 +211,11 @@
                                 <p>By the 1960s, San Clemente had become the heartbeat of Southern California surf culture. Local hero Joyce Hoffman, a San Clemente High standout, captured back-to-back women's world surfing championships in 1965 and 1966 — putting the town on the global map. Trestles became a pilgrimage site, and the laid-back coastal identity that defines San Clemente today was forged in the salt and spray of that golden era.</p>
                             </div>
                             <div class="spread-photo-wide scale-settle">
-                                <img src="images/story/1965-joyce-hoffman.jpg" alt="Joyce Hoffman, San Clemente High surfing champion, 1965" loading="lazy" style="object-position: 100% center;">
+                                <picture><source type="image/webp" srcset="images/story/1965-joyce-hoffman.webp"><img src="images/story/1965-joyce-hoffman.jpg" alt="Joyce Hoffman, San Clemente High surfing champion, 1965" loading="lazy" style="object-position: 100% center;"></picture>
                             </div>
                         </div>
                         <div class="spread-photo-tall wipe-reveal">
-                            <img src="images/story/filler-anchor-inn.jpg" alt="The Anchor Inn House of Sea Food, a beloved San Clemente restaurant" loading="lazy" style="object-position: 85% center;">
+                            <picture><source type="image/webp" srcset="images/story/filler-anchor-inn.webp"><img src="images/story/filler-anchor-inn.jpg" alt="The Anchor Inn House of Sea Food, a beloved San Clemente restaurant" loading="lazy" style="object-position: 85% center;"></picture>
                         </div>
                     </div>
                 </div>
@@ -238,11 +244,11 @@
                                 <p>In 2020, we took on the challenge of restoring the space, honoring its rich history while transforming it into a vibrant culinary destination. Today, Miramar Food Hall stands as a celebration of community, global bites, local vibes and the enduring spirit of Southern California, marking the long-awaited revival of an iconic coastal landmark.</p>
                             </div>
                             <div class="spread-photo-wide scale-settle">
-                                <img src="images/story/2020-movie-house.jpg" alt="The San Clemente Movie House before renovation, 2020" loading="lazy">
+                                <picture><source type="image/webp" srcset="images/story/2020-movie-house.webp"><img src="images/story/2020-movie-house.jpg" alt="The San Clemente Movie House before renovation, 2020" loading="lazy"></picture>
                             </div>
                         </div>
                         <div class="spread-photo-tall wipe-reveal">
-                            <img src="images/story/filler-horseback.jpg" alt="Horseback rider on El Camino Real in front of the Riding Academy" loading="lazy" style="object-position: 90% center;">
+                            <picture><source type="image/webp" srcset="images/story/filler-horseback.webp"><img src="images/story/filler-horseback.jpg" alt="Horseback rider on El Camino Real in front of the Riding Academy" loading="lazy" style="object-position: 90% center;"></picture>
                         </div>
                     </div>
                 </div>
@@ -276,7 +282,7 @@
                                 <div class="cs-scan-line"></div>
                                 <div class="cs-wide-inner">
                                     <div class="cs-loaded-zone">
-                                        <img src="images/logo/logo.png" alt="Miramar Food Hall" class="cs-logo">
+                                        <picture><source type="image/webp" srcset="images/logo/logo.webp"><img src="images/logo/logo.png" alt="Miramar Food Hall" class="cs-logo"></picture>
                                     </div>
                                     <div class="cs-loading-zone">
                                         <div class="cs-skeleton">
@@ -328,7 +334,7 @@
             <div class="vendors-grid">
                 <div class="vendor-card">
                     <div class="vendor-image">
-                        <img src="images/vendors/cosmos.jpg" alt="Cosmos Burger" loading="lazy">
+                        <picture><source type="image/webp" srcset="images/vendors/cosmos.webp"><img src="images/vendors/cosmos.jpg" alt="Cosmos Burger" loading="lazy"></picture>
                     </div>
                     <div class="vendor-info">
                         <h3>Cosmos Burger</h3>
@@ -341,7 +347,7 @@
                 </div>
                 <div class="vendor-card">
                     <div class="vendor-image">
-                        <img src="images/vendors/egg-and-out.png" alt="Egg & Out" loading="lazy">
+                        <picture><source type="image/webp" srcset="images/vendors/egg-and-out.webp"><img src="images/vendors/egg-and-out.png" alt="Egg & Out" loading="lazy"></picture>
                     </div>
                     <div class="vendor-info">
                         <h3>Egg &amp; Out</h3>
@@ -354,7 +360,7 @@
                 </div>
                 <div class="vendor-card">
                     <div class="vendor-image">
-                        <img src="images/vendors/el-puerto.jpg" alt="El Puerto Street Tacos" loading="lazy">
+                        <picture><source type="image/webp" srcset="images/vendors/el-puerto.webp"><img src="images/vendors/el-puerto.jpg" alt="El Puerto Street Tacos" loading="lazy"></picture>
                     </div>
                     <div class="vendor-info">
                         <h3>El Puerto Street Tacos</h3>
@@ -367,7 +373,7 @@
                 </div>
                 <div class="vendor-card">
                     <div class="vendor-image">
-                        <img src="images/vendors/graciously-thai.jpg" alt="Graciously Thai" loading="lazy">
+                        <picture><source type="image/webp" srcset="images/vendors/graciously-thai.webp"><img src="images/vendors/graciously-thai.jpg" alt="Graciously Thai" loading="lazy"></picture>
                     </div>
                     <div class="vendor-info">
                         <h3>Graciously Thai</h3>
@@ -380,7 +386,7 @@
                 </div>
                 <div class="vendor-card">
                     <div class="vendor-image">
-                        <img src="images/vendors/hen-haus.jpg" alt="Hen Haus" loading="lazy" style="object-position: center;">
+                        <picture><source type="image/webp" srcset="images/vendors/hen-haus.webp"><img src="images/vendors/hen-haus.jpg" alt="Hen Haus" loading="lazy" style="object-position: center;"></picture>
                     </div>
                     <div class="vendor-info">
                         <h3>Hen Haus</h3>
@@ -389,7 +395,7 @@
                 </div>
                 <div class="vendor-card">
                     <div class="vendor-image">
-                        <img src="images/vendors/immersion-coffee.jpg" alt="Immersion Coffee Co." loading="lazy">
+                        <picture><source type="image/webp" srcset="images/vendors/immersion-coffee.webp"><img src="images/vendors/immersion-coffee.jpg" alt="Immersion Coffee Co." loading="lazy"></picture>
                     </div>
                     <div class="vendor-info">
                         <h3>Immersion Coffee Co.</h3>
@@ -402,7 +408,7 @@
                 </div>
                 <div class="vendor-card">
                     <div class="vendor-image">
-                        <img src="images/vendors/its-allll-rice.jpg" alt="It's Allll Rice" loading="lazy">
+                        <picture><source type="image/webp" srcset="images/vendors/its-allll-rice.webp"><img src="images/vendors/its-allll-rice.jpg" alt="It's Allll Rice" loading="lazy"></picture>
                     </div>
                     <div class="vendor-info">
                         <h3>It's Allll Rice</h3>
@@ -415,7 +421,7 @@
                 </div>
                 <div class="vendor-card">
                     <div class="vendor-image">
-                        <img src="images/vendors/la-vida.jpg" alt="La Vida" loading="lazy">
+                        <picture><source type="image/webp" srcset="images/vendors/la-vida.webp"><img src="images/vendors/la-vida.jpg" alt="La Vida" loading="lazy"></picture>
                     </div>
                     <div class="vendor-info">
                         <h3>La Vida</h3>
@@ -428,7 +434,7 @@
                 </div>
                 <div class="vendor-card">
                     <div class="vendor-image">
-                        <img src="images/vendors/lobster-lab.jpg" alt="Lobster Lab" loading="lazy">
+                        <picture><source type="image/webp" srcset="images/vendors/lobster-lab.webp"><img src="images/vendors/lobster-lab.jpg" alt="Lobster Lab" loading="lazy"></picture>
                     </div>
                     <div class="vendor-info">
                         <h3>Lobster Lab</h3>
@@ -441,7 +447,7 @@
                 </div>
                 <div class="vendor-card">
                     <div class="vendor-image">
-                        <img src="images/vendors/moto-pizza.jpg" alt="MOTO Pizza" loading="lazy">
+                        <picture><source type="image/webp" srcset="images/vendors/moto-pizza.webp"><img src="images/vendors/moto-pizza.jpg" alt="MOTO Pizza" loading="lazy"></picture>
                     </div>
                     <div class="vendor-info">
                         <h3>MOTO Pizza</h3>
@@ -454,7 +460,7 @@
                 </div>
                 <div class="vendor-card">
                     <div class="vendor-image">
-                        <img src="images/vendors/norigiri.jpg" alt="Norigiri" loading="lazy">
+                        <picture><source type="image/webp" srcset="images/vendors/norigiri.webp"><img src="images/vendors/norigiri.jpg" alt="Norigiri" loading="lazy"></picture>
                     </div>
                     <div class="vendor-info">
                         <h3>Norigiri</h3>
@@ -467,7 +473,7 @@
                 </div>
                 <div class="vendor-card">
                     <div class="vendor-image">
-                        <img src="images/vendors/rolledup.jpg" alt="RolledUp SC" loading="lazy">
+                        <picture><source type="image/webp" srcset="images/vendors/rolledup.webp"><img src="images/vendors/rolledup.jpg" alt="RolledUp SC" loading="lazy"></picture>
                     </div>
                     <div class="vendor-info">
                         <h3>RolledUp SC</h3>
@@ -480,7 +486,7 @@
                 </div>
                 <div class="vendor-card">
                     <div class="vendor-image">
-                        <img src="images/vendors/sidelines.jpg" alt="Sidelines Sandwiches" loading="lazy">
+                        <picture><source type="image/webp" srcset="images/vendors/sidelines.webp"><img src="images/vendors/sidelines.jpg" alt="Sidelines Sandwiches" loading="lazy"></picture>
                     </div>
                     <div class="vendor-info">
                         <h3>Sidelines Sandwiches</h3>
@@ -493,7 +499,7 @@
                 </div>
                 <div class="vendor-card">
                     <div class="vendor-image">
-                        <img src="images/vendors/the-pita.png" alt="The Pita" loading="lazy">
+                        <picture><source type="image/webp" srcset="images/vendors/the-pita.webp"><img src="images/vendors/the-pita.png" alt="The Pita" loading="lazy"></picture>
                     </div>
                     <div class="vendor-info">
                         <h3>The Pita</h3>
@@ -620,20 +626,20 @@
                     <p class="connect-subtitle">We'd love to hear from you. Reach out for inquiries, opportunities, or just to say hello.</p>
                     <div class="contact-info">
                         <div class="contact-item">
-                            <h4>General Inquiries</h4>
+                            <h3>General Inquiries</h3>
                             <p><a href="mailto:info@miramarfoodhall.com">info@miramarfoodhall.com</a></p>
-                            <p><a href="tel:+19495550123">(949) 555-0123</a></p>
+                            <!-- Phone removed: (949) 555-0123 was a placeholder (555-01xx is a reserved fictional range). Restore with the real, Lorena-confirmed number. -->
                         </div>
                         <div class="contact-item">
-                            <h4>Vendor Opportunities</h4>
+                            <h3>Vendor Opportunities</h3>
                             <p><a href="mailto:vendors@miramarfoodhall.com">vendors@miramarfoodhall.com</a></p>
                         </div>
                         <div class="contact-item">
-                            <h4>Careers</h4>
+                            <h3>Careers</h3>
                             <p><a href="mailto:careers@miramarfoodhall.com">careers@miramarfoodhall.com</a></p>
                         </div>
                         <div class="contact-item">
-                            <h4>Follow Us</h4>
+                            <h3>Follow Us</h3>
                             <div class="contact-social-links">
                                 <a href="https://instagram.com/miramarfoodhall" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Instagram">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
@@ -761,7 +767,7 @@
             </form>
             <div class="modal-contact-info">
                 <p>150 W Avenida Pico, San Clemente, CA 92672</p>
-                <p><a href="mailto:info@miramarfoodhall.com">info@miramarfoodhall.com</a> &bull; <a href="tel:+19495550123">(949) 555-0123</a></p>
+                <p><a href="mailto:info@miramarfoodhall.com">info@miramarfoodhall.com</a></p>
             </div>
         </div>
     </div>
@@ -771,17 +777,50 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo-row">
-                    <img src="images/logo/logo.png" alt="Miramar Food Hall" class="footer-logo">
+                    <picture><source type="image/webp" srcset="images/logo/logo.webp"><img src="images/logo/logo.png" alt="Miramar Food Hall" class="footer-logo"></picture>
                 </div>
                 <p>&copy; 2026 Miramar Food Hall. All rights reserved.</p>
+                <nav class="footer-legal" aria-label="Legal and accessibility">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <span aria-hidden="true">&bull;</span>
+                    <a href="accessibility.html">Accessibility</a>
+                </nav>
             </div>
         </div>
     </footer>
 
-    <!-- TODO: Consider integrating a free accessibility widget (UserWay free tier) -->
-    <!-- Notify James before any paid subscription integration -->
+    <!-- Accessibility is handled in code (WCAG 2.1 AA), not via an overlay widget.
+         Overlays (UserWay/accessiBe et al.) do NOT confer legal compliance and have drawn
+         FTC action — see accessibility.html. Do not add one. -->
     <!-- Behold.so Instagram Feed Widget -->
-    <script>(function(){const d=document,s=d.createElement("script");s.type="module";s.src="https://w.behold.so/widget.js";d.head.append(s);})();</script>
+    <script>
+        // Lazy-load the Instagram (Behold) widget only when its section nears the viewport.
+        // Keeps the third-party script off the initial load path (better, more stable LCP).
+        (function () {
+            var loaded = false;
+            function loadBehold() {
+                if (loaded) return;
+                loaded = true;
+                var s = document.createElement('script');
+                s.type = 'module';
+                s.src = 'https://w.behold.so/widget.js';
+                document.head.append(s);
+            }
+            var target = document.querySelector('.instagram-feed');
+            if (target && 'IntersectionObserver' in window) {
+                var io = new IntersectionObserver(function (entries) {
+                    if (entries.some(function (e) { return e.isIntersecting; })) {
+                        loadBehold();
+                        io.disconnect();
+                    }
+                }, { rootMargin: '600px' });
+                io.observe(target);
+            } else {
+                // Fallback: load after the page finishes loading
+                window.addEventListener('load', loadBehold);
+            }
+        })();
+    </script>
     <script src="js/main.js"></script>
     <script src="js/story-section.js"></script>
 

@@ -7,8 +7,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (navToggle) {
         navToggle.addEventListener('click', function() {
-            navMenu.classList.toggle('active');
+            const isOpen = navMenu.classList.toggle('active');
             navToggle.classList.toggle('active');
+            // Communicate expanded/collapsed state to assistive tech (WCAG 4.1.2)
+            navToggle.setAttribute('aria-expanded', String(isOpen));
         });
     }
 
@@ -18,6 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
         link.addEventListener('click', () => {
             navMenu.classList.remove('active');
             navToggle.classList.remove('active');
+            navToggle.setAttribute('aria-expanded', 'false');
         });
     });
 
@@ -37,6 +40,10 @@ document.addEventListener('DOMContentLoaded', function() {
         lastScroll = currentScroll;
     });
 
+    // Respect the user's reduced-motion preference for scripted scrolling (WCAG 2.3.3)
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const scrollBehavior = prefersReducedMotion ? 'auto' : 'smooth';
+
     // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
@@ -50,12 +57,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 window.scrollTo({
                     top: offsetPosition,
-                    behavior: 'smooth'
+                    behavior: scrollBehavior
                 });
             } else {
                 window.scrollTo({
                     top: 0,
-                    behavior: 'smooth'
+                    behavior: scrollBehavior
                 });
 
                 // Wait for scroll to reach top before resetting animations
