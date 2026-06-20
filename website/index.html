@@ -17,7 +17,9 @@
     <!-- Preload the LCP image (opening popup shows on page load) -->
     <link rel="preload" as="image" href="images/opening-popup.webp" type="image/webp" fetchpriority="high">
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/story-section.css">
+    <!-- Story-timeline styles are below the fold — load async so they don't block first render -->
+    <link rel="preload" as="style" href="css/story-section.css" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="css/story-section.css"></noscript>
 </head>
 <body>
     <!-- Opening announcement pop-up — shows on page load -->
