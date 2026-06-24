@@ -14,23 +14,12 @@
     <!-- Fonts loaded async (non-render-blocking); display=swap avoids invisible text -->
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600;700&display=swap"></noscript>
-    <!-- Preload the LCP image (opening popup shows on page load) -->
-    <link rel="preload" as="image" href="images/opening-popup.webp" type="image/webp" fetchpriority="high">
     <link rel="stylesheet" href="css/styles.css">
     <!-- Story-timeline styles are below the fold — load async so they don't block first render -->
     <link rel="preload" as="style" href="css/story-section.css" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="css/story-section.css"></noscript>
 </head>
 <body>
-    <!-- Opening announcement pop-up — shows on page load -->
-    <div class="opening-popup active" id="openingPopup" aria-hidden="false" role="dialog" aria-modal="true" aria-label="Miramar Food Hall opening announcement">
-        <button class="opening-popup__close" id="openingPopupClose" aria-label="Close announcement">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
-                <path d="M6 6 L18 18 M18 6 L6 18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-            </svg>
-        </button>
-        <picture><source type="image/webp" srcset="images/opening-popup.webp"><img class="opening-popup__image" src="images/opening-popup.jpeg" alt="Join us for the official opening of Miramar Food Hall — Thursday, June 18, 150 W Avenida Pico, San Clemente, CA" fetchpriority="high" decoding="async"></picture>
-    </div>
 
     <!-- UPDATED: Skip to content link for ADA accessibility (T17) -->
     <a href="#intro" class="skip-to-content">Skip to main content</a>
@@ -62,6 +51,18 @@
     <section class="hero" id="home">
         <div class="hero-overlay"></div>
         <div class="hero-content">
+            <div class="open-now">
+                <div class="open-now__inner">
+                    <div class="open-now__row">
+                        <span class="open-now__deco open-now__deco--l" aria-hidden="true"><i></i><i></i><i></i></span>
+                        <span class="open-now__text">We Are Open Now</span>
+                        <span class="open-now__deco open-now__deco--r" aria-hidden="true"><i></i><i></i><i></i></span>
+                    </div>
+                    <svg class="open-now__wave" viewBox="0 0 180 20" preserveAspectRatio="none" aria-hidden="true">
+                        <path d="M2,10 C20,5 34,15 52,10 C70,5 84,15 102,10 C120,5 134,15 152,10 C163,7.5 172,7.5 178,10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                    </svg>
+                </div>
+            </div>
             <h1>THE NEW CULINARY DESTINATION<br>AT SAN CLEMENTE, CALIFORNIA</h1>
             <p class="tagline">GLOBAL BITES, LOCAL VIBES</p>
         </div>
@@ -542,7 +543,7 @@
                         <div class="hours-exceptions">
                             <div class="hours-exception">
                                 <span class="hours-exception-label">*Egg &amp; Out</span>
-                                <span class="hours-exception-time"><span class="t-open">8:00 AM</span><span class="t-sep">-</span><span class="t-close">3:00 PM</span></span>
+                                <span class="hours-exception-time"><span class="t-open">8:00 AM</span><span class="t-sep">-</span><span class="t-close">2:00 PM</span></span>
                             </div>
                             <div class="hours-exception">
                                 <span class="hours-exception-label">*Immersion Coffee Co.</span>

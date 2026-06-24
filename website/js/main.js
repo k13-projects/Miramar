@@ -115,9 +115,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // UPDATED: Celebrations modal (T13, T14)
     initCelebrationsModal();
 
-    // Opening announcement pop-up (shows on page load)
-    initOpeningPopup();
-
     // Parallax effect for hero section (throttled with rAF)
     const hero = document.querySelector('.hero');
     if (hero) {
