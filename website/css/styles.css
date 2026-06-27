@@ -595,6 +595,10 @@ a:focus-visible {
     object-position: center 60%; /* Shift The Pita image framing down */
 }
 
+.vendor-image img[alt="MOTO Swirl"] {
+    object-position: center 15%; /* Keep the curled swirl tips in frame */
+}
+
 .vendor-card:hover .vendor-image img {
     transform: scale(1.05);
 }
