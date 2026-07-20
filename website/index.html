@@ -49,6 +49,9 @@
     <main>
     <!-- Hero Section -->
     <section class="hero" id="home">
+        <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="images/hero/hero-poster.jpg" aria-hidden="true" tabindex="-1">
+            <source src="images/hero/hero.mp4" type="video/mp4">
+        </video>
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <div class="open-now">
@@ -277,40 +280,20 @@
                             <div class="spread-text">
                                 <p>Rooted in the relaxed spirit of coastal California, Miramar Food Hall brings together the artistry of local chefs and global flavors under one roof. Designed as a family-friendly gathering place, we offer an elevated yet approachable dining experience that reflects a balance of tradition and innovation, celebrating the region's diverse culinary scene while honoring the charm and character of this historic setting.</p>
                             </div>
-                            <!-- Wide frame: logo loaded + skeleton loading -->
-                            <div class="cs-frame cs-frame--wide">
-                                <div class="cs-grid"></div>
-                                <div class="cs-scan-line"></div>
-                                <div class="cs-wide-inner">
-                                    <div class="cs-loaded-zone">
-                                        <picture><source type="image/webp" srcset="images/logo/logo.webp"><img src="images/logo/logo.png" alt="Miramar Food Hall" class="cs-logo"></picture>
-                                    </div>
-                                    <div class="cs-loading-zone">
-                                        <div class="cs-skeleton">
-                                            <div class="cs-skel-bar" style="width:92%"></div>
-                                            <div class="cs-skel-bar" style="width:68%"></div>
-                                            <div class="cs-skel-bar" style="width:80%"></div>
-                                            <div class="cs-skel-bar" style="width:50%"></div>
-                                        </div>
-                                        <span class="cs-frame-label">Loading the future<span class="cs-dots"><span>.</span><span>.</span><span>.</span></span></span>
-                                    </div>
-                                </div>
+                            <!-- Wide frame (left): the patio, seen through the archway -->
+                            <div class="spread-photo-wide">
+                                <picture>
+                                    <source type="image/webp" srcset="images/story/2026-patio.webp">
+                                    <img src="images/story/2026-patio.jpg" alt="Guests dining on Miramar Food Hall's sunlit patio, framed by the building's signature arch" loading="lazy" width="1069" height="1600">
+                                </picture>
                             </div>
                         </div>
-                        <!-- Tall frame: blueprint coming soon -->
-                        <div class="cs-frame cs-frame--tall">
-                            <div class="cs-grid"></div>
-                            <div class="cs-scan-line"></div>
-                            <div class="cs-border-trace"></div>
-                            <div class="cs-frame-content">
-                                <span class="cs-big-text">Coming<br>Soon</span>
-                                <div class="cs-loading-ring">
-                                    <svg viewBox="0 0 50 50">
-                                        <circle cx="25" cy="25" r="20"></circle>
-                                    </svg>
-                                </div>
-                                <span class="cs-frame-subtitle">Something extraordinary is being built</span>
-                            </div>
+                        <!-- Tall frame (right): the Food Hall exterior -->
+                        <div class="spread-photo-tall">
+                            <picture>
+                                <source type="image/webp" srcset="images/story/2026-outside.webp">
+                                <img src="images/story/2026-outside.jpg" alt="The Spanish-style exterior of Miramar Food Hall at 150 W Avenida Pico, San Clemente, with guests dining on the arched balcony" loading="lazy" width="1042" height="1600">
+                            </picture>
                         </div>
                     </div>
                 </div>
@@ -539,25 +522,22 @@
                     <h3>LOCATION</h3>
                     <address>150 W Avenida Pico, San Clemente, CA 92672</address>
                     <a href="https://maps.google.com/?q=150+W+Avenida+Pico,+San+Clemente,+CA+92672" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Get Directions</a>
-                    <h3>OPERATING HOURS</h3>
-                    <div class="hours-list">
-                        <div class="hours-item">
+                    <h3>HOURS OF OPERATION</h3>
+                    <div class="hours-list hours-list--stacked">
+                        <div class="hours-block hours-block--general">
+                            <span class="hours-time">8:00 AM &ndash; 9:00 PM MON &ndash; SUN</span>
+                        </div>
+                        <div class="hours-block">
                             <span class="hours-label">Bar</span>
-                            <span class="hours-time"><span class="t-open">11:00 AM</span><span class="t-sep">-</span><span class="t-close">10:00 PM</span></span>
+                            <span class="hours-time">11:00 AM &ndash; 10:00 PM MON &ndash; SUN</span>
                         </div>
-                        <div class="hours-item hours-item--has-sub">
-                            <span class="hours-label">Food Vendors*</span>
-                            <span class="hours-time"><span class="t-open">7:00 AM</span><span class="t-sep">-</span><span class="t-close">9:00 PM</span></span>
+                        <div class="hours-block">
+                            <span class="hours-label">Egg &amp; Out</span>
+                            <span class="hours-time">8:00 AM &ndash; 2:00 PM MON &ndash; SUN</span>
                         </div>
-                        <div class="hours-exceptions">
-                            <div class="hours-exception">
-                                <span class="hours-exception-label">*Egg &amp; Out</span>
-                                <span class="hours-exception-time"><span class="t-open">8:00 AM</span><span class="t-sep">-</span><span class="t-close">2:00 PM</span></span>
-                            </div>
-                            <div class="hours-exception">
-                                <span class="hours-exception-label">*Immersion Coffee Co.</span>
-                                <span class="hours-exception-time"><span class="t-open">8:00 AM</span><span class="t-sep">-</span><span class="t-close">10:00 PM</span></span>
-                            </div>
+                        <div class="hours-block">
+                            <span class="hours-label">Immersion Coffee Co.</span>
+                            <span class="hours-time">8:00 AM &ndash; 10:00 PM MON &ndash; SUN</span>
                         </div>
                     </div>
                 </div>
