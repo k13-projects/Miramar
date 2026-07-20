@@ -57,6 +57,8 @@ temp/
 *.mov
 *.avi
 *.wmv
+# ...except web-optimized site assets that must deploy
+!website/images/hero/hero.mp4
 
 # Archives
 *.zip

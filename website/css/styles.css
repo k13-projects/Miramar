@@ -296,13 +296,38 @@ a:focus-visible {
     overflow: hidden;
 }
 
+/* Full-bleed background video — sits behind the overlay + content */
+.hero-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 0;
+    pointer-events: none;
+}
+
 .hero-overlay {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
+    z-index: 0;
     background: rgba(0, 0, 0, 0.3);
+}
+
+/* Reduced motion / no video: fall back to the poster still */
+@media (prefers-reduced-motion: reduce) {
+    .hero-video {
+        display: none;
+    }
+    .hero {
+        background-image: url('../images/hero/hero-poster.jpg');
+        background-size: cover;
+        background-position: center;
+    }
 }
 
 .hero-content {
@@ -329,7 +354,6 @@ a:focus-visible {
     flex-direction: column;
     align-items: center;
     gap: 8px;
-    -webkit-box-reflect: below 4px linear-gradient(to bottom, rgba(0, 0, 0, 0.28), transparent 72%);
 }
 
 .open-now__row {
