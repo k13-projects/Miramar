@@ -737,6 +737,44 @@ a:focus-visible {
     margin-bottom: 30px;
 }
 
+/* Poster-style stacked hours: centered blocks, teal label above the time.
+   Overrides the left-aligned two-column .hours-item layout below. */
+.location-info .hours-list--stacked {
+    text-align: center;
+    max-width: 420px;
+}
+
+.hours-block {
+    padding: 12px 0;
+}
+
+.hours-block .hours-label {
+    display: block;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--color-dark-teal);
+    margin-bottom: 6px;
+}
+
+.hours-block .hours-time {
+    display: block;
+    font-size: 1.25rem;
+    color: var(--color-gray);
+    white-space: normal;
+    text-align: center;
+}
+
+/* Top general line — no label, a touch larger, extra breathing room below. */
+.hours-block--general {
+    padding-top: 4px;
+    margin-bottom: 8px;
+}
+
+.hours-block--general .hours-time {
+    font-size: 1.35rem;
+}
+
 .hours-item {
     display: flex;
     justify-content: space-between;
