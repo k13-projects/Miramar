@@ -1,0 +1,47 @@
+{
+  "project": "Miramar",
+  "feature": "2026 — Today section photo swap: 2026-drinks removed, replaced by 2026-outside (Food Hall exterior) + 2026-patio (archway view) confirmed",
+  "date": "2026-07-20",
+  "tester": "Olga (QA Test Engineer, Chrome Gate)",
+  "target_url": "http://localhost:3300/index.html",
+  "method": "gstack browse (headless Chromium), real DOM + computed-style + naturalWidth/currentSrc inspection, network log review for 404s, screenshots at both viewports",
+  "viewports_tested": [
+    { "label": "desktop", "width": 1440, "height": 900 },
+    { "label": "mobile", "width": 390, "height": 844 }
+  ],
+  "checklist": [
+    {
+      "item": "Both images load (naturalWidth>0, complete=true), browser serves .webp source; no 404 for images/story/2026-drinks.*",
+      "result": "PASS",
+      "evidence": "Desktop: wide currentSrc=.../2026-outside.webp (naturalWidth 1042, naturalHeight 1600, complete=true); tall currentSrc=.../2026-patio.webp (naturalWidth 1069, naturalHeight 1600, complete=true). Mobile: identical currentSrc/naturalWidth/naturalHeight/complete values. Full network log at both viewports shows 200 for 2026-outside.webp and 2026-patio.webp, zero requests to any 2026-drinks.* path (file removed cleanly from markup, no dangling reference in HTML/CSS/JS — grep across website/ confirms no live reference)."
+    },
+    {
+      "item": "No console errors tied to this section (specifically no 404 for 2026-drinks)",
+      "result": "PASS",
+      "evidence": "Only two console errors present at both viewports: /_vercel/insights/script.js and /_vercel/speed-insights/script.js (404). Both are pre-existing Vercel analytics stubs absent on the local static server, unrelated to the 2026 section or this image swap."
+    },
+    {
+      "item": "Images fill their frames via object-fit: cover, no distortion; wide 'Food Hall' exterior crop is reasonable (building/sign visible, not an awkward sliver)",
+      "result": "PASS",
+      "evidence": "Both <img> have computed object-fit: cover, display:block, width/height:100% of their frame — no stretch/squash (aspect preserved, only cropped). Desktop rendered wide frame 568x872, tall frame 568x1091. Mobile rendered wide frame 350x537, tall frame 350x524. Full-frame screenshots (scrolled to align image top with viewport top, bypassing the sticky nav) confirm the wide crop shows the complete Spanish-tile roof, the 'Food Hall' sign, awning, balcony diners, and street-level bikes/cyclist — not a tight/awkward sliver — at both desktop and mobile. Tall frame shows the full archway with sunlit patio diners and umbrellas at both sizes.",
+      "note": "Container class is named .spread-photo-wide but the actual rendered box is portrait-oriented (roughly matching the tall frame's proportions), because the source photo (2026-outside.jpg, 1042x1600) is itself a portrait crop, not a landscape one. This is a design/naming mismatch worth flagging to design, NOT a visual defect — side-by-side the two columns read as balanced, and the crop itself looks intentional and well-composed at both viewports. See minor_notes."
+    },
+    {
+      "item": "Two-column spread balanced on desktop, stacks cleanly on mobile",
+      "result": "PASS",
+      "evidence": "Desktop: two columns render near-identical width (568px) and near-identical height (872px vs 1091px, close enough to read as a balanced spread, not lopsided). Mobile: paragraph → wide photo → tall photo stack top-to-bottom with consistent gutters/border-radius, no overlap or squeezed spacing."
+    }
+  ],
+  "console_errors": "None tied to the 2026 section or the photo swap. Two unrelated, pre-existing 404s for /_vercel/insights/script.js and /_vercel/speed-insights/script.js (Vercel analytics, expected absent on local static server).",
+  "minor_notes": [
+    "Naming/semantic mismatch (non-blocking): the wide frame's CSS class (.spread-photo-wide) implies a landscape image, but the new source (2026-outside.jpg, 1042x1600) is portrait, so the rendered box ends up nearly as tall/portrait as the 'tall' column next to it rather than a wide letterboxed shape. Visually this still reads fine — balanced two-column spread, good crop, no distortion — but if the original design intent was a true wide/landscape frame under the paragraph, flag to design for a source-image re-check (crop a landscape version of 2026-outside, or rename the class to match its new portrait role).",
+    "Tooling note for future QA: taking a full-element (--selector) screenshot of this section captures the sticky top nav mid-composite (renders twice, once floating over the photos) because Playwright's element screenshot stitches multiple scroll positions while the nav stays fixed. Not a real user-facing bug — confirmed by re-screenshotting with plain --viewport captures at aligned scroll positions, where the nav appears normally once at the top and the photos render clean underneath."
+  ],
+  "verdict": "PASS",
+  "scope_note": "Report-only per task instructions — no fixes applied.",
+  "screenshots": [
+    "/private/tmp/claude-501/-Users-k13-Desktop-PROJECTS-Miramar/820f5e2a-3179-4b36-a945-5324bb7cf4b0/scratchpad/qa/desktop-2026-full.png",
+    "/private/tmp/claude-501/-Users-k13-Desktop-PROJECTS-Miramar/820f5e2a-3179-4b36-a945-5324bb7cf4b0/scratchpad/qa/mobile-wide-clean.png",
+    "/private/tmp/claude-501/-Users-k13-Desktop-PROJECTS-Miramar/820f5e2a-3179-4b36-a945-5324bb7cf4b0/scratchpad/qa/mobile-tall-clean.png"
+  ]
+}
