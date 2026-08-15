@@ -68,3 +68,6 @@ temp/
 # Source design assets folder
 Miramar Assets/
 .gstack/
+
+# Claude Code — machine-local permission grants, never push
+.claude/settings.local.json

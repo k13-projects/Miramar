@@ -1,0 +1,68 @@
+{
+  "project": "Miramar",
+  "feature": "Hero full-bleed background video (.hero-video) + 2026 — Today section real photos (2026-drinks / 2026-patio)",
+  "date": "2026-07-20",
+  "tester": "Olga (QA Test Engineer, Chrome Gate)",
+  "target_url": "http://localhost:3300/index.html",
+  "method": "Playwright/Chromium headless, real DOM + computed-style + video-element inspection, plus raw ffmpeg frame extraction from hero.mp4 to rule out a baked-in video artifact",
+  "viewports_tested": [
+    { "label": "desktop", "width": 1440, "height": 900, "device_scale_factor": 2 },
+    { "label": "mobile", "width": 390, "height": 844, "device_scale_factor": 2 }
+  ],
+  "checklist": [
+    {
+      "item": "Hero video covers full hero area, object-fit: cover, no letterboxing/gaps, sits behind overlay + headline",
+      "result": "PASS",
+      "evidence": "computed object-fit: cover; video rect (1440x900 desktop, 390x844 mobile) exactly matches .hero bounding rect at both viewports; z-index stacking: video z-index 0 (DOM-first) -> .hero-overlay z-index 0 (DOM-after, paints on top) -> .hero-content z-index 1 (on top of both); no visible seams in screenshots"
+    },
+    {
+      "item": "Headline / tagline / 'We Are Open Now' badge remain legible over the video",
+      "result": "PASS",
+      "evidence": "Confirmed visually on both viewport screenshots; h1 has text-shadow 2px 2px 4px rgba(0,0,0,.3), tagline and badge have their own text-shadows, dark overlay rgba(0,0,0,.3) sits between video and text. Legible across both light (cream wall) and dark (red tray) regions of the underlying footage.",
+      "note_see_minor_notes": "See minor_notes #1 — pre-existing box-reflect ghosting on the badge is more visible now that there's a busy video behind it, though it does not block legibility of the actual headline text."
+    },
+    {
+      "item": "Video is actually playing (paused===false, readyState>=2, currentTime advancing, autoplay succeeded)",
+      "result": "PASS",
+      "evidence": "desktop: paused=false, readyState=4, currentTime 7.60s -> 8.61s after 1s wait; mobile: paused=false, readyState=4, currentTime 8.16s -> 9.18s after 1s wait; explicit v.play() call resolved with no error on both viewports (play_error: null); videoWidth=1920, videoHeight=1080 (native) reported identically on both viewports since it's the intrinsic decode size, scaled down via object-fit: cover"
+    },
+    {
+      "item": "No horizontal scrollbar introduced",
+      "result": "PASS",
+      "evidence": "document.documentElement.scrollWidth === clientWidth at both 1440px and 390px (no overflow)"
+    },
+    {
+      "item": "prefers-reduced-motion fallback",
+      "result": "PASS (bonus check, not explicitly requested but relevant to legibility/motion gate)",
+      "evidence": "With reduced-motion emulated, .hero-video computed display: none and .hero falls back to background-image: url(images/hero/hero-poster.jpg) per the existing @media (prefers-reduced-motion: reduce) block"
+    },
+    {
+      "item": "2026 section: wide landscape photo (2026-drinks) + tall portrait photo (2026-patio) load, no broken images",
+      "result": "PASS",
+      "evidence": "Both img elements complete=true, naturalWidth/naturalHeight > 0 on both viewports (wide 1600x900, tall 1069x1600); browser correctly picked the .webp <source> (currentSrc ends in .webp) with .jpg as the <img> fallback; note: images are loading=\"lazy\", so a naive check immediately after scroll-into-view before the browser has decoded them will misreport 0x0 — confirmed real load with a >=3s settle time and via a dedicated requestfailed/response listener (only 404s seen were unrelated /_vercel/insights and /_vercel/speed-insights analytics scripts, expected on local static server)"
+    },
+    {
+      "item": "Images fill their frames without distortion; two-column spread balanced on desktop, stacks cleanly on mobile",
+      "result": "PASS",
+      "evidence": "object-fit: cover on both <img>; desktop screenshot shows wide frame under body text (left column) and tall frame in right column, roughly equal visual weight; mobile screenshot stacks text -> wide photo -> tall photo top-to-bottom with consistent gutters, no distortion or cropping artifacts"
+    }
+  ],
+  "console_errors": "None related to the hero video or 2026 images. Two unrelated 404s for /_vercel/insights/script.js and /_vercel/speed-insights/script.js (Vercel analytics, expected absent on local dev server, pre-existing, out of scope).",
+  "minor_notes": [
+    "Pre-existing (not introduced by this change): .open-now__inner has -webkit-box-reflect (added 2026-06-24, commit 5de5aac) which reflects the 'We Are Open Now' text/badge downward with a fading gradient. Against the old flat gradient hero background this reflection was nearly invisible; against the new, busier video footage it now reads as a faint ghost/double-exposure text artifact overlapping the top of the h1 headline on some video frames (e.g. the burger-tray frame, visible in hero_desktop.png crop). Does not block legibility of the actual headline but is a visual regression surfaced by the video addition — worth a design pass to either remove the box-reflect or increase the overlay opacity slightly. Root cause confirmed via raw ffmpeg frame extraction from hero.mp4: no watermark baked into the source video itself, so the artifact is purely the CSS reflection, not the footage.",
+    "Verified real Miramar footage in hero.mp4 (Hen Haus / Lobster Loaded vendor signage visible in extracted frames) — not stock/placeholder video."
+  ],
+  "verdict": "PASS",
+  "scope_note": "Report-only per task instructions — no fixes applied. The box-reflect ghosting note above is informational for the design/eng follow-up, not a blocker for these two specific changes.",
+  "screenshots": [
+    "/private/tmp/claude-501/-Users-k13-Desktop-PROJECTS-Miramar/820f5e2a-3179-4b36-a945-5324bb7cf4b0/scratchpad/hero_desktop.png",
+    "/private/tmp/claude-501/-Users-k13-Desktop-PROJECTS-Miramar/820f5e2a-3179-4b36-a945-5324bb7cf4b0/scratchpad/hero_mobile.png",
+    "/private/tmp/claude-501/-Users-k13-Desktop-PROJECTS-Miramar/820f5e2a-3179-4b36-a945-5324bb7cf4b0/scratchpad/hero_desktop_crop.png",
+    "/private/tmp/claude-501/-Users-k13-Desktop-PROJECTS-Miramar/820f5e2a-3179-4b36-a945-5324bb7cf4b0/scratchpad/section2026_desktop.png",
+    "/private/tmp/claude-501/-Users-k13-Desktop-PROJECTS-Miramar/820f5e2a-3179-4b36-a945-5324bb7cf4b0/scratchpad/section2026_mobile.png",
+    "/private/tmp/claude-501/-Users-k13-Desktop-PROJECTS-Miramar/820f5e2a-3179-4b36-a945-5324bb7cf4b0/scratchpad/section2026_elem_desktop.png",
+    "/private/tmp/claude-501/-Users-k13-Desktop-PROJECTS-Miramar/820f5e2a-3179-4b36-a945-5324bb7cf4b0/scratchpad/section2026_elem_mobile.png",
+    "/private/tmp/claude-501/-Users-k13-Desktop-PROJECTS-Miramar/820f5e2a-3179-4b36-a945-5324bb7cf4b0/scratchpad/frame.png",
+    "/private/tmp/claude-501/-Users-k13-Desktop-PROJECTS-Miramar/820f5e2a-3179-4b36-a945-5324bb7cf4b0/scratchpad/frame8.png"
+  ]
+}

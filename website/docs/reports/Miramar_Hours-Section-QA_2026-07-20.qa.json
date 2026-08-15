@@ -1,0 +1,43 @@
+{
+  "project": "Miramar",
+  "feature": "Hours of Operation section (#hours) — poster-style stacked restructure",
+  "date": "2026-07-20",
+  "tester": "Olga (QA Test Engineer, Chrome Gate)",
+  "target_url": "http://localhost:3300/index.html",
+  "viewports_tested": [
+    { "label": "desktop", "width": 1440, "height": 900 },
+    { "label": "mobile", "width": 390, "height": 844 }
+  ],
+  "checklist": [
+    {
+      "item": "Blocks centered on both viewports",
+      "result": "PASS",
+      "evidence": "computed text-align: center on #hours, .hours-list--stacked, .hours-block--general, .hours-block--general .hours-time, and each .hours-block .hours-time at both 1440w and 390w"
+    },
+    {
+      "item": "Labels render teal/uppercase above their times",
+      "result": "PASS",
+      "evidence": "BAR / EGG & OUT / IMMERSION COFFEE CO. computed color rgb(4,96,84) (--color-dark-teal), text-transform: uppercase, display: block, positioned above .hours-time (source order + block layout)"
+    },
+    {
+      "item": "Times NOT right-aligned on mobile",
+      "result": "PASS",
+      "evidence": "computed text-align at 390px viewport is 'center' for .hours-block .hours-time; the leftover mobile media-query rule '.hours-time { text-align: right }' (styles.css ~line 1744, dead from the old two-column layout) is correctly overridden — .hours-block .hours-time has higher specificity (0,2,0 vs 0,1,0) so it wins regardless of source order at every viewport"
+    },
+    {
+      "item": "No leftover two-column or asterisk-exception styling",
+      "result": "PASS",
+      "evidence": "document.querySelectorAll('.hours-item, .hours-exceptions, .hours-exception').length === 0 — old classes still defined in styles.css (dead CSS, ~lines 778-796, 830-850) but never referenced by current markup"
+    }
+  ],
+  "console_errors": "None related to #hours. Two unrelated 404s for /_vercel/insights/script.js and /_vercel/speed-insights/script.js (expected — Vercel analytics not available on local dev server, pre-existing, out of scope).",
+  "minor_notes": [
+    "At 390px, two time strings wrap to a second line leaving a lone 'SUN' as an orphan/widow: '8:00 AM – 9:00 PM MON – SUN' and '11:00 AM – 10:00 PM MON – SUN'. Still centered and readable, not a functional bug — flagging as a polish opportunity (e.g. nbsp before final 'SUN', or a narrower max-width tweak) if a pixel-perfect pass is wanted later.",
+    "Stray untracked file 'website/css/styles 2.css' found in git status (not referenced by index.html, not part of this section) — recommend removing before shipping."
+  ],
+  "verdict": "PASS",
+  "screenshots": [
+    "/private/tmp/claude-501/-Users-k13-Desktop-PROJECTS-Miramar/820f5e2a-3179-4b36-a945-5324bb7cf4b0/scratchpad/hours-desktop-1440.png",
+    "/private/tmp/claude-501/-Users-k13-Desktop-PROJECTS-Miramar/820f5e2a-3179-4b36-a945-5324bb7cf4b0/scratchpad/hours-mobile-390.png"
+  ]
+}
