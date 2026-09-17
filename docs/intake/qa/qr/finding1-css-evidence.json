@@ -1,0 +1,16 @@
+{
+  "slotCss": {
+    "borderRadius": "14px",
+    "overflow": "hidden",
+    "width": "72px",
+    "height": "72px",
+    "background": "rgb(255, 255, 255)"
+  },
+  "canvasCss": {
+    "width": 66,
+    "height": 66,
+    "displayWidth": "70px",
+    "displayHeight": "70px",
+    "background": "rgba(0, 0, 0, 0)"
+  }
+}

@@ -1,0 +1,131 @@
+{
+  "results": [
+    {
+      "name": "Fresh load: no console errors",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Fresh load: no page errors",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Fresh load: progress reads 0% (fix check)",
+      "ok": true,
+      "detail": "0% filled in"
+    },
+    {
+      "name": "Fresh load: no nav ticks marked done",
+      "ok": true,
+      "detail": "done=0"
+    },
+    {
+      "name": "Continue button: closes current, opens next",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Vendor 1 expands on click",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Expanded vendor card survives typing in a hall-default text field",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Vendor count is 15",
+      "ok": true,
+      "detail": "actual=15"
+    },
+    {
+      "name": "Default dietary (Gluten-Free) reaches all 15 vendors",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Vendor card stays expanded after clicking its own override toggle",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Overridden vendor stays independent when hall default changes afterward",
+      "ok": true,
+      "detail": "Gluten-Free,Vegan"
+    },
+    {
+      "name": "Non-overridden vendor follows the new hall default",
+      "ok": true,
+      "detail": "Dairy-Free"
+    },
+    {
+      "name": "Fix check: vendor 1 card still open through all of this too",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Copy-from-above copies override state onto the next vendor",
+      "ok": true,
+      "detail": "Vendor-specific"
+    },
+    {
+      "name": "Bulk \"every vendor takes counter orders\" applies",
+      "ok": true,
+      "detail": "Order at counter"
+    },
+    {
+      "name": "Bulk \"no vendor takes transfers\" clears the hall default toggle",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "QR code renders (non-blank canvas) once a URL is entered",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Accessibility \"Not applicable\" shows a badge",
+      "ok": true,
+      "detail": "Marked not applicable"
+    },
+    {
+      "name": "Section marked \"Not applicable\" counts as answered (nav tick)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Parking \"Not sure\" badge shows who-to-ask",
+      "ok": true,
+      "detail": "Not sure, ask Lorena, front desk"
+    },
+    {
+      "name": "FAQ \"Remove from answers\" reverts an accepted suggestion",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Progress increased after filling the form",
+      "ok": true,
+      "detail": "57% filled in"
+    },
+    {
+      "name": "Answer preview textarea is populated",
+      "ok": true,
+      "detail": "len=8015"
+    },
+    {
+      "name": "Reload: checkbox answers persisted",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Persistence across reload [THREW]",
+      "ok": false,
+      "detail": "TimeoutError: locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('#vendorsContainer .vendor-card').nth(2).locator('.vendor-summary')\n    - locator resolved to <button type=\"button\" class=\"vendor-summary\">…</button>\n  - attempting click action\n    - waiting for element to be v"
+    }
+  ],
+  "consoleErrors": [],
+  "pageErrors": []
+}

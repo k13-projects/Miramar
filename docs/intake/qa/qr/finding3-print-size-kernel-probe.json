@@ -1,0 +1,16 @@
+{
+  "purpose": "Isolate whether print-size decode failures for long-URL QR codes are caused by the resize kernel or by the logo overlay, by testing every kernel and testing with/without the logo.",
+  "method": "Raw canvas pixel data (canvas.toDataURL) for each case, with a synthetic 4-module white quiet zone added, resized with sharp to 295px/354px/413px (25mm/30mm/35mm at 300dpi) using 4 different resampling kernels, then decoded with jsQR.",
+  "result_with_logo": {
+    "doordash-long (77 modules, 154px raw, 202 chars)": { "295px_25mm": "FAIL (all 4 kernels)", "354px_30mm": "PASS (all 4 kernels)", "413px_35mm": "PASS (all 4 kernels)" },
+    "doordash-xl (97 modules, 194px raw, 340 chars)": { "295px_25mm": "FAIL (all 4 kernels)", "354px_30mm": "FAIL (all 4 kernels)", "413px_35mm": "PASS (all 4 kernels)" },
+    "stress-extreme (129 modules, 258px raw, 646 chars, unrealistic)": { "295px_25mm": "PASS", "354px_30mm": "PASS", "413px_35mm": "PASS" },
+    "google-writereview (49 modules, 98px raw, 79 chars)": { "295px_25mm": "PASS", "354px_30mm": "PASS", "413px_35mm": "PASS" }
+  },
+  "result_bare_no_logo_control": {
+    "doordash-long": { "295px_25mm": "FAIL", "354px_30mm": "PASS", "413px_35mm": "PASS" },
+    "doordash-xl": { "295px_25mm": "FAIL", "354px_30mm": "FAIL", "413px_35mm": "PASS" },
+    "stress-extreme": { "295px_25mm": "PASS", "354px_30mm": "PASS", "413px_35mm": "PASS" }
+  },
+  "conclusion": "Identical pass/fail pattern with and without the logo, and identical across all 4 resize kernels (nearest, cubic, lanczos3, mitchell) -- rules out the logo overlay and rules out resize-kernel choice as the cause. Root cause is the raw source raster itself: renderQrComposite() caps module pixel size at Math.max(2, Math.round(72/count)), so once a URL needs more than ~36 modules the source never gets sharper than 2px/module. Resampling that thin a source to real print pixel counts hits an unpredictable aliasing window for module counts in roughly the 70-100 range (this batch: 77 and 97 modules failed at 25mm, 97 modules also failed at 30mm) while both smaller and much larger codes were unaffected. Not a smooth function of URL length -- some longer URLs land in a safe zone by chance, some shorter ones do not."
+}

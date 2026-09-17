@@ -1,0 +1,425 @@
+[
+  {
+    "id": "plain-https",
+    "label": "Plain https root URL",
+    "typedValue": "https://miramarfoodhall.com",
+    "tests": {
+      "bare_raw": {
+        "decoded": "https://miramarfoodhall.com",
+        "matchesTyped": true,
+        "matchesDomValue": true,
+        "pixelSize": "66x66"
+      },
+      "withlogo_raw_zero_quietzone": {
+        "decoded": "https://miramarfoodhall.com",
+        "matchesTyped": true,
+        "pixelSize": "66x66"
+      },
+      "withlogo_with_4module_quietzone": {
+        "decoded": "https://miramarfoodhall.com",
+        "matchesTyped": true,
+        "marginPxAdded": 8,
+        "pixelSize": "82x82"
+      },
+      "print_30mm_300dpi_bicubic": {
+        "decoded": "https://miramarfoodhall.com",
+        "matchesTyped": true,
+        "pixelSize": "354x354"
+      },
+      "phone_scan_arm_length_220px": {
+        "decoded": "https://miramarfoodhall.com",
+        "matchesTyped": true,
+        "pixelSize": "220x220"
+      },
+      "grayscale_print_30mm": {
+        "decoded": "https://miramarfoodhall.com",
+        "matchesTyped": true,
+        "pixelSize": "354x354"
+      }
+    }
+  },
+  {
+    "id": "no-scheme",
+    "label": "Typed without scheme",
+    "typedValue": "miramarfoodhall.com",
+    "tests": {
+      "bare_raw": {
+        "decoded": "miramarfoodhall.com",
+        "matchesTyped": true,
+        "matchesDomValue": true,
+        "pixelSize": "58x58"
+      },
+      "withlogo_raw_zero_quietzone": {
+        "decoded": "miramarfoodhall.com",
+        "matchesTyped": true,
+        "pixelSize": "58x58"
+      },
+      "withlogo_with_4module_quietzone": {
+        "decoded": "miramarfoodhall.com",
+        "matchesTyped": true,
+        "marginPxAdded": 8,
+        "pixelSize": "74x74"
+      },
+      "print_30mm_300dpi_bicubic": {
+        "decoded": "miramarfoodhall.com",
+        "matchesTyped": true,
+        "pixelSize": "354x354"
+      },
+      "phone_scan_arm_length_220px": {
+        "decoded": "miramarfoodhall.com",
+        "matchesTyped": true,
+        "pixelSize": "220x220"
+      },
+      "grayscale_print_30mm": {
+        "decoded": "miramarfoodhall.com",
+        "matchesTyped": true,
+        "pixelSize": "354x354"
+      }
+    }
+  },
+  {
+    "id": "trailing-space",
+    "label": "Trailing space from a paste",
+    "typedValue": "https://miramarfoodhall.com ",
+    "tests": {
+      "bare_raw": {
+        "decoded": "https://miramarfoodhall.com ",
+        "matchesTyped": true,
+        "matchesDomValue": true,
+        "pixelSize": "66x66"
+      },
+      "withlogo_raw_zero_quietzone": {
+        "decoded": "https://miramarfoodhall.com",
+        "matchesTyped": false,
+        "pixelSize": "66x66"
+      },
+      "withlogo_with_4module_quietzone": {
+        "decoded": "https://miramarfoodhall.com",
+        "matchesTyped": false,
+        "marginPxAdded": 8,
+        "pixelSize": "82x82"
+      },
+      "print_30mm_300dpi_bicubic": {
+        "decoded": "https://miramarfoodhall.com",
+        "matchesTyped": false,
+        "pixelSize": "354x354"
+      },
+      "phone_scan_arm_length_220px": {
+        "decoded": "https://miramarfoodhall.com",
+        "matchesTyped": false,
+        "pixelSize": "220x220"
+      },
+      "grayscale_print_30mm": {
+        "decoded": "https://miramarfoodhall.com",
+        "matchesTyped": false,
+        "pixelSize": "354x354"
+      }
+    }
+  },
+  {
+    "id": "doordash-long",
+    "label": "Long DoorDash URL w/ srsltid (>150 chars)",
+    "typedValue": "https://www.doordash.com/store/cosmos-burger-corona-24518903/12938471/?pickup=false&distance_bucket=25&event_type=autocomplete&srsltid=AfmBOoq7Xk2pQnW4z8VvY6cT1mH3jL9rS0dF5gB2nK8wE4uP6xA1cV9bN3sQ7yR2tU5",
+    "tests": {
+      "bare_raw": {
+        "decoded": "https://www.doordash.com/store/cosmos-burger-corona-24518903/12938471/?pickup=false&distance_bucket=25&event_type=autocomplete&srsltid=AfmBOoq7Xk2pQnW4z8VvY6cT1mH3jL9rS0dF5gB2nK8wE4uP6xA1cV9bN3sQ7yR2tU5",
+        "matchesTyped": true,
+        "matchesDomValue": true,
+        "pixelSize": "154x154"
+      },
+      "withlogo_raw_zero_quietzone": {
+        "decoded": "https://www.doordash.com/store/cosmos-burger-corona-24518903/12938471/?pickup=false&distance_bucket=25&event_type=autocomplete&srsltid=AfmBOoq7Xk2pQnW4z8VvY6cT1mH3jL9rS0dF5gB2nK8wE4uP6xA1cV9bN3sQ7yR2tU5",
+        "matchesTyped": true,
+        "pixelSize": "154x154"
+      },
+      "withlogo_with_4module_quietzone": {
+        "decoded": "https://www.doordash.com/store/cosmos-burger-corona-24518903/12938471/?pickup=false&distance_bucket=25&event_type=autocomplete&srsltid=AfmBOoq7Xk2pQnW4z8VvY6cT1mH3jL9rS0dF5gB2nK8wE4uP6xA1cV9bN3sQ7yR2tU5",
+        "matchesTyped": true,
+        "marginPxAdded": 8,
+        "pixelSize": "170x170"
+      },
+      "print_30mm_300dpi_bicubic": {
+        "decoded": "https://www.doordash.com/store/cosmos-burger-corona-24518903/12938471/?pickup=false&distance_bucket=25&event_type=autocomplete&srsltid=AfmBOoq7Xk2pQnW4z8VvY6cT1mH3jL9rS0dF5gB2nK8wE4uP6xA1cV9bN3sQ7yR2tU5",
+        "matchesTyped": true,
+        "pixelSize": "354x354"
+      },
+      "phone_scan_arm_length_220px": {
+        "decoded": "https://www.doordash.com/store/cosmos-burger-corona-24518903/12938471/?pickup=false&distance_bucket=25&event_type=autocomplete&srsltid=AfmBOoq7Xk2pQnW4z8VvY6cT1mH3jL9rS0dF5gB2nK8wE4uP6xA1cV9bN3sQ7yR2tU5",
+        "matchesTyped": true,
+        "pixelSize": "220x220"
+      },
+      "grayscale_print_30mm": {
+        "decoded": "https://www.doordash.com/store/cosmos-burger-corona-24518903/12938471/?pickup=false&distance_bucket=25&event_type=autocomplete&srsltid=AfmBOoq7Xk2pQnW4z8VvY6cT1mH3jL9rS0dF5gB2nK8wE4uP6xA1cV9bN3sQ7yR2tU5",
+        "matchesTyped": true,
+        "pixelSize": "354x354"
+      }
+    }
+  },
+  {
+    "id": "doordash-xl",
+    "label": "DoorDash URL + srsltid + UTM/gclid stack (~340 chars, realistic worst case)",
+    "typedValue": "https://www.doordash.com/store/cosmos-burger-corona-24518903/12938471/?pickup=false&distance_bucket=25&event_type=autocomplete&srsltid=AfmBOoq7Xk2pQnW4z8VvY6cT1mH3jL9rS0dF5gB2nK8wE4uP6xA1cV9bN3sQ7yR2tU5&utm_source=google&utm_medium=cpc&utm_campaign=corona_food_hall_q3&utm_content=cosmos_burger_search&gclid=EAIaIQobChMI9r--gKPXhwMVBUJHAR0X",
+    "tests": {
+      "bare_raw": {
+        "decoded": "https://www.doordash.com/store/cosmos-burger-corona-24518903/12938471/?pickup=false&distance_bucket=25&event_type=autocomplete&srsltid=AfmBOoq7Xk2pQnW4z8VvY6cT1mH3jL9rS0dF5gB2nK8wE4uP6xA1cV9bN3sQ7yR2tU5&utm_source=google&utm_medium=cpc&utm_campaign=corona_food_hall_q3&utm_content=cosmos_burger_search&gclid=EAIaIQobChMI9r--gKPXhwMVBUJHAR0X",
+        "matchesTyped": true,
+        "matchesDomValue": true,
+        "pixelSize": "194x194"
+      },
+      "withlogo_raw_zero_quietzone": {
+        "decoded": "https://www.doordash.com/store/cosmos-burger-corona-24518903/12938471/?pickup=false&distance_bucket=25&event_type=autocomplete&srsltid=AfmBOoq7Xk2pQnW4z8VvY6cT1mH3jL9rS0dF5gB2nK8wE4uP6xA1cV9bN3sQ7yR2tU5&utm_source=google&utm_medium=cpc&utm_campaign=corona_food_hall_q3&utm_content=cosmos_burger_search&gclid=EAIaIQobChMI9r--gKPXhwMVBUJHAR0X",
+        "matchesTyped": true,
+        "pixelSize": "194x194"
+      },
+      "withlogo_with_4module_quietzone": {
+        "decoded": "https://www.doordash.com/store/cosmos-burger-corona-24518903/12938471/?pickup=false&distance_bucket=25&event_type=autocomplete&srsltid=AfmBOoq7Xk2pQnW4z8VvY6cT1mH3jL9rS0dF5gB2nK8wE4uP6xA1cV9bN3sQ7yR2tU5&utm_source=google&utm_medium=cpc&utm_campaign=corona_food_hall_q3&utm_content=cosmos_burger_search&gclid=EAIaIQobChMI9r--gKPXhwMVBUJHAR0X",
+        "matchesTyped": true,
+        "marginPxAdded": 8,
+        "pixelSize": "210x210"
+      },
+      "print_30mm_300dpi_bicubic": {
+        "decoded": null,
+        "matchesTyped": false,
+        "pixelSize": "354x354"
+      },
+      "phone_scan_arm_length_220px": {
+        "decoded": "https://www.doordash.com/store/cosmos-burger-corona-24518903/12938471/?pickup=false&distance_bucket=25&event_type=autocomplete&srsltid=AfmBOoq7Xk2pQnW4z8VvY6cT1mH3jL9rS0dF5gB2nK8wE4uP6xA1cV9bN3sQ7yR2tU5&utm_source=google&utm_medium=cpc&utm_campaign=corona_food_hall_q3&utm_content=cosmos_burger_search&gclid=EAIaIQobChMI9r--gKPXhwMVBUJHAR0X",
+        "matchesTyped": true,
+        "pixelSize": "220x220"
+      },
+      "grayscale_print_30mm": {
+        "decoded": null,
+        "matchesTyped": false,
+        "pixelSize": "354x354"
+      }
+    }
+  },
+  {
+    "id": "stress-extreme",
+    "label": "Deliberately unrealistic stress test (~650 chars) to find the true ceiling",
+    "typedValue": "https://www.doordash.com/store/cosmos-burger-corona-24518903/12938471/?pickup=false&distance_bucket=25&event_type=autocomplete&srsltid=AfmBOoq7Xk2pQnW4z8VvY6cT1mH3jL9rS0dF5gB2nK8wE4uP6xA1cV9bN3sQ7yR2tU5&utm_source=google&utm_medium=cpc&utm_campaign=corona_food_hall_q3&utm_content=cosmos_burger_search&gclid=EAIaIQobChMI9r--gKPXhwMVBUJHAR0Xzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
+    "tests": {
+      "bare_raw": {
+        "decoded": "https://www.doordash.com/store/cosmos-burger-corona-24518903/12938471/?pickup=false&distance_bucket=25&event_type=autocomplete&srsltid=AfmBOoq7Xk2pQnW4z8VvY6cT1mH3jL9rS0dF5gB2nK8wE4uP6xA1cV9bN3sQ7yR2tU5&utm_source=google&utm_medium=cpc&utm_campaign=corona_food_hall_q3&utm_content=cosmos_burger_search&gclid=EAIaIQobChMI9r--gKPXhwMVBUJHAR0Xzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
+        "matchesTyped": true,
+        "matchesDomValue": true,
+        "pixelSize": "258x258"
+      },
+      "withlogo_raw_zero_quietzone": {
+        "decoded": "https://www.doordash.com/store/cosmos-burger-corona-24518903/12938471/?pickup=false&distance_bucket=25&event_type=autocomplete&srsltid=AfmBOoq7Xk2pQnW4z8VvY6cT1mH3jL9rS0dF5gB2nK8wE4uP6xA1cV9bN3sQ7yR2tU5&utm_source=google&utm_medium=cpc&utm_campaign=corona_food_hall_q3&utm_content=cosmos_burger_search&gclid=EAIaIQobChMI9r--gKPXhwMVBUJHAR0Xzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
+        "matchesTyped": true,
+        "pixelSize": "258x258"
+      },
+      "withlogo_with_4module_quietzone": {
+        "decoded": "https://www.doordash.com/store/cosmos-burger-corona-24518903/12938471/?pickup=false&distance_bucket=25&event_type=autocomplete&srsltid=AfmBOoq7Xk2pQnW4z8VvY6cT1mH3jL9rS0dF5gB2nK8wE4uP6xA1cV9bN3sQ7yR2tU5&utm_source=google&utm_medium=cpc&utm_campaign=corona_food_hall_q3&utm_content=cosmos_burger_search&gclid=EAIaIQobChMI9r--gKPXhwMVBUJHAR0Xzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
+        "matchesTyped": true,
+        "marginPxAdded": 8,
+        "pixelSize": "274x274"
+      },
+      "print_30mm_300dpi_bicubic": {
+        "decoded": "https://www.doordash.com/store/cosmos-burger-corona-24518903/12938471/?pickup=false&distance_bucket=25&event_type=autocomplete&srsltid=AfmBOoq7Xk2pQnW4z8VvY6cT1mH3jL9rS0dF5gB2nK8wE4uP6xA1cV9bN3sQ7yR2tU5&utm_source=google&utm_medium=cpc&utm_campaign=corona_food_hall_q3&utm_content=cosmos_burger_search&gclid=EAIaIQobChMI9r--gKPXhwMVBUJHAR0Xzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
+        "matchesTyped": true,
+        "pixelSize": "354x354"
+      },
+      "phone_scan_arm_length_220px": {
+        "decoded": null,
+        "matchesTyped": false,
+        "pixelSize": "220x220"
+      },
+      "grayscale_print_30mm": {
+        "decoded": "https://www.doordash.com/store/cosmos-burger-corona-24518903/12938471/?pickup=false&distance_bucket=25&event_type=autocomplete&srsltid=AfmBOoq7Xk2pQnW4z8VvY6cT1mH3jL9rS0dF5gB2nK8wE4uP6xA1cV9bN3sQ7yR2tU5&utm_source=google&utm_medium=cpc&utm_campaign=corona_food_hall_q3&utm_content=cosmos_burger_search&gclid=EAIaIQobChMI9r--gKPXhwMVBUJHAR0Xzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
+        "matchesTyped": true,
+        "pixelSize": "354x354"
+      }
+    }
+  },
+  {
+    "id": "gpage-review",
+    "label": "g.page/r/ Google review shortlink",
+    "typedValue": "https://g.page/r/CaBcDeFgHiJkLmNoPqRs/review",
+    "tests": {
+      "bare_raw": {
+        "decoded": "https://g.page/r/CaBcDeFgHiJkLmNoPqRs/review",
+        "matchesTyped": true,
+        "matchesDomValue": true,
+        "pixelSize": "74x74"
+      },
+      "withlogo_raw_zero_quietzone": {
+        "decoded": "https://g.page/r/CaBcDeFgHiJkLmNoPqRs/review",
+        "matchesTyped": true,
+        "pixelSize": "74x74"
+      },
+      "withlogo_with_4module_quietzone": {
+        "decoded": "https://g.page/r/CaBcDeFgHiJkLmNoPqRs/review",
+        "matchesTyped": true,
+        "marginPxAdded": 8,
+        "pixelSize": "90x90"
+      },
+      "print_30mm_300dpi_bicubic": {
+        "decoded": "https://g.page/r/CaBcDeFgHiJkLmNoPqRs/review",
+        "matchesTyped": true,
+        "pixelSize": "354x354"
+      },
+      "phone_scan_arm_length_220px": {
+        "decoded": "https://g.page/r/CaBcDeFgHiJkLmNoPqRs/review",
+        "matchesTyped": true,
+        "pixelSize": "220x220"
+      },
+      "grayscale_print_30mm": {
+        "decoded": "https://g.page/r/CaBcDeFgHiJkLmNoPqRs/review",
+        "matchesTyped": true,
+        "pixelSize": "354x354"
+      }
+    }
+  },
+  {
+    "id": "google-writereview",
+    "label": "search.google.com local writereview",
+    "typedValue": "https://search.google.com/local/writereview?placeid=ChIJN1t_tDeuEmsRUsoyG83frY4",
+    "tests": {
+      "bare_raw": {
+        "decoded": "https://search.google.com/local/writereview?placeid=ChIJN1t_tDeuEmsRUsoyG83frY4",
+        "matchesTyped": true,
+        "matchesDomValue": true,
+        "pixelSize": "98x98"
+      },
+      "withlogo_raw_zero_quietzone": {
+        "decoded": "https://search.google.com/local/writereview?placeid=ChIJN1t_tDeuEmsRUsoyG83frY4",
+        "matchesTyped": true,
+        "pixelSize": "98x98"
+      },
+      "withlogo_with_4module_quietzone": {
+        "decoded": "https://search.google.com/local/writereview?placeid=ChIJN1t_tDeuEmsRUsoyG83frY4",
+        "matchesTyped": true,
+        "marginPxAdded": 8,
+        "pixelSize": "114x114"
+      },
+      "print_30mm_300dpi_bicubic": {
+        "decoded": "https://search.google.com/local/writereview?placeid=ChIJN1t_tDeuEmsRUsoyG83frY4",
+        "matchesTyped": true,
+        "pixelSize": "354x354"
+      },
+      "phone_scan_arm_length_220px": {
+        "decoded": "https://search.google.com/local/writereview?placeid=ChIJN1t_tDeuEmsRUsoyG83frY4",
+        "matchesTyped": true,
+        "pixelSize": "220x220"
+      },
+      "grayscale_print_30mm": {
+        "decoded": "https://search.google.com/local/writereview?placeid=ChIJN1t_tDeuEmsRUsoyG83frY4",
+        "matchesTyped": true,
+        "pixelSize": "354x354"
+      }
+    }
+  },
+  {
+    "id": "empty",
+    "label": "No URL typed",
+    "typedValue": "",
+    "tests": {
+      "withlogo_raw_zero_quietzone": {
+        "decoded": "https://search.google.com/local/writereview?placeid=ChIJN1t_tDeuEmsRUsoyG83frY4",
+        "matchesTyped": false,
+        "pixelSize": "98x98"
+      },
+      "withlogo_with_4module_quietzone": {
+        "decoded": "https://search.google.com/local/writereview?placeid=ChIJN1t_tDeuEmsRUsoyG83frY4",
+        "matchesTyped": false,
+        "marginPxAdded": 8,
+        "pixelSize": "114x114"
+      },
+      "print_30mm_300dpi_bicubic": {
+        "decoded": "https://search.google.com/local/writereview?placeid=ChIJN1t_tDeuEmsRUsoyG83frY4",
+        "matchesTyped": false,
+        "pixelSize": "354x354"
+      },
+      "phone_scan_arm_length_220px": {
+        "decoded": "https://search.google.com/local/writereview?placeid=ChIJN1t_tDeuEmsRUsoyG83frY4",
+        "matchesTyped": false,
+        "pixelSize": "220x220"
+      },
+      "grayscale_print_30mm": {
+        "decoded": "https://search.google.com/local/writereview?placeid=ChIJN1t_tDeuEmsRUsoyG83frY4",
+        "matchesTyped": false,
+        "pixelSize": "354x354"
+      }
+    }
+  },
+  {
+    "id": "nonsense",
+    "label": "Nonsense string, not a URL",
+    "typedValue": "asdkjhaskjdh not a url lol!!",
+    "tests": {
+      "bare_raw": {
+        "decoded": "asdkjhaskjdh not a url lol!!",
+        "matchesTyped": true,
+        "matchesDomValue": true,
+        "pixelSize": "66x66"
+      },
+      "withlogo_raw_zero_quietzone": {
+        "decoded": "asdkjhaskjdh not a url lol!!",
+        "matchesTyped": true,
+        "pixelSize": "66x66"
+      },
+      "withlogo_with_4module_quietzone": {
+        "decoded": "asdkjhaskjdh not a url lol!!",
+        "matchesTyped": true,
+        "marginPxAdded": 8,
+        "pixelSize": "82x82"
+      },
+      "print_30mm_300dpi_bicubic": {
+        "decoded": "asdkjhaskjdh not a url lol!!",
+        "matchesTyped": true,
+        "pixelSize": "354x354"
+      },
+      "phone_scan_arm_length_220px": {
+        "decoded": "asdkjhaskjdh not a url lol!!",
+        "matchesTyped": true,
+        "pixelSize": "220x220"
+      },
+      "grayscale_print_30mm": {
+        "decoded": "asdkjhaskjdh not a url lol!!",
+        "matchesTyped": true,
+        "pixelSize": "354x354"
+      }
+    }
+  },
+  {
+    "id": "half-typed",
+    "label": "Half-typed / truncated paste",
+    "typedValue": "https://www.doordash.com/store/cosmos-burg",
+    "tests": {
+      "bare_raw": {
+        "decoded": "https://www.doordash.com/store/cosmos-burg",
+        "matchesTyped": true,
+        "matchesDomValue": true,
+        "pixelSize": "74x74"
+      },
+      "withlogo_raw_zero_quietzone": {
+        "decoded": "https://www.doordash.com/store/cosmos-burg",
+        "matchesTyped": true,
+        "pixelSize": "74x74"
+      },
+      "withlogo_with_4module_quietzone": {
+        "decoded": "https://www.doordash.com/store/cosmos-burg",
+        "matchesTyped": true,
+        "marginPxAdded": 8,
+        "pixelSize": "90x90"
+      },
+      "print_30mm_300dpi_bicubic": {
+        "decoded": "https://www.doordash.com/store/cosmos-burg",
+        "matchesTyped": true,
+        "pixelSize": "354x354"
+      },
+      "phone_scan_arm_length_220px": {
+        "decoded": "https://www.doordash.com/store/cosmos-burg",
+        "matchesTyped": true,
+        "pixelSize": "220x220"
+      },
+      "grayscale_print_30mm": {
+        "decoded": "https://www.doordash.com/store/cosmos-burg",
+        "matchesTyped": true,
+        "pixelSize": "354x354"
+      }
+    }
+  }
+]

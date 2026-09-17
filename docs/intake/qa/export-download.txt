@@ -1,0 +1,222 @@
+MIRAMAR FOOD HALL, AI PHONE ASSISTANT KNOWLEDGE BASE
+Prepared: 9/15/2026, 2:41:10 AM
+
+— HOURS OF OPERATION —
+Days open: Monday
+Opening hour: —
+Closing hour: —
+Exceptions/details: Open Monday only for this test.
+Holiday closures / seasonal hours: —
+
+— PHONE NUMBER & LANGUAGES —
+Number the assistant should answer: — (our records show (951) 970-6693, currently not on the website)
+Old number forwards to it: —
+Languages: —
+
+— VENDORS & CONCEPTS —
+Hall defaults (used by any vendor below that has not overridden it):
+  Dietary/GF options: —
+  How customers order: —
+  Review us URL: —
+  Website URL: —
+  Can connect calls here: No
+
+1. Cosmos Burger
+   Can connect calls here: No (hall default)
+   Contact: —
+   Dietary/GF options: — (hall default)
+   How customers order: — (hall default)
+   Menu URL: —
+   Website URL: — (hall default)
+   Review us URL: — (hall default)
+   Notes: —
+2. Egg & Out
+   Can connect calls here: No (hall default)
+   Contact: —
+   Dietary/GF options: — (hall default)
+   How customers order: — (hall default)
+   Menu URL: —
+   Website URL: — (hall default)
+   Review us URL: — (hall default)
+   Notes: —
+3. El Puerto Street Tacos
+   Can connect calls here: No (hall default)
+   Contact: —
+   Dietary/GF options: — (hall default)
+   How customers order: — (hall default)
+   Menu URL: —
+   Website URL: — (hall default)
+   Review us URL: — (hall default)
+   Notes: —
+4. Graciously Thai
+   Can connect calls here: No (hall default)
+   Contact: —
+   Dietary/GF options: — (hall default)
+   How customers order: — (hall default)
+   Menu URL: —
+   Website URL: — (hall default)
+   Review us URL: — (hall default)
+   Notes: —
+5. Hen Haus
+   Can connect calls here: No (hall default)
+   Contact: —
+   Dietary/GF options: — (hall default)
+   How customers order: — (hall default)
+   Menu URL: —
+   Website URL: — (hall default)
+   Review us URL: — (hall default)
+   Notes: —
+6. Immersion Coffee Co.
+   Can connect calls here: No (hall default)
+   Contact: —
+   Dietary/GF options: — (hall default)
+   How customers order: — (hall default)
+   Menu URL: —
+   Website URL: — (hall default)
+   Review us URL: — (hall default)
+   Notes: —
+7. It's Allll Rice
+   Can connect calls here: No (hall default)
+   Contact: —
+   Dietary/GF options: — (hall default)
+   How customers order: — (hall default)
+   Menu URL: —
+   Website URL: — (hall default)
+   Review us URL: — (hall default)
+   Notes: —
+8. La Vida
+   Can connect calls here: No (hall default)
+   Contact: —
+   Dietary/GF options: — (hall default)
+   How customers order: — (hall default)
+   Menu URL: —
+   Website URL: — (hall default)
+   Review us URL: — (hall default)
+   Notes: —
+9. Lobster Lab
+   Can connect calls here: No (hall default)
+   Contact: —
+   Dietary/GF options: — (hall default)
+   How customers order: — (hall default)
+   Menu URL: —
+   Website URL: — (hall default)
+   Review us URL: — (hall default)
+   Notes: —
+10. MOTO Pizza
+   Can connect calls here: No (hall default)
+   Contact: —
+   Dietary/GF options: — (hall default)
+   How customers order: — (hall default)
+   Menu URL: —
+   Website URL: — (hall default)
+   Review us URL: — (hall default)
+   Notes: —
+11. MOTO Swirl
+   Can connect calls here: No (hall default)
+   Contact: —
+   Dietary/GF options: — (hall default)
+   How customers order: — (hall default)
+   Menu URL: —
+   Website URL: — (hall default)
+   Review us URL: — (hall default)
+   Notes: —
+12. Norigiri
+   Can connect calls here: No (hall default)
+   Contact: —
+   Dietary/GF options: — (hall default)
+   How customers order: — (hall default)
+   Menu URL: —
+   Website URL: — (hall default)
+   Review us URL: — (hall default)
+   Notes: —
+13. RolledUp SC
+   Can connect calls here: No (hall default)
+   Contact: —
+   Dietary/GF options: — (hall default)
+   How customers order: — (hall default)
+   Menu URL: —
+   Website URL: — (hall default)
+   Review us URL: — (hall default)
+   Notes: —
+14. Sidelines Sandwiches
+   Can connect calls here: No (hall default)
+   Contact: —
+   Dietary/GF options: — (hall default)
+   How customers order: — (hall default)
+   Menu URL: —
+   Website URL: — (hall default)
+   Review us URL: — (hall default)
+   Notes: —
+15. The Pita
+   Can connect calls here: No (hall default)
+   Contact: —
+   Dietary/GF options: — (hall default)
+   How customers order: — (hall default)
+   Menu URL: —
+   Website URL: — (hall default)
+   Review us URL: — (hall default)
+   Notes: —
+
+— FOOD HALL QR & LINKS —
+Menu URL: —
+Website URL: https://miramarfoodhall.com
+Review us URL: —
+
+— ACCESSIBILITY —
+—
+
+— PARKING & GETTING THERE —
+—
+
+— AMENITIES & COMMON QUESTIONS —
+Applies: —
+Notes: —
+
+— RESERVATIONS & PRIVATE EVENTS —
+Takes reservations for small parties: —
+Minimum party size for private/group event: —
+Collect for group inquiries: —
+Other info to collect: —
+Route inquiries to: —
+Catering & large orders routed to: —
+Press/media/vendor leasing routed to: —
+Other notes: —
+
+— CALL TRANSFERS —
+Transfers enabled: —
+Transfer triggers: —
+Other trigger: —
+Transfer phone/extension: —
+Hours transfers should NOT happen: —
+Other transfer notes: —
+
+— CALL SUMMARIES —
+Recipient: —
+Frequency: —
+
+— BLOCKING ABUSIVE/SPAM CALLERS —
+Block after this many calls/day: —
+Blocking mode: —
+Numbers to block now: —
+
+— FREQUENTLY ASKED QUESTIONS —
+—
+
+— ASSISTANT PERSONALITY & VOICE —
+Preferred name: —
+May quote prices: —
+Allergy question policy: Always transfer to a person
+Can freely share: —
+Should never share: —
+
+— CALL ENDING & SILENCE HANDLING —
+When to hang up: —
+Check-ins before hanging up on silence: —
+Seconds of silence before hangup: —
+Never say/do: —
+
+— ANYTHING ELSE —
+—
+
+— STILL OPEN —
+Not answered yet: Phone Number & Languages, Vendors & Concepts, Food Hall QR & Links, Accessibility, Parking & Getting There, Amenities & Common Questions, Reservations & Private Events, Call Transfers, Call Summaries, Blocking Abusive or Spam Callers, Frequently Asked Questions, Assistant Personality & Voice, Call Ending & Silence Handling, Anything Else
