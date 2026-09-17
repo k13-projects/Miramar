@@ -1,0 +1,89 @@
+{
+  "results": [
+    {
+      "name": "Downloaded .txt file is readable and non-trivial",
+      "ok": true,
+      "detail": "len=5971"
+    },
+    {
+      "name": "Copy & Open Email: clipboard received the full answer text",
+      "ok": true,
+      "detail": "len=5971"
+    },
+    {
+      "name": "Copy & Open Email: confirmation toast shown",
+      "ok": true,
+      "detail": "✓ Your answers are on your clipboard. Your email app should be opening, paste (⌘V / Ctrl+V) into the message, then hit send."
+    },
+    {
+      "name": "Export flow: no console errors",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Chip checkbox/radio (days, collect-fields, transfer triggers, etc.) shows a visible ring on real Tab focus",
+      "ok": true,
+      "detail": "{\"style\":\"solid\",\"width\":\"2px\",\"color\":\"rgb(46, 90, 82)\"}"
+    },
+    {
+      "name": "Hall-default transfer switch shows a visible ring on real Tab focus",
+      "ok": true,
+      "detail": "{\"style\":\"solid\",\"width\":\"2px\",\"color\":\"rgb(46, 90, 82)\"}"
+    },
+    {
+      "name": "Section toggle responds to Enter key when focused",
+      "ok": true,
+      "detail": "before=false after=true"
+    },
+    {
+      "name": "button.chip focus-visible ring present",
+      "ok": true,
+      "detail": "solid 2px"
+    },
+    {
+      "name": "Mobile: document does not overflow horizontally (fresh)",
+      "ok": true,
+      "detail": "overflow=0px"
+    },
+    {
+      "name": "Mobile: left sidebar nav is hidden below 900px (by CSS design)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Mobile: sticky statusbar stays compact (< 140px tall)",
+      "ok": false,
+      "detail": "140.859375px"
+    },
+    {
+      "name": "Mobile: day-of-week chips wrap without causing horizontal scroll",
+      "ok": true,
+      "detail": "overflow=0px"
+    },
+    {
+      "name": "Mobile: expanded vendor card does not cause horizontal overflow",
+      "ok": true,
+      "detail": "overflow=0px"
+    },
+    {
+      "name": "Mobile: primary send button has a real tappable size (>= 40px tall)",
+      "ok": true,
+      "detail": "{\"x\":55,\"y\":369.25,\"width\":205.828125,\"height\":49.6875}"
+    },
+    {
+      "name": "Mobile: no console errors through the mobile pass",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Axe (desktop): no critical/serious violations",
+      "ok": false,
+      "detail": "color-contrast (54 nodes): Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds"
+    },
+    {
+      "name": "Axe (mobile): no critical/serious violations",
+      "ok": false,
+      "detail": "color-contrast (66 nodes): Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds"
+    }
+  ]
+}

@@ -1,0 +1,105 @@
+{
+  "results": [
+    {
+      "name": "Reload: vendor override persisted (Vegan) and card is interactable post-reload",
+      "ok": true,
+      "detail": "Gluten-Free,Vegan"
+    },
+    {
+      "name": "Backup JSON has expected top-level shape",
+      "ok": true,
+      "detail": "version,savedAt,fields,vendors,faqs,faqAccepted,sectionStatus"
+    },
+    {
+      "name": "Backup JSON captured the assistant_name field",
+      "ok": true,
+      "detail": "Mira the Test Assistant"
+    },
+    {
+      "name": "Clear form: assistant_name field is empty",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Clear form: progress back to 0%",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Clear form: vendor override cleared too (back to Hall default)",
+      "ok": true,
+      "detail": "Hall default"
+    },
+    {
+      "name": "Load backup: assistant_name restored",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Load backup: vendor override restored (Vegan)",
+      "ok": true,
+      "detail": "Gluten-Free,Vegan"
+    },
+    {
+      "name": "Old-format v1: no console/page errors on migration",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Old-format v1: assistant_name restored",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Old-format v1: checkbox restored (days_mon)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Old-format v1: hours notes restored",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Old-format vendor: a previously-set value becomes an explicit override (migrateVendor)",
+      "ok": true,
+      "detail": "Vendor-specific"
+    },
+    {
+      "name": "Old-format vendor: dietary value carried over correctly (Vegan)",
+      "ok": true,
+      "detail": "Vegan"
+    },
+    {
+      "name": "Old-format vendor: contact carried over",
+      "ok": true,
+      "detail": "555-1212"
+    },
+    {
+      "name": "Old-format vendor count preserved (only 1 in this backup, not reset to all 15)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Old-format custom FAQ restored",
+      "ok": true,
+      "detail": "Old FAQ question?"
+    },
+    {
+      "name": "Final clear: back to 15 fresh vendors",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Final clear: progress 0%",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Final clear: localStorage entry removed",
+      "ok": true,
+      "detail": ""
+    }
+  ],
+  "consoleErrors": []
+}

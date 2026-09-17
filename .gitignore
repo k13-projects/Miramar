@@ -71,3 +71,6 @@ Miramar Assets/
 
 # Claude Code — machine-local permission grants, never push
 .claude/settings.local.json
+
+# QA screenshots are regenerable evidence, not source (54MB across 122 files)
+docs/intake/**/*.png

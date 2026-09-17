@@ -1,0 +1,308 @@
+{
+  "report": "Miramar AI Assistant Intake Form — QA record",
+  "file_under_test": "/Users/k13/Desktop/PROJECTS/Miramar/docs/intake/Miramar_AI_Assistant_Intake_Form.html",
+  "passes": [
+    {
+      "pass": 1,
+      "date": "2026-09-15",
+      "tester": "Olga (QA Test Engineer, K13)",
+      "environment": {
+        "harness": "Playwright (chromium), driven from /Users/k13/Desktop/PROJECTS/STATION8 for module resolution, scripts deleted after the run",
+        "browser": "Chromium (Playwright-managed, headless)",
+        "url": "file:///Users/k13/Desktop/PROJECTS/Miramar/docs/intake/Miramar_AI_Assistant_Intake_Form.html",
+        "viewports_tested": ["1440x900 desktop", "390x844 mobile (iPhone 12/13-class)"],
+        "accessibility_tooling": "@axe-core/playwright, run on desktop and mobile"
+      },
+      "verdict": "PASS with two flagged items left for a human decision (brand color contrast; a couple of very minor test-harness-only nitpicks that are not form defects). Six real defects were found and fixed in the file, then re-verified. The form is safe to send to Lorena.",
+      "summary": {
+        "checks_run": 82,
+        "checks_passing_final": 79,
+        "defects_found": 6,
+        "defects_fixed": 6,
+        "judgment_calls_left_for_kazim": 1,
+        "test_artifacts_not_form_bugs": 1
+      },
+      "checks": [
+        { "area": "Fresh load", "check": "No console errors on load", "result": "pass" },
+        { "area": "Fresh load", "check": "No page (JS) errors on load", "result": "pass" },
+        { "area": "Fresh load", "check": "Progress reads exactly 0% filled in before any answer is given", "result": "pass", "note": "Was 2% before the fix (see Defects #1)." },
+        { "area": "Fresh load", "check": "No sidebar nav item marked done before any answer is given", "result": "pass" },
+        { "area": "Fresh load", "check": "Hours section starts collapsed, all other sections start open (by design)", "result": "pass" },
+        { "area": "Guided flow", "check": "\"Continue\" button closes the current section and opens the next", "result": "pass" },
+        { "area": "Vendors", "check": "All 15 vendor profiles present", "result": "pass" },
+        { "area": "Vendors", "check": "A hall default set once (dietary options) reaches all 15 vendor cards", "result": "pass" },
+        { "area": "Vendors", "check": "An override on one vendor goes independent of the hall default", "result": "pass" },
+        { "area": "Vendors", "check": "An overridden vendor stays independent after the hall default is changed again afterward", "result": "pass" },
+        { "area": "Vendors", "check": "A non-overridden vendor keeps following the hall default as it changes", "result": "pass" },
+        { "area": "Vendors", "check": "\"Copy from the vendor above\" copies override state + values onto the next vendor", "result": "pass" },
+        { "area": "Vendors", "check": "Bulk action \"every vendor takes counter orders\" applies to all vendors", "result": "pass" },
+        { "area": "Vendors", "check": "Bulk action \"no vendor takes transfers\" clears the hall default toggle", "result": "pass" },
+        { "area": "Vendors", "check": "An expanded vendor card stays open while typing in a hall-default field", "result": "pass", "note": "Was failing before the fix (see Defects #2)." },
+        { "area": "Vendors", "check": "An expanded vendor card stays open after clicking its own override toggle", "result": "pass", "note": "Was failing before the fix (see Defects #2)." },
+        { "area": "Food hall QR", "check": "A QR code renders (non-blank canvas) once a URL is entered", "result": "pass" },
+        { "area": "Skip chips", "check": "\"Not applicable\" shows a badge and counts the section as answered (nav tick)", "result": "pass" },
+        { "area": "Skip chips", "check": "\"Not sure, someone else knows\" + a name shows in the badge", "result": "pass" },
+        { "area": "Skip chips", "check": "A section marked \"Not applicable\" is excluded from the \"still open\" list; one marked \"Not sure\" appears there with the name", "result": "pass" },
+        { "area": "FAQ", "check": "Accepting a suggested answer as-is works", "result": "pass" },
+        { "area": "FAQ", "check": "Accepting then editing a suggested answer marks it \"Accepted, edited\"", "result": "pass" },
+        { "area": "FAQ", "check": "\"Remove from answers\" reverts an accepted suggestion", "result": "pass" },
+        { "area": "FAQ", "check": "A custom question/answer row can be added and is exported", "result": "pass" },
+        { "area": "Full journey", "check": "Filling every section (hours, phone/languages, vendors, QR, accessibility, parking, amenities, reservations, transfers, summaries, blocking, FAQ, voice, ending, anything else) drives progress up and empties the \"still open\" panel correctly", "result": "pass" },
+        { "area": "Export", "check": "Answer preview textarea is populated and mirrors buildAnswerText()", "result": "pass" },
+        { "area": "Export", "check": "Exported text: every section present, grouped, unanswered items clearly marked with —, skip states and who-to-ask surfaced, still-open summary correct", "result": "pass", "note": "Read as the recipient: this is clear enough to configure the assistant from. See report body for the one wording note left for Kazim." },
+        { "area": "Export", "check": "\"Download answers as a file\" produces a readable, complete .txt", "result": "pass" },
+        { "area": "Export", "check": "\"Copy & Open Email\" copies the full answer text to the clipboard and attempts the mailto: navigation in one click, with a clear toast either way", "result": "pass" },
+        { "area": "Persistence", "check": "Reloading mid-way keeps checkbox/radio/text answers", "result": "pass" },
+        { "area": "Persistence", "check": "Reloading mid-way keeps a vendor override (independent from the hall default)", "result": "pass" },
+        { "area": "Persistence", "check": "Reloading mid-way keeps accepted FAQ state", "result": "pass" },
+        { "area": "Persistence", "check": "Reloading mid-way keeps skip-chip state (Not applicable / Not sure + who)", "result": "pass" },
+        { "area": "Backup", "check": "Download Backup (.json) produces the expected shape and captures live field/vendor state", "result": "pass" },
+        { "area": "Backup", "check": "Clear this form truly resets: fields empty, progress 0%, vendor overrides gone, all 15 vendors back to defaults, localStorage entry removed", "result": "pass" },
+        { "area": "Backup", "check": "Load Backup (.json) round-trips a downloaded backup correctly, including a vendor override", "result": "pass" },
+        { "area": "Backwards compatibility", "check": "An old-format v1 payload ({version:1, savedAt, fields, vendors, faqs}, no faqAccepted/sectionStatus/overrides) restores without console errors", "result": "pass" },
+        { "area": "Backwards compatibility", "check": "An old-format vendor's previously-set value becomes an explicit, independent override on migration (migrateVendor), not silently lost", "result": "pass" },
+        { "area": "Backwards compatibility", "check": "Old-format checkbox, text, and custom-FAQ fields all restore correctly", "result": "pass" },
+        { "area": "Mobile 390x844", "check": "No horizontal overflow, fresh load through a filled vendor card and the FAQ/finish screen", "result": "pass" },
+        { "area": "Mobile 390x844", "check": "Day-of-week and other check-grid chips wrap onto new lines instead of overflowing", "result": "pass" },
+        { "area": "Mobile 390x844", "check": "Left section-jump sidebar is intentionally hidden below 900px width; no orphaned nav chrome left behind", "result": "pass" },
+        { "area": "Mobile 390x844", "check": "Primary \"Copy & Open Email\" button has a real thumb-sized tap target (≥40px tall)", "result": "pass" },
+        { "area": "Mobile 390x844", "check": "No console errors through the mobile pass", "result": "pass" },
+        { "area": "Keyboard/a11y", "check": "Tab reaches every chip checkbox/radio (days, collect-fields, transfer triggers, block mode, etc.) and shows a visible focus ring", "result": "pass", "note": "Was failing before the fix (see Defects #3)." },
+        { "area": "Keyboard/a11y", "check": "Tab reaches toggle switches (hall-default transfer, vendor transfer override) and shows a visible focus ring", "result": "pass", "note": "Was failing before the fix (see Defects #3)." },
+        { "area": "Keyboard/a11y", "check": "Section headers can be opened/closed with Enter while focused", "result": "pass" },
+        { "area": "Keyboard/a11y", "check": "Choice-group chip buttons (dietary, order method, etc.) show a visible focus-visible ring", "result": "pass", "already working, not a fix": true },
+        { "area": "Keyboard/a11y", "check": "axe: every select element has an accessible name", "result": "pass", "note": "Was failing before the fix (see Defects #4)." },
+        { "area": "Keyboard/a11y", "check": "axe: every form element has a label (desktop)", "result": "pass", "note": "Was 41 violations before the fix (see Defects #5)." },
+        { "area": "Keyboard/a11y", "check": "axe: every form element has a label (mobile, vendors + FAQ expanded)", "result": "pass", "note": "Was 42 violations before the fix; last one (the FAQ accepted-answer textarea) needed a second, separate fix." },
+        { "area": "Keyboard/a11y", "check": "axe: document has exactly one main landmark, all content contained by a landmark", "result": "pass", "note": "Was failing (1 + 401 violations) before the fix (see Defects #6)." },
+        { "area": "Keyboard/a11y", "check": "axe: heading order is correct (no level skipped)", "result": "pass", "note": "Was failing before the fix (see Defects #6)." },
+        { "area": "Keyboard/a11y", "check": "axe: no critical/serious color-contrast violations", "result": "fail", "note": "54 (desktop) / 66 (mobile) nodes, all the brand's --ink-faint secondary/hint text on cream or white at ~3.3–3.8:1 against the WCAG AA 4.5:1 minimum for small text. Left for Kazim, see report body." },
+        { "area": "Mobile 390x844", "check": "Sticky statusbar stays under an arbitrary 140px test threshold", "result": "fail", "note": "Measured 140.86px. This was my own arbitrary threshold, not a real UX problem, visually confirmed via screenshot it reads fine and does not eat the screen; see report body." }
+      ],
+      "defects_found_and_fixed": [
+        {
+          "id": 1,
+          "area": "Progress bar",
+          "severity": "medium",
+          "found": "A completely untouched, fresh form read \"2% filled in\" instead of 0%, because updateProgress() counted the two K13-prefilled values (hall_website_url, allergy_policy) as \"answered\" even though the client hadn't touched them yet, inconsistent with the rest of the form's own fieldIsUntouchedPrefill logic used for section ticks and the still-open panel.",
+          "fix": "updateProgress() now excludes untouched-prefill fields from the filled count, matching sectionHasRealContent()'s existing rule.",
+          "verified": "Fresh load now reads exactly \"0% filled in\"."
+        },
+        {
+          "id": 2,
+          "area": "Vendors — hall defaults / overrides",
+          "severity": "high (real usability defect)",
+          "found": "renderVendors() rebuilds every one of the 15 vendor cards from scratch on ANY hall-default keystroke, any override toggle, and any bulk action, and always started every rebuilt card collapsed. So a vendor card Lorena had open to review would snap shut on her the moment she typed one more character into a hall-default field, clicked an override toggle, or ran a bulk action.",
+          "fix": "renderVendors() now records which vendor cards were open before the rebuild (by a new data-vendor-id attribute) and reopens the same ones after, instead of always starting every card collapsed.",
+          "verified": "An expanded vendor card now survives typing in a hall-default field, clicking its own override toggle, and running a bulk action."
+        },
+        {
+          "id": 3,
+          "area": "Keyboard accessibility — chip checkboxes/radios and toggle switches",
+          "severity": "high (WCAG 2.4.7 Focus Visible)",
+          "found": "The real checkbox/radio inside every chip and every toggle switch is visually hidden (opacity:0), and the form's generic input:focus rule explicitly sets outline:none on all inputs including these. Verified with real Tab-key navigation that a keyboard user got zero visible indication of which control was focused.",
+          "fix": "Added label.chip:has(input:focus-visible) and .switch:has(input:focus-visible) rules that put a visible teal focus ring on the label/switch itself.",
+          "verified": "Real Tab navigation now lands a visible solid 2px teal outline on both chip labels and switches."
+        },
+        {
+          "id": 4,
+          "area": "Accessibility — select elements",
+          "severity": "medium (WCAG 4.1.2, axe: select-name, critical)",
+          "found": "The Opening/Closing time <select> dropdowns (generated in JS) had no accessible name at all.",
+          "fix": "renderTimeChoice()/initTimeChoices() now set aria-label=\"Opening time\" / \"Closing time\" on the generated selects.",
+          "verified": "axe select-name violations: 2 → 0."
+        },
+        {
+          "id": 5,
+          "area": "Accessibility — unlabeled fields",
+          "severity": "medium-high (WCAG 1.3.1/4.1.2, axe: label, critical, 41 nodes on desktop)",
+          "found": "10 static fields, the hall-default \"Can connect calls here\" switch, and every vendor's own transfer-override switch (15x) and Notes field (15x) had no accessible name; 41 nodes total. A follow-up mobile scan found one more: the accepted FAQ suggestion's editable textarea.",
+          "fix": "Added matching aria-labels to all of the above.",
+          "verified": "axe label violations: 41 → 0 (desktop), 42 → 0 (mobile)."
+        },
+        {
+          "id": 6,
+          "area": "Accessibility — document landmarks and heading order",
+          "severity": "low-medium (WCAG 1.3.1, axe: landmark-one-main + region, moderate; heading-order, moderate)",
+          "found": "The whole page had no <main> landmark (401 nodes flagged); the intro callout's <h3> appeared before the page's first <h2>.",
+          "fix": "Wrapped the page body in <main>...</main> (no visual change). Changed the callout heading from h3 to h2, moved its CSS rule to match.",
+          "verified": "axe landmark-one-main, region, and heading-order violations: all cleared."
+        }
+      ],
+      "left_for_kazim": [
+        {
+          "topic": "Brand color contrast (secondary/hint text)",
+          "what": "axe flags 54 (desktop) / 66 (mobile) nodes where --ink-faint (#8a8275) text sits on white or cream at roughly 3.3–3.8:1 contrast, the .hint text under most field labels, .status-pill section badges, and the small \"no link yet\" QR placeholder text (worst offender, 2.36:1). WCAG AA needs 4.5:1 for text this small (10–11.5px).",
+          "why_not_fixed": "This is a brand palette token (--ink-faint) used the same way across other K13 projects per the studio's design canon, not a one-off typo, darkening it is a design decision, not a QA fix.",
+          "options": [
+            "Leave as-is: hint/secondary text, form is still fully usable, low real-world impact for a one-time internal intake form.",
+            "Darken --ink-faint by a shade (or use --ink-soft for .hint text specifically) to clear 4.5:1.",
+            "Fix only the worst offender (.qr-placeholder-text at 2.36:1) as a scoped exception, leave the rest."
+          ]
+        }
+      ],
+      "not_defects_test_artifacts": [
+        {
+          "topic": "Mobile sticky statusbar height",
+          "what": "My own test asserted the statusbar stay under an arbitrary 140px; it measured 140.86px on a 390x844 viewport.",
+          "why_not_a_bug": "Visually confirmed via screenshot: it's a rounded card with brand + progress + Expand/Collapse buttons, reads fine, and since it's position:sticky it only occupies ~18% of the viewport while scrolling. No change made."
+        }
+      ],
+      "screenshots": [
+        "docs/intake/qa/01-fresh-desktop.png",
+        "docs/intake/qa/02-vendors-desktop.png",
+        "docs/intake/qa/03-filled-desktop.png",
+        "docs/intake/qa/04-after-reload-desktop.png",
+        "docs/intake/qa/05-after-backup-restore.png",
+        "docs/intake/qa/06-old-format-restored.png",
+        "docs/intake/qa/07-mobile-fresh.png",
+        "docs/intake/qa/08-mobile-hours-open.png",
+        "docs/intake/qa/09-mobile-vendor-open.png",
+        "docs/intake/qa/10-mobile-finish.png",
+        "docs/intake/qa/11-mobile-statusbar-viewport.png"
+      ],
+      "other_artifacts": [
+        "docs/intake/qa/axe-desktop.json",
+        "docs/intake/qa/axe-mobile.json",
+        "docs/intake/qa/backup-download.json",
+        "docs/intake/qa/export-download.txt",
+        "docs/intake/qa/preview-1-after-fill.txt",
+        "docs/intake/qa/run-a-results.json",
+        "docs/intake/qa/run-b-results.json",
+        "docs/intake/qa/run-c-results.json"
+      ]
+    },
+    {
+      "pass": 2,
+      "date": "2026-09-15",
+      "tester": "Olga (QA Test Engineer, K13)",
+      "brief": "Adversarial second pass, not a happy-path repeat of pass 1: storage-quota exhaustion + real photo uploads, messy real-world input, interruption/impatience (reload, double-clicks, bad backup files, cancel flows), the export read as its recipient, and a genuine two-sittings close-and-reopen test.",
+      "environment": {
+        "harness": "Playwright (chromium), scripts written and run from /Users/k13/Desktop/PROJECTS/STATION8 in the foreground, one journey per script, all deleted after the run (STATION8 left otherwise untouched, verified via git status before and after)",
+        "browser": "Chromium (Playwright-managed, headless), plus a real launchPersistentContext profile for the two-sittings test to simulate an actual full browser close/reopen",
+        "url": "file:///Users/k13/Desktop/PROJECTS/Miramar/docs/intake/Miramar_AI_Assistant_Intake_Form.html"
+      },
+      "verdict": "PASS after two real fixes. Found and fixed the storage-quota area's two genuine failure modes (a silent, easy-to-miss autosave failure, and an undetected-photo-format fallback that could itself exhaust the quota). Found and fixed a real data-loss bug in Load Backup. Everything else attacked (messy input, double-clicks, cancel flows, reload mid-typing, two sittings via a real browser close) held up with no console/page errors and no silent data loss. Safe to send to Lorena.",
+      "summary": {
+        "areas_attacked": 5,
+        "defects_found": 3,
+        "defects_fixed": 3,
+        "judgment_calls_left_for_kazim": 0
+      },
+      "checks": [
+        { "area": "Storage limits", "check": "localStorage actually works on a file:// page in Chromium (not silently unavailable)", "result": "pass", "note": "Confirmed working; also empirically measured this machine's file:// origin quota at roughly 4-5MB, tight compared to a typical https origin (10MB+)." },
+        { "area": "Storage limits", "check": "15 real, realistic-size (~365KB) phone-camera JPEG photos uploaded to all 15 vendor cards stay well under quota", "result": "pass", "note": "processLogoFile's existing 220px/JPEG-0.85 downscale keeps 15 real photos to ~112KB total saved, so normal real-world usage is very unlikely to hit the quota on its own." },
+        { "area": "Storage limits", "check": "An uploaded photo Chromium cannot decode (iPhone HEIC) does not fall back to storing the full, un-downscaled original in localStorage", "result": "pass", "note": "Was failing before the fix, see Defects #1 below: the undecodable-image fallback used to store the entire raw file as a data URL." },
+        { "area": "Storage limits", "check": "When localStorage.setItem throws (quota exceeded, forced deterministically via a monkeypatched setItem to isolate the UI logic from this machine's specific quota), the page shows a persistent, hard-to-miss warning (not just small corner text) and a pulsing red status dot", "result": "pass", "note": "Was failing before the fix, see Defects #2." },
+        { "area": "Storage limits", "check": "\"Download backup now\" (both the toolbar button and the new warning banner's own button) still produces a complete, correct .json backup while localStorage is full, since it is built from in-memory state, not from localStorage", "result": "pass" },
+        { "area": "Storage limits", "check": "Once space is freed and a save succeeds again, the warning banner and dot clear automatically and a confirming toast appears", "result": "pass" },
+        { "area": "Messy input", "check": "Very long vendor name (180+ chars) + quotes + apostrophes + ampersands + emoji + Spanish accents does not overflow the layout horizontally, desktop or mobile", "result": "pass" },
+        { "area": "Messy input", "check": "A pasted phone number with formatting, a tracking-parameter URL, and a 2000-character note all round-trip into localStorage exactly as typed and appear correctly in the exported text", "result": "pass" },
+        { "area": "Messy input", "check": "Quotes and ampersands are not double-escaped anywhere visible (on-screen input value, saved JSON, or the plain-text export)", "result": "pass" },
+        { "area": "Messy input", "check": "Leading/trailing whitespace is kept in what's saved (harmless) but trimmed by dash()/fv() in the export, so the export reads clean either way", "result": "pass" },
+        { "area": "Interruption", "check": "Reloading mid-keystroke (before the 500ms autosave debounce fires) loses only the last unsaved keystrokes, does not throw, does not corrupt the previously-saved state", "result": "pass", "note": "Expected debounce-window behavior, not a defect; flagged as residual low risk in the report body, not fixed." },
+        { "area": "Interruption", "check": "Double-clicking \"Copy & Open Email\" causes no console errors and a sensible toast", "result": "pass" },
+        { "area": "Interruption", "check": "Double/triple-clicking a vendor override-toggle button and a FAQ accept button causes no console errors", "result": "pass" },
+        { "area": "Interruption", "check": "Double-clicking \"Clear this form\" and cancelling both confirms leaves all data intact", "result": "pass" },
+        { "area": "Interruption", "check": "Double-clicking \"Clear this form\" and accepting both confirms causes no console errors (second click is a no-op on an already-cleared form)", "result": "pass" },
+        { "area": "Interruption", "check": "Loading a backup file that is valid JSON but the wrong shape ({} , an unrelated object, a bare array) does not touch localStorage or the current in-progress answers, and shows a clear \"not a Miramar backup\" message instead of a false \"restored\" toast", "result": "pass", "note": "Was failing before the fix, see Defects #3: it silently wiped the form and overwrote localStorage with the bad file, while still claiming success." },
+        { "area": "Interruption", "check": "Loading a file that is not JSON at all shows a clear error and touches nothing", "result": "pass", "note": "Already correct pre-fix (parse errors were caught); re-verified." },
+        { "area": "Interruption", "check": "Loading a genuinely valid backup now asks for confirmation before overwriting current in-progress work, and still restores correctly when confirmed", "result": "pass", "note": "New behavior added as part of the Defects #3 fix, this action previously overwrote instantly with no confirmation at all." },
+        { "area": "Interruption", "check": "Browser back-button behavior", "result": "pass", "note": "The sidebar's section jumps are plain #hash anchors with no page-specific routing/popstate logic, so back/forward is entirely native browser behavior; nothing in the page can break from it. Not a meaningful risk here." },
+        { "area": "Export completeness", "check": "Every static field name= in the DOM has a corresponding line in buildAnswerText(); cross-checked the full field name list against the export function's source rather than spot-checking", "result": "pass", "note": "The few names that didn't literally appear (collect_*, days_*) are read through dynamically-built keys (fchecked('collect_'+c), fchecked('days_'+d)) inside loops, confirmed present, not silent drops." },
+        { "area": "Two sittings", "check": "Filling half the form, fully closing the browser (a real launchPersistentContext close, not just a tab reload) and reopening restores every field exactly, with an honest \"Restored from your last visit\" label and a correct, complete \"still open\" list for what's left", "result": "pass" }
+      ],
+      "defects_found_and_fixed": [
+        {
+          "id": 1,
+          "area": "Vendor photo upload, undecodable image fallback",
+          "severity": "high (the exact storage-exhaustion scenario the brief asked to hunt for)",
+          "found": "processLogoFile() downscales an uploaded photo to a small 220px JPEG before storing it, but if the browser's <img> element fails to decode the file (img.onerror), the old code fell back to callback(reader.result), the FULL, UN-downscaled original as a base64 data URL. Reproduced directly: a 236KB synthetic iPhone-style HEIC photo (Chromium cannot decode HEIC) landed in localStorage as a 322KB raw data URL instead of a small JPEG, and the on-screen logo also just silently failed to render (broken image, no message). A real iPhone HEIC photo (commonly 1.5-4MB at full resolution) would do this at full size; two or three such photos across the 15 vendor cards would alone exceed this browser's measured ~4-5MB file:// storage quota, taking every other answer down with it since doSave() writes one combined payload.",
+          "fix": "processLogoFile() now calls back with null on any decode/processing failure instead of the raw original. The upload handler checks for null and shows a clear toast (\"That photo couldn't be used, this often happens with iPhone photos saved as HEIC, please pick a JPG or PNG instead...\") without touching vd.logo, so a failed photo leaves the vendor exactly where it was (placeholder/hint text intact) instead of silently bloating storage with something that wasn't even going to display.",
+          "verified": "Re-ran the same HEIC upload: no data stored for that vendor's logo, toast shown, no console errors. Re-ran 15 real JPEG uploads afterward to confirm no regression (still ~112KB total, all render correctly)."
+        },
+        {
+          "id": 2,
+          "area": "Autosave failure visibility",
+          "severity": "high (exactly the brief's core concern: \"never lose her work without telling her\")",
+          "found": "doSave()'s catch block on a failed localStorage.setItem (quota exceeded, private-mode restrictions, etc.) only changed a small text label inside the sticky statusbar's corner (\"Could not autosave in this browser, use Download backup instead\"). No toast, no visual color change on the save-status dot, no banner. A careless real user is very likely to keep typing for the rest of a sitting believing autosave is on, then close the tab and lose everything typed since the failure, with zero warning she'd actually notice.",
+          "fix": "Added a persistent, styled warning banner (role=\"alert\", using the brand's existing --danger token, matches the form's visual system) that appears in the statusbar the moment a save fails and stays until a save succeeds again; the save-status dot turns red and pulses (gated behind prefers-reduced-motion); a one-time toast fires on the failing transition (not spammed every 500ms while she keeps typing); the banner has its own \"Download backup now\" button wired to the same in-memory-state-based download used elsewhere, so it keeps working even while localStorage itself is unusable. Clears itself automatically, with a confirming toast, the moment a save succeeds again.",
+          "verified": "Forced a deterministic quota failure (monkeypatched setItem) to test the UI logic in isolation from this machine's specific quota size: banner + red pulsing dot appear immediately, the banner's download button produces a complete correct backup with the just-typed value, and everything clears cleanly once the forced failure is removed and typing resumes. Screenshots: docs/intake/qa/12-storage-full-banner-desktop.png, docs/intake/qa/13-storage-full-banner-mobile.png."
+        },
+        {
+          "id": 3,
+          "area": "Load Backup — wrong-shape file silently destroys current progress",
+          "severity": "high (real, easy-to-hit data-loss bug)",
+          "found": "The \"Load backup\" handler did JSON.parse(file) then immediately localStorage.setItem(STORAGE_KEY, JSON.stringify(data)) and loadState() with NO shape validation and NO confirmation dialog (unlike \"Clear this form\", which does confirm). Picking any valid-JSON-but-wrong-shape file (an empty object, a random JSON file, an array) silently wiped everything currently on screen back to blank defaults, overwrote the real saved answers in localStorage with the bad file's contents, and still showed \"Backup loaded, your answers have been restored\", a false success message for what was actually silent data destruction. There was also no confirmation before overwriting current work even for a genuinely valid backup, so a stray double-click or picking the wrong .json file by mistake had no safety net at all.",
+          "fix": "The file is now validated (object shape, has at least one of vendors/faqs/fields) BEFORE anything is written to localStorage or applied to state; an invalid file shows a clear, honest error and changes nothing. A valid-looking file now asks for confirmation (\"Load this backup? Everything currently in the form will be replaced...\") before applying, matching the existing pattern used by \"Clear this form\". The actual apply step is also wrapped in try/catch so an unexpected runtime error during restore reports itself instead of throwing silently.",
+          "verified": "Re-tested a non-JSON file, an empty-object JSON file, and a bare-array JSON file: all three now leave the original in-progress answer (\"ORIGINAL VALUE, must survive bad loads\") completely untouched and show a clear message. A genuinely valid backup file still round-trips correctly, now behind one confirm() prompt. No console errors on any path."
+        }
+      ],
+      "left_for_kazim": [],
+      "not_defects_test_artifacts": [],
+      "residual_risk_noted_not_fixed": [
+        {
+          "topic": "The last ~500ms of typing before a reload/crash",
+          "what": "Autosave is debounced 500ms after the last keystroke or change event. Reloading, closing, or crashing inside that window loses only what was typed in that window, confirmed empirically, no corruption, no error, no loss of anything already saved.",
+          "why_left_alone": "This is the same debounce window every autosave pattern like this uses; shrinking it further trades save-storm risk (more localStorage churn, closer to the quota) for a marginal reduction in an already-tiny loss window. Not worth changing without Kazim asking for it."
+        },
+        {
+          "topic": "file:// localStorage quota is small and possibly shared across unrelated local HTML files",
+          "what": "Empirically measured this browser's file:// origin quota at roughly 4-5MB, noticeably tighter than a typical https origin. Chromium's file:// storage bucketing (whether it's per-file-path or shared machine-wide across all file:// pages) was not fully characterized, out of scope for a fix inside this one file since it's browser behavior, not something the form controls.",
+          "why_left_alone": "The form-side mitigation (loud warning + a download path that works regardless of localStorage state, from Defect #2) is the right fix at this layer. Real-world usage (text answers + normal JPEG/PNG photos) measured well under quota in testing (~112KB for 15 real photos), so this is a defense-in-depth fix for an edge case, not a fix for an everyday failure."
+        }
+      ],
+      "screenshots": [
+        "docs/intake/qa/12-storage-full-banner-desktop.png",
+        "docs/intake/qa/13-storage-full-banner-mobile.png"
+      ],
+      "scripts_used_and_deleted": [
+        "STATION8/olga-01-storage-check.mjs",
+        "STATION8/olga-02-quota.mjs",
+        "STATION8/olga-03-quota-forced.mjs",
+        "STATION8/olga-04-backup-load.mjs",
+        "STATION8/olga-05-messy-and-interrupt.mjs",
+        "STATION8/olga-06-notes-and-whitespace.mjs",
+        "STATION8/olga-07-doubleclicks-reload.mjs",
+        "STATION8/olga-08-two-sittings.mjs",
+        "STATION8/olga-09-real-photo-uploads.mjs",
+        "STATION8/olga-10-heic-upload.mjs",
+        "STATION8/olga-11-final-smoke.mjs",
+        "STATION8/olga-12-screenshots.mjs"
+      ]
+    },
+    {
+      "pass": 3,
+      "date": "2026-09-16",
+      "tester": "Olga (QA Test Engineer, K13)",
+      "brief": "Targeted re-verification, not a full pass: only the phone section changed today (assistant_phone_number choice question removed, replaced with a static \"The assistant is live on (949) 868-4030\" statement; its CHOICE_CONFIGS entry and export line removed; the separate old_number_forwards radio question kept as-is). Diffed against /tmp/form.bak.html first, then drove the live file in gstack browse (headless Chromium, War Room berth BROWSE_PORT=39137 / CHROMIUM_PROFILE=~/.gstack/berths/K13_HQ) since the file lives outside the daemon's sandboxed roots; worked off a scratch copy at /private/tmp for navigation only, no source edits needed.",
+      "environment": {
+        "harness": "gstack browse (dist/browse), headless Chromium, K13 War Room berth",
+        "browser": "Chromium (headless, BROWSE_PORT=39137)",
+        "url": "file:///Users/k13/Desktop/PROJECTS/Miramar/docs/intake/Miramar_AI_Assistant_Intake_Form.html (driven from a scratch copy at /private/tmp/miramar_intake_qa.html, deleted after the run; content identical, confirmed byte-for-byte source before copying)"
+      },
+      "verdict": "PASS, clean. No defects found, nothing fixed. The edit is self-contained and did not break anything else in the form.",
+      "summary": {
+        "checks_run": 7,
+        "defects_found": 0,
+        "defects_fixed": 0,
+        "judgment_calls_left_for_kazim": 0
+      },
+      "checks": [
+        { "area": "Fresh load", "check": "Zero console errors on load", "result": "pass" },
+        { "area": "Phone section", "check": "\"The assistant is live on (949) 868-4030\" statement renders, styled identically to other field labels (shares .field label, .field .label CSS rule), hint text below it reads correctly", "result": "pass", "note": "Screenshot confirms: 02 / Operating Context, Phone Number & Languages, statement bold, hint text present, no visual break." },
+        { "area": "Phone section", "check": "\"Should the old number forward to the assistant's line?\" Yes/No radio chips still present and clickable", "result": "pass" },
+        { "area": "Phone section", "check": "No empty or orphaned widget where the removed choice field (assistant_phone_number, its choicewrap div and hidden input) used to be", "result": "pass", "note": "grep confirms zero remaining references to assistant_phone_number anywhere in the file (markup, CHOICE_CONFIGS, export). The .field div now cleanly holds just the label + hint, next field starts immediately after." },
+        { "area": "Save-as-you-go", "check": "Filled the forwarding radio, a textarea (hours_notes) and a checkbox (days_mon) across different sections, reloaded, values came back exactly", "result": "pass" },
+        { "area": "Progress indicator", "check": "Progress moves correctly as fields are filled (0% to 4% across 3 fields) and stays stable through reload and clicking every section open/closed", "result": "pass", "note": "updateProgress() counts live DOM fields, not a hardcoded list, so it correctly reflects one fewer total field now that assistant_phone_number's hidden input is gone; no stuck or wrong total." },
+        { "area": "Export", "check": "buildAnswerText() output contains \"Assistant live number: (949) 868-4030\", no leftover \"Number the assistant should answer\" line, no \"undefined\" anywhere in the 222-line export", "result": "pass" },
+        { "area": "Full click-through", "check": "Opened/closed all 15 sections (sec-hours through sec-else) in sequence", "result": "pass", "note": "No console errors, every section body rendered non-empty content." }
+      ],
+      "defects_found_and_fixed": [],
+      "left_for_kazim": [],
+      "not_defects_test_artifacts": [],
+      "screenshots": [],
+      "notes": "No screenshots archived this pass (file:// path fell outside the browse daemon's sandbox roots; screenshots were taken from a temporary /private/tmp copy and deleted with it rather than saved into docs/intake/qa/, since nothing needed fixing). Full-pass axe/mobile/backup/FAQ coverage from passes 1-2 was not re-run; this pass is scoped to the phone-section edit and its blast radius only, per the ask."
+    }
+  ]
+}

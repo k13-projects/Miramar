@@ -1,0 +1,229 @@
+MIRAMAR FOOD HALL, AI PHONE ASSISTANT KNOWLEDGE BASE
+Prepared: 9/15/2026, 2:42:05 AM
+
+— HOURS OF OPERATION —
+Days open: Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday
+Opening hour: 11:00 AM
+Closing hour: 9:00 PM
+Exceptions/details: Bar stays open until 10pm Fri/Sat.
+Holiday closures / seasonal hours: Closed Thanksgiving & Christmas Day.
+
+— PHONE NUMBER & LANGUAGES —
+Number the assistant should answer: Yes, use (951) 970-6693 (our records show (951) 970-6693, currently not on the website)
+Old number forwards to it: Yes
+Languages: English and Spanish
+
+— VENDORS & CONCEPTS —
+Hall defaults (used by any vendor below that has not overridden it):
+  Dietary/GF options: Dairy-Free
+  How customers order: Order at counter
+  Review us URL: https://g.page/miramar-review
+  Website URL: https://miramarfoodhall.com
+  Can connect calls here: No
+
+1. Cosmos Burger
+   Can connect calls here: No (hall default)
+   Contact: —
+   Dietary/GF options: Dairy-Free (hall default)
+   How customers order: Order at counter (hall default)
+   Menu URL: —
+   Website URL: https://miramarfoodhall.com (hall default)
+   Review us URL: https://g.page/miramar-review (hall default)
+   Notes: —
+2. Egg & Out
+   Can connect calls here: No (hall default)
+   Contact: —
+   Dietary/GF options: Dairy-Free (hall default)
+   How customers order: Order at counter (hall default)
+   Menu URL: —
+   Website URL: https://miramarfoodhall.com (hall default)
+   Review us URL: https://g.page/miramar-review (hall default)
+   Notes: —
+3. El Puerto Street Tacos
+   Can connect calls here: No (hall default)
+   Contact: —
+   Dietary/GF options: Gluten-Free, Vegan (vendor-specific)
+   How customers order: Order at counter (hall default)
+   Menu URL: —
+   Website URL: https://miramarfoodhall.com (hall default)
+   Review us URL: https://g.page/miramar-review (hall default)
+   Notes: —
+4. Graciously Thai
+   Can connect calls here: No (hall default)
+   Contact: —
+   Dietary/GF options: Gluten-Free, Vegan (vendor-specific)
+   How customers order: Order at counter (hall default)
+   Menu URL: —
+   Website URL: https://miramarfoodhall.com (hall default)
+   Review us URL: https://g.page/miramar-review (hall default)
+   Notes: —
+5. Hen Haus
+   Can connect calls here: No (hall default)
+   Contact: —
+   Dietary/GF options: Dairy-Free (hall default)
+   How customers order: Order at counter (hall default)
+   Menu URL: —
+   Website URL: https://miramarfoodhall.com (hall default)
+   Review us URL: https://g.page/miramar-review (hall default)
+   Notes: —
+6. Immersion Coffee Co.
+   Can connect calls here: No (hall default)
+   Contact: —
+   Dietary/GF options: Dairy-Free (hall default)
+   How customers order: Order at counter (hall default)
+   Menu URL: —
+   Website URL: https://miramarfoodhall.com (hall default)
+   Review us URL: https://g.page/miramar-review (hall default)
+   Notes: —
+7. It's Allll Rice
+   Can connect calls here: No (hall default)
+   Contact: —
+   Dietary/GF options: Dairy-Free (hall default)
+   How customers order: Order at counter (hall default)
+   Menu URL: —
+   Website URL: https://miramarfoodhall.com (hall default)
+   Review us URL: https://g.page/miramar-review (hall default)
+   Notes: —
+8. La Vida
+   Can connect calls here: No (hall default)
+   Contact: —
+   Dietary/GF options: Dairy-Free (hall default)
+   How customers order: Order at counter (hall default)
+   Menu URL: —
+   Website URL: https://miramarfoodhall.com (hall default)
+   Review us URL: https://g.page/miramar-review (hall default)
+   Notes: —
+9. Lobster Lab
+   Can connect calls here: No (hall default)
+   Contact: —
+   Dietary/GF options: Dairy-Free (hall default)
+   How customers order: Order at counter (hall default)
+   Menu URL: —
+   Website URL: https://miramarfoodhall.com (hall default)
+   Review us URL: https://g.page/miramar-review (hall default)
+   Notes: —
+10. MOTO Pizza
+   Can connect calls here: No (hall default)
+   Contact: —
+   Dietary/GF options: Dairy-Free (hall default)
+   How customers order: Order at counter (hall default)
+   Menu URL: —
+   Website URL: https://miramarfoodhall.com (hall default)
+   Review us URL: https://g.page/miramar-review (hall default)
+   Notes: —
+11. MOTO Swirl
+   Can connect calls here: No (hall default)
+   Contact: —
+   Dietary/GF options: Dairy-Free (hall default)
+   How customers order: Order at counter (hall default)
+   Menu URL: —
+   Website URL: https://miramarfoodhall.com (hall default)
+   Review us URL: https://g.page/miramar-review (hall default)
+   Notes: —
+12. Norigiri
+   Can connect calls here: No (hall default)
+   Contact: —
+   Dietary/GF options: Dairy-Free (hall default)
+   How customers order: Order at counter (hall default)
+   Menu URL: —
+   Website URL: https://miramarfoodhall.com (hall default)
+   Review us URL: https://g.page/miramar-review (hall default)
+   Notes: —
+13. RolledUp SC
+   Can connect calls here: No (hall default)
+   Contact: —
+   Dietary/GF options: Dairy-Free (hall default)
+   How customers order: Order at counter (hall default)
+   Menu URL: —
+   Website URL: https://miramarfoodhall.com (hall default)
+   Review us URL: https://g.page/miramar-review (hall default)
+   Notes: —
+14. Sidelines Sandwiches
+   Can connect calls here: No (hall default)
+   Contact: —
+   Dietary/GF options: Dairy-Free (hall default)
+   How customers order: Order at counter (hall default)
+   Menu URL: —
+   Website URL: https://miramarfoodhall.com (hall default)
+   Review us URL: https://g.page/miramar-review (hall default)
+   Notes: —
+15. The Pita
+   Can connect calls here: No (hall default)
+   Contact: —
+   Dietary/GF options: Dairy-Free (hall default)
+   How customers order: Order at counter (hall default)
+   Menu URL: —
+   Website URL: https://miramarfoodhall.com (hall default)
+   Review us URL: https://g.page/miramar-review (hall default)
+   Notes: —
+
+— FOOD HALL QR & LINKS —
+Menu URL: https://miramarfoodhall.com/menu
+Website URL: https://miramarfoodhall.com
+Review us URL: —
+
+— ACCESSIBILITY —
+[Marked: Not applicable]
+—
+
+— PARKING & GETTING THERE —
+[Marked: Not sure, ask Lorena, front desk]
+—
+
+— AMENITIES & COMMON QUESTIONS —
+Applies: Free wifi, Dog friendly
+Notes: Live sports on weekends.
+
+— RESERVATIONS & PRIVATE EVENTS —
+Takes reservations for small parties: No
+Minimum party size for private/group event: 10 guests
+Collect for group inquiries: Name, Phone, Guest count
+Other info to collect: —
+Route inquiries to: Lorena Montiel, events@miramarfoodhall.com
+Catering & large orders routed to: —
+Press/media/vendor leasing routed to: —
+Other notes: —
+
+— CALL TRANSFERS —
+Transfers enabled: Yes
+Transfer triggers: Caller explicitly asks for a person, Caller sounds upset/urgent
+Other trigger: —
+Transfer phone/extension: (951) 970-6693
+Hours transfers should NOT happen: Only during business hours
+Other transfer notes: —
+
+— CALL SUMMARIES —
+Recipient: lorena@miramarfoodhall.com
+Frequency: Daily digest
+
+— BLOCKING ABUSIVE/SPAM CALLERS —
+Block after this many calls/day: 3
+Blocking mode: Block automatically
+Numbers to block now: —
+
+— FREQUENTLY ASKED QUESTIONS —
+1. Q: Do I need a reservation?
+   A: You are welcome to just walk in, no reservation needed. For a large group or a private event, I can take your details and have someone get back to you. (accepted from suggestion)
+2. Q: Is there parking?
+   A: Yes! Free lot parking right behind the hall. (accepted from suggestion, edited)
+3. Q: Do you have a kids menu?
+   A: Several vendors offer kid-friendly portions, just ask at the counter.
+
+— ASSISTANT PERSONALITY & VOICE —
+Preferred name: Mira
+May quote prices: No
+Allergy question policy: Always transfer to a person
+Can freely share: Hours & location
+Should never share: Staff personal info
+
+— CALL ENDING & SILENCE HANDLING —
+When to hang up: Abusive or threatening caller
+Check-ins before hanging up on silence: 2
+Seconds of silence before hangup: 15
+Never say/do: —
+
+— ANYTHING ELSE —
+We are opening a new taco vendor in December.
+
+— STILL OPEN —
+Not sure who knows, Parking & Getting There (ask Lorena, front desk)
