@@ -20,8 +20,8 @@ const src = readFileSync(new URL("../main.js", import.meta.url), "utf8");
 const start = src.indexOf("const PAST_EVENT_GRACE_DAYS");
 const end = src.indexOf("function parseCSV(csv) {");
 const body = src.slice(start, end);
-const fn = new Function(body + "\nreturn { classifyEvents, monthIndex, PAST_EVENT_GRACE_DAYS };");
-const { classifyEvents, monthIndex, PAST_EVENT_GRACE_DAYS } = fn();
+const fn = new Function(body + "\nreturn { classifyEvents, monthIndex, PAST_EVENT_GRACE_DAYS, NO_YEAR_LOOKAHEAD_DAYS };");
+const { classifyEvents, monthIndex, PAST_EVENT_GRACE_DAYS, NO_YEAR_LOOKAHEAD_DAYS } = fn();
 
 const NOW = new Date("2026-09-18T19:00:00Z");
 const ev = (month, day, title = "x", year = "") => ({ month, day, title, description: "", url: "", year });
@@ -45,6 +45,15 @@ check("ordering",
   ["UpSoon","UpLate","PastNew","PastOld"]);
 check("stale April dropped, not resurrected", classifyEvents([ev("APRIL","1")], NOW).length, 0);
 check("Year column respected", classifyEvents([ev("JANUARY","10","x","2027")], NOW).map(e => e.state), ["upcoming"]);
+check("lookahead window is 120", NO_YEAR_LOOKAHEAD_DAYS, 120);
+const DEC = new Date("2026-12-20T19:00:00Z");
+check("Jan typed in Dec rolls to next year, no Year column",
+  classifyEvents([ev("JANUARY","10")], DEC).map(e => [e.state, new Date(e.timestamp).getUTCFullYear()]),
+  [["upcoming", 2027]]);
+check("stale June still dropped when read in Dec", classifyEvents([ev("JUNE","5")], DEC).length, 0);
+check("wrap-forward edge: 19 Apr in, 20 Apr out",
+  [classifyEvents([ev("APRIL","19")], DEC).length, classifyEvents([ev("APRIL","20")], DEC).length], [1, 0]);
+check("explicit Year beats the inference", classifyEvents([ev("APRIL","1","x","2027")], NOW).length, 1);
 check("Feb 30 dropped", classifyEvents([ev("FEBRUARY","30","x","2027")], NOW).length, 0);
 check("leap day ok in 2028", classifyEvents([ev("FEBRUARY","29","x","2028")], NOW).length, 1);
 check("leap day refused in 2027", classifyEvents([ev("FEBRUARY","29","x","2027")], NOW).length, 0);

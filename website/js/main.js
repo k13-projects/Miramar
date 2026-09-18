@@ -657,13 +657,26 @@ function loadEventsFromSheet() {
 // housekeeping to stay honest will not stay honest.
 //
 // THE YEAR. The sheet has Month and Day and no year, so "APRIL 1" cannot be
-// placed on a timeline: a stale row and a row meant for next April are the same
-// three characters. There is now an optional sixth column, Year, appended after
-// URL so the five columns this sheet already uses are untouched. When it is
-// blank the rule is the dumbest one that can be explained in a sentence: no
-// year means this year. Rolling a long-past date forward to its next occurrence
-// reads as helpful and would quietly resurrect a forgotten row a year later.
-// The cost: an event typed in December for the coming January needs its Year.
+// placed on a timeline on its own. There is an optional sixth column, Year,
+// appended after URL so the five columns this sheet already uses are untouched.
+// When it is filled in it wins outright.
+//
+// When it is blank the year is inferred, and the inference threads one needle.
+// Two rows look identical and mean opposite things:
+//
+//   a January event typed in December    means next year, and must appear
+//   an April row nobody deleted          means last spring, and must not
+//
+// What separates them is how far ahead the next occurrence is. Somebody
+// entering an event without a year is entering something weeks or a couple of
+// months out, not eleven months. So: try this year, and if that is well behind
+// us, try next year and accept it only inside NO_YEAR_LOOKAHEAD_DAYS. Otherwise
+// the row is stale and is dropped.
+//
+// The window is chosen with the failure modes in mind. Too long and a forgotten
+// row reappears as a date nobody planned, which is invented content and
+// invisible. Too short and a real event does not show, which the client tells
+// us about within a day. The second is self-correcting, the first is not.
 //
 // "Today" is today in California, where the hall is, not in the visitor's own
 // time zone.
@@ -671,6 +684,7 @@ function loadEventsFromSheet() {
 // This mirrors STATION8/lib/event-lifecycle.ts and GlobalFork/src/lib/
 // event-lifecycle.ts. Spec: K13-WarRoom/starter-kit/EVENTS_SHEET.md
 const PAST_EVENT_GRACE_DAYS = 60;
+const NO_YEAR_LOOKAHEAD_DAYS = 120;
 const VENUE_TIME_ZONE = 'America/Los_Angeles';
 const MONTH_NAMES = ['january', 'february', 'march', 'april', 'may', 'june',
     'july', 'august', 'september', 'october', 'november', 'december'];
@@ -701,14 +715,31 @@ function classifyEvents(rows, now) {
         if (month === null || !Number.isInteger(day) || day < 1 || day > 31) return;
 
         const rawYear = String(row.year || '').trim();
-        const year = rawYear ? Number(rawYear) : today.year;
-        if (!Number.isInteger(year) || year < 2000 || year > 2999) return;
 
-        const timestamp = Date.UTC(year, month, day);
-        // A day-overflow, e.g. FEBRUARY 30, lands in the next month. Drop it
-        // rather than silently move the event.
-        if (new Date(timestamp).getUTCMonth() !== month) return;
-        if (timestamp < cutoff) return;
+        let timestamp;
+        if (rawYear) {
+            const year = Number(rawYear);
+            if (!Number.isInteger(year) || year < 2000 || year > 2999) return;
+            timestamp = Date.UTC(year, month, day);
+            // A day-overflow, e.g. FEBRUARY 30, lands in the next month. Drop
+            // it rather than silently move the event.
+            if (new Date(timestamp).getUTCMonth() !== month) return;
+            if (timestamp < cutoff) return;
+        } else {
+            const thisYear = Date.UTC(today.year, month, day);
+            const nextYear = Date.UTC(today.year + 1, month, day);
+            // Check the overflow on the candidate actually used; a leap day is
+            // valid in one of these years and not the other.
+            if (thisYear >= cutoff) {
+                if (new Date(thisYear).getUTCMonth() !== month) return;
+                timestamp = thisYear;
+            } else if (nextYear <= todayStamp + NO_YEAR_LOOKAHEAD_DAYS * 86400000) {
+                if (new Date(nextYear).getUTCMonth() !== month) return;
+                timestamp = nextYear;
+            } else {
+                return;
+            }
+        }
 
         dated.push(Object.assign({}, row, {
             timestamp: timestamp,
