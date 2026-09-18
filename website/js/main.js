@@ -601,7 +601,7 @@ function loadEventsFromSheet() {
     // No stale/dummy events ever appear; visitors get a friendly nudge instead.
     const EMPTY_STATE = `
         <div class="events-empty">
-            <p>No events scheduled right now — check back soon!</p>
+            <p>No events scheduled right now. Check back soon.</p>
             <a href="https://instagram.com/miramarfoodhall" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Follow @miramarfoodhall for updates</a>
         </div>
     `;
