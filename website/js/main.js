@@ -612,16 +612,19 @@ function loadEventsFromSheet() {
             return response.text();
         })
         .then(csv => {
-            const events = parseCSV(csv);
+            // Sorted and filtered here rather than in the sheet, so the client
+            // can type rows in any order and never has to delete a finished one.
+            const events = classifyEvents(parseCSV(csv));
 
             if (events.length > 0) {
                 eventsGrid.innerHTML = events.map(event => `
-                    <div class="event-card">
+                    <div class="event-card${event.state === 'past' ? ' event-card--past' : ''}">
                         <div class="event-date">
                             <span class="month">${escapeHTML(event.month)}</span>
                             <span class="day">${escapeHTML(event.day)}</span>
                         </div>
                         <div class="event-info">
+                            ${event.state === 'past' ? '<span class="event-past-label">Past</span>' : ''}
                             <h3>${escapeHTML(event.title)}</h3>
                             <p>${escapeHTML(event.description)}</p>
                             ${event.url ? `<a href="${normalizeURL(event.url)}" target="_blank" rel="noopener noreferrer" class="event-link">Learn More</a>` : ''}
@@ -637,6 +640,85 @@ function loadEventsFromSheet() {
             // Fetch failed (sheet unpublished / offline) → same empty state
             eventsGrid.innerHTML = EMPTY_STATE;
         });
+}
+
+
+// ─────────────────────────────────────────────────
+// What happens to an event after its date passes
+// ─────────────────────────────────────────────────
+// Kazim, 2026-09-18: a finished event keeps its place for a while so visitors
+// can see what they missed, then disappears on its own. Three lives:
+//
+//   upcoming  today or later         full colour, listed first, soonest first
+//   past      up to 60 days ago      greyed, labelled Past, listed after
+//   gone      more than 60 days ago  not rendered
+//
+// The client never deletes a row to make this happen. A calendar that needs
+// housekeeping to stay honest will not stay honest.
+//
+// THE YEAR. The sheet has Month and Day and no year, so "APRIL 1" cannot be
+// placed on a timeline: a stale row and a row meant for next April are the same
+// three characters. There is now an optional sixth column, Year, appended after
+// URL so the five columns this sheet already uses are untouched. When it is
+// blank the rule is the dumbest one that can be explained in a sentence: no
+// year means this year. Rolling a long-past date forward to its next occurrence
+// reads as helpful and would quietly resurrect a forgotten row a year later.
+// The cost: an event typed in December for the coming January needs its Year.
+//
+// "Today" is today in California, where the hall is, not in the visitor's own
+// time zone.
+//
+// This mirrors STATION8/lib/event-lifecycle.ts and GlobalFork/src/lib/
+// event-lifecycle.ts. Spec: K13-WarRoom/starter-kit/EVENTS_SHEET.md
+const PAST_EVENT_GRACE_DAYS = 60;
+const VENUE_TIME_ZONE = 'America/Los_Angeles';
+const MONTH_NAMES = ['january', 'february', 'march', 'april', 'may', 'june',
+    'july', 'august', 'september', 'october', 'november', 'december'];
+
+function monthIndex(raw) {
+    const m = String(raw || '').trim().toLowerCase().replace(/\.$/, '');
+    if (!m) return null;
+    const exact = MONTH_NAMES.indexOf(m);
+    if (exact !== -1) return exact;
+    const prefixed = MONTH_NAMES.findIndex(name => name.indexOf(m) === 0 && m.length >= 3);
+    return prefixed === -1 ? null : prefixed;
+}
+
+function classifyEvents(rows, now) {
+    now = now || new Date();
+    const parts = new Intl.DateTimeFormat('en-CA', {
+        timeZone: VENUE_TIME_ZONE, year: 'numeric', month: '2-digit', day: '2-digit'
+    }).formatToParts(now);
+    const at = type => Number((parts.find(p => p.type === type) || {}).value);
+    const today = { year: at('year'), month: at('month') - 1, day: at('day') };
+    const todayStamp = Date.UTC(today.year, today.month, today.day);
+    const cutoff = todayStamp - PAST_EVENT_GRACE_DAYS * 86400000;
+
+    const dated = [];
+    rows.forEach(row => {
+        const month = monthIndex(row.month);
+        const day = Number(String(row.day).trim());
+        if (month === null || !Number.isInteger(day) || day < 1 || day > 31) return;
+
+        const rawYear = String(row.year || '').trim();
+        const year = rawYear ? Number(rawYear) : today.year;
+        if (!Number.isInteger(year) || year < 2000 || year > 2999) return;
+
+        const timestamp = Date.UTC(year, month, day);
+        // A day-overflow, e.g. FEBRUARY 30, lands in the next month. Drop it
+        // rather than silently move the event.
+        if (new Date(timestamp).getUTCMonth() !== month) return;
+        if (timestamp < cutoff) return;
+
+        dated.push(Object.assign({}, row, {
+            timestamp: timestamp,
+            state: timestamp >= todayStamp ? 'upcoming' : 'past'
+        }));
+    });
+
+    const upcoming = dated.filter(e => e.state === 'upcoming').sort((a, b) => a.timestamp - b.timestamp);
+    const past = dated.filter(e => e.state === 'past').sort((a, b) => b.timestamp - a.timestamp);
+    return upcoming.concat(past);
 }
 
 function parseCSV(csv) {
@@ -661,7 +743,7 @@ function parseCSV(csv) {
             cols.push(current.trim());
 
             if (cols.length >= 3 && cols[0] && cols[1] && cols[2]) {
-                return { month: cols[0], day: cols[1], title: cols[2], description: cols[3] || '', url: cols[4] || '' };
+                return { month: cols[0], day: cols[1], title: cols[2], description: cols[3] || '', url: cols[4] || '', year: cols[5] || '' };
             }
             return null;
         })
