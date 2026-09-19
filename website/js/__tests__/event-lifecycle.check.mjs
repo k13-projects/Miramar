@@ -20,8 +20,8 @@ const src = readFileSync(new URL("../main.js", import.meta.url), "utf8");
 const start = src.indexOf("const PAST_EVENT_GRACE_DAYS");
 const end = src.indexOf("function parseCSV(csv) {");
 const body = src.slice(start, end);
-const fn = new Function(body + "\nreturn { classifyEvents, monthIndex, PAST_EVENT_GRACE_DAYS, NO_YEAR_LOOKAHEAD_DAYS };");
-const { classifyEvents, monthIndex, PAST_EVENT_GRACE_DAYS, NO_YEAR_LOOKAHEAD_DAYS } = fn();
+const fn = new Function(body + "\nreturn { classifyEvents, monthIndex, dayNumber, dateInMonthCell, PAST_EVENT_GRACE_DAYS, NO_YEAR_LOOKAHEAD_DAYS };");
+const { classifyEvents, monthIndex, dayNumber, dateInMonthCell, PAST_EVENT_GRACE_DAYS, NO_YEAR_LOOKAHEAD_DAYS } = fn();
 
 const NOW = new Date("2026-09-18T19:00:00Z");
 const ev = (month, day, title = "x", year = "") => ({ month, day, title, description: "", url: "", year });
@@ -58,6 +58,15 @@ check("stale June still dropped when read in Dec", classifyEvents([ev("JUNE","5"
 check("wrap-forward edge: 19 Apr in, 20 Apr out",
   [classifyEvents([ev("APRIL","19")], DEC).length, classifyEvents([ev("APRIL","20")], DEC).length], [1, 0]);
 check("explicit Year beats the inference", classifyEvents([ev("APRIL","1","x","2027")], NOW).length, 1);
+check("whole date in the Month cell, Day empty",
+  ["10/1/2026","10-1-2026","2026-10-01","Oct 1 2026"].map(t => {
+    const o = classifyEvents([ev(t,"")], NOW);
+    return o.length === 1 && o[0].monthLabel === "OCTOBER" && new Date(o[0].timestamp).getUTCDate() === 1;
+  }), [true,true,true,true]);
+check("date in Month cell with no year infers it", classifyEvents([ev("10/1","")], NOW).map(e=>e.state), ["upcoming"]);
+check("ordinal days", [dayNumber("1st"), dayNumber("3rd"), dayNumber("22nd"), dayNumber(" 03 "), dayNumber("the third"), dayNumber("0")], [1,3,22,3,null,null]);
+check("ordinary month cell is not a date", [dateInMonthCell("OCTOBER"), dateInMonthCell("10"), dateInMonthCell("")], [null,null,null]);
+check("nonsense still refused", [classifyEvents([ev("13/45/2026","")], NOW).length, classifyEvents([ev("not a date","")], NOW).length, classifyEvents([ev("OCTOBER","")], NOW).length], [0,0,0]);
 check("Feb 30 dropped", classifyEvents([ev("FEBRUARY","30","x","2027")], NOW).length, 0);
 check("leap day ok in 2028", classifyEvents([ev("FEBRUARY","29","x","2028")], NOW).length, 1);
 check("leap day refused in 2027", classifyEvents([ev("FEBRUARY","29","x","2027")], NOW).length, 0);
