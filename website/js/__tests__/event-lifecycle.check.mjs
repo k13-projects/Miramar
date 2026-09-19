@@ -34,6 +34,10 @@ const check = (name, actual, expected) => {
 
 check("grace window is 60", PAST_EVENT_GRACE_DAYS, 60);
 check("month names", [monthIndex("APRIL"), monthIndex("Sept"), monthIndex("Dec."), monthIndex("Ma"), monthIndex("Smarch")], [3, 8, 11, null, null]);
+check("month numbers", [monthIndex("1"), monthIndex("01"), monthIndex("10"), monthIndex("12"), monthIndex("0"), monthIndex("13")], [0, 0, 9, 11, null, null]);
+check("month label is canonical however typed",
+  classifyEvents([ev("10","1","digits"), ev("Oct","2","short"), ev("OCTOBER","3","long")], NOW).map(e => e.monthLabel),
+  ["OCTOBER","OCTOBER","OCTOBER"]);
 check("upcoming + past states",
   classifyEvents([ev("OCTOBER","3","Future"), ev("SEPTEMBER","1","Gone")], NOW).map(e => [e.title, e.state]),
   [["Future","upcoming"],["Gone","past"]]);

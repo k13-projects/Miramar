@@ -620,7 +620,7 @@ function loadEventsFromSheet() {
                 eventsGrid.innerHTML = events.map(event => `
                     <div class="event-card${event.state === 'past' ? ' event-card--past' : ''}">
                         <div class="event-date">
-                            <span class="month">${escapeHTML(event.month)}</span>
+                            <span class="month">${escapeHTML(event.monthLabel)}</span>
                             <span class="day">${escapeHTML(event.day)}</span>
                         </div>
                         <div class="event-info">
@@ -689,9 +689,20 @@ const VENUE_TIME_ZONE = 'America/Los_Angeles';
 const MONTH_NAMES = ['january', 'february', 'march', 'april', 'may', 'june',
     'july', 'august', 'september', 'october', 'november', 'december'];
 
+// Names, long or short, any case: APRIL, april, Apr, Sept, Dec.
+// And numbers 1 to 12, with or without a leading zero. That was missing at
+// first and it cost three events on the day the STATION8 sheet went live: the
+// column is headed "Month", so 10, 11 and 12 were typed, which is an entirely
+// reasonable reading of a column called Month, and all three rows silently
+// vanished. A parser that only accepts the format its author had in mind is a
+// trap for everyone else.
 function monthIndex(raw) {
     const m = String(raw || '').trim().toLowerCase().replace(/\.$/, '');
     if (!m) return null;
+    if (/^\d{1,2}$/.test(m)) {
+        const n = Number(m);
+        return n >= 1 && n <= 12 ? n - 1 : null;
+    }
     const exact = MONTH_NAMES.indexOf(m);
     if (exact !== -1) return exact;
     const prefixed = MONTH_NAMES.findIndex(name => name.indexOf(m) === 0 && m.length >= 3);
@@ -743,7 +754,10 @@ function classifyEvents(rows, now) {
 
         dated.push(Object.assign({}, row, {
             timestamp: timestamp,
-            state: timestamp >= todayStamp ? 'upcoming' : 'past'
+            state: timestamp >= todayStamp ? 'upcoming' : 'past',
+            // Always the full name in capitals, whatever was typed, so a row
+            // entered as 10 does not draw a date tab reading "10 / 1".
+            monthLabel: (MONTH_NAMES[month] || '').toUpperCase()
         }));
     });
 
