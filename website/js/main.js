@@ -709,6 +709,54 @@ function monthIndex(raw) {
     return prefixed === -1 ? null : prefixed;
 }
 
+// A whole date sitting in the Month cell. People put one there, and Google
+// Sheets makes it likelier than it sounds: type 10/1 into a cell and Sheets
+// converts it to a date, which the published CSV prints as 10/1/2026, often
+// with the Day column left empty. Day-first order (1/10 meaning 1 October) is
+// deliberately not guessed: picking wrong moves an event by months, and every
+// venue here is in California, so US order is assumed.
+function dateInMonthCell(raw) {
+    const t = String(raw || '').trim();
+    if (!t || !/[/\-\s]/.test(t)) return null;
+
+    const iso = t.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);
+    if (iso) {
+        const month = Number(iso[2]) - 1, day = Number(iso[3]);
+        return (month >= 0 && month <= 11 && day >= 1 && day <= 31)
+            ? { month: month, day: day, year: Number(iso[1]) } : null;
+    }
+
+    const slashed = t.match(/^(\d{1,2})[/\-](\d{1,2})(?:[/\-](\d{2,4}))?$/);
+    if (slashed) {
+        const month = Number(slashed[1]) - 1, day = Number(slashed[2]);
+        if (month < 0 || month > 11 || day < 1 || day > 31) return null;
+        let year = null;
+        if (slashed[3]) {
+            const y = Number(slashed[3]);
+            year = slashed[3].length <= 2 ? 2000 + y : y;
+        }
+        return { month: month, day: day, year: year };
+    }
+
+    const worded = t.match(/^([A-Za-z.]+)\s+(\d{1,2})(?:[,\s]+(\d{4}))?$/);
+    if (worded) {
+        const month = monthIndex(worded[1]), day = Number(worded[2]);
+        if (month === null || day < 1 || day > 31) return null;
+        return { month: month, day: day, year: worded[3] ? Number(worded[3]) : null };
+    }
+
+    return null;
+}
+
+// The day as somebody types it: 3, 03, " 3 ", and the ordinals people write
+// without thinking, 1st, 2nd, 3rd, 22nd.
+function dayNumber(raw) {
+    const t = String(raw || '').trim().toLowerCase().replace(/(st|nd|rd|th)$/, '');
+    if (!/^\d{1,2}$/.test(t)) return null;
+    const n = Number(t);
+    return (n >= 1 && n <= 31) ? n : null;
+}
+
 function classifyEvents(rows, now) {
     now = now || new Date();
     const parts = new Intl.DateTimeFormat('en-CA', {
@@ -721,11 +769,13 @@ function classifyEvents(rows, now) {
 
     const dated = [];
     rows.forEach(row => {
-        const month = monthIndex(row.month);
-        const day = Number(String(row.day).trim());
-        if (month === null || !Number.isInteger(day) || day < 1 || day > 31) return;
+        // A whole date in the Month cell wins: the person wrote the day there.
+        const packed = dateInMonthCell(row.month);
+        const month = packed ? packed.month : monthIndex(row.month);
+        const day = packed ? packed.day : dayNumber(row.day);
+        if (month === null || day === null) return;
 
-        const rawYear = String(row.year || '').trim();
+        const rawYear = (packed && packed.year) ? String(packed.year) : String(row.year || '').trim();
 
         let timestamp;
         if (rawYear) {
@@ -787,8 +837,10 @@ function parseCSV(csv) {
             }
             cols.push(current.trim());
 
-            if (cols.length >= 3 && cols[0] && cols[1] && cols[2]) {
-                return { month: cols[0], day: cols[1], title: cols[2], description: cols[3] || '', url: cols[4] || '', year: cols[5] || '' };
+            // Month and Title, not Day: the day can live inside the Month
+            // cell, and whether a row has a usable date is classifyEvents' job.
+            if (cols.length >= 3 && cols[0] && cols[2]) {
+                return { month: cols[0], day: cols[1] || '', title: cols[2], description: cols[3] || '', url: cols[4] || '', year: cols[5] || '' };
             }
             return null;
         })
